@@ -15,5 +15,9 @@
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.1"
+    },
+    "dependencies": {
+        "filepond": "^4.32.12",
+        "filepond-plugin-image-preview": "^4.6.12"
     }
 }

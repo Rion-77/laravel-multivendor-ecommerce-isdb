@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/css/adminlte.css",
                 'resources/js/adminlte.js',
+                'resources/js/filepond.js',
                 "resources/js/app.js",
             ],
             refresh: true,

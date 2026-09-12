@@ -785,7 +785,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../users.html" class="nav-link">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link">
                         <i class="nav-icon bi bi-person-badge"></i>
                         <p>Admin Users</p>
                     </a>
