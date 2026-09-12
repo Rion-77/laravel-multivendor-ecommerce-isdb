@@ -15,18 +15,19 @@
         <x-admin.content-header title="Users"></x-admin.content-header>
         <!--end::App Content Header-->
 
-        <!-- Flash Message -->
-        @if (session('success'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+
 
         <!--begin::App Content-->
         <div class="app-content">
             <!--begin::Container-->
             <div class="container-fluid">
+                <!-- Flash Message -->
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <!--begin::Row-->
                 <div class="row">
                     <div class="col-12">
@@ -85,8 +86,9 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
+                                                            
                                                             @if ($user->hasMedia('profile_image'))
-                                                                <img src="{{ $user->getFirstMediaUrl('profile_image') }}"
+                                                                <img src="{{ $user->getFirstMediaUrl('profile_image', 'avatar') }}"
                                                                     class="img-size-32 rounded-circle me-2">
                                                             @else
                                                                 <img src="https://i.pravatar.cc/150?img={{ $user->id }}"
@@ -171,8 +173,8 @@
                                     id="modal-delete-item-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-outline-secondary me-1"
-                                        data-bs-dismiss="modal">Cancel</button>
+                                    {{-- <button type="button" class="btn btn-outline-secondary me-1"
+                                        data-bs-dismiss="modal">Cancel</button> --}}
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </div>

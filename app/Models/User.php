@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Spatie\Image\Enums\Fit;
 // for spatie Media
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -21,15 +21,14 @@ class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
-    use InteractsWithMedia;
 
+    use InteractsWithMedia;
 
     /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
      */
-
     protected $with = ['media'];
 
     protected function casts(): array
@@ -45,18 +44,23 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsTo(Role::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
 
         $this->addMediaConversion('webp')
             ->format('webp')
             ->nonQueued();
 
+        // $this->addMediaConversion('avatar')
+        //     ->format('webp')
+        //     ->width(300)
+        //     ->height(300)
+        //     ->sharpen(10)
+        //     ->nonQueued();
 
         $this->addMediaConversion('avatar')
             ->format('webp')
-            ->width(300)
-            ->height(200)
+            ->fit(Fit::Crop, 300, 300)
             ->sharpen(10)
             ->nonQueued();
     }
