@@ -76,7 +76,6 @@
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Phone</th>
                                                 <th scope="col">Role</th>
-                                                {{-- <th scope="col">Status</th> --}}
                                                 <th scope="col">Created</th>
                                                 <th class="text-end" scope="col">Actions</th>
                                             </tr>
@@ -86,7 +85,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            
+
                                                             @if ($user->hasMedia('profile_image'))
                                                                 <img src="{{ $user->getFirstMediaUrl('profile_image', 'avatar') }}"
                                                                     class="img-size-32 rounded-circle me-2">
@@ -103,23 +102,14 @@
                                                         <span class="badge {{ $role_badge_colors[$user->role_id - 1] }}">
                                                             {{ $user->role->name }} </span>
                                                     </td>
-                                                    {{-- <td>
-                                                        <span class="badge text-bg-success">Active</span>
-                                                    </td> --}}
+
                                                     <td>{{ $user->created_at }}</td>
                                                     <td class="text-end">
                                                         <div class="btn-group btn-group-sm">
-                                                            <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"
-                                                                class="btn btn-outline-secondary"
-                                                                aria-label="Edit Alexander Pierce">
-                                                                <i class="bi bi-pencil" aria-hidden="true"> </i>
-                                                            </a>
-                                                            <button type="button" class="delete-btn btn btn-outline-danger"
-                                                                data-bs-toggle="modal" data-bs-target="#modal-delete-item"
-                                                                aria-label="Delete Alexander Pierce"
-                                                                data-user="{{ json_encode(['id' => $user->id, 'name' => $user->name]) }}">
-                                                                <i class="bi bi-trash" aria-hidden="true"> </i>
-                                                            </button>
+                                                            <x-admin.buttons.edit
+                                                                href="{{ route('admin.users.edit', ['user' => $user->id]) }}" />
+                                                            <x-admin.buttons.delete item-name="{{ $user->name }}"
+                                                                item-delete-url="{{ route('admin.users.destroy', ['user' => $user->id]) }}" />
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -147,40 +137,7 @@
 
 
                 <!--begin::Delete User Modal-->
-                <div class="modal fade" id="modal-delete-item" tabindex="-1" aria-labelledby="modal-delete-item-label"
-                    style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal-delete-item-label">Delete user</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="mb-0" id="modal-delete-item-text">
-                                    Are you sure you want to delete this user? All content owned by the account
-                                    will be reassigned to the site administrator. This action cannot be undone.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Cancel
-                                </button>
-                                {{-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                                    Delete user
-                                </button> --}}
-                                <form action="{{ route('admin.users.destroy', ['user' => 0]) }}" method="POST"
-                                    id="modal-delete-item-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    {{-- <button type="button" class="btn btn-outline-secondary me-1"
-                                        data-bs-dismiss="modal">Cancel</button> --}}
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <x-admin.delete-modal />
                 <!--end::Delete User Modal-->
             </div>
             <!--end::Container-->
@@ -188,43 +145,4 @@
         <!--end::App Content-->
     </main>
 
-@endsection
-
-{{-- My modal script --}}
-@section('scripts')
-    <script>
-        const table = document.querySelector('.table-responsive');
-        const deleteForm = document.querySelector('#modal-delete-item-form');
-        const modalLabel = document.querySelector('#modal-delete-item-label');
-        const modalText = document.querySelector('#modal-delete-item-text');
-        console.log(deleteForm);
-
-        table.addEventListener('click', (e) => {
-            const deleteBtn = e.target.closest('.delete-btn')
-            if (!deleteBtn) return;
-            const userData = JSON.parse(deleteBtn.dataset.user);
-            const deleteRoute = deleteForm.getAttribute("action").replace("0", userData.id);
-            console.log(deleteRoute);
-            console.log(userData);
-            deleteForm.setAttribute("action", deleteRoute);
-            modalLabel.innerText = `Delete User ${userData.name}`;
-            modalText.innerText = `Are you sure you want to delete this user?`;
-
-        })
-    </script>
-
-    {{-- <script>
-        document.querySelectorAll('.delete').forEach(button => {
-            button.addEventListener('click', function() {
-                let id = this.dataset.id;
-                let name = this.dataset.name;
-                // alert(id);
-                document.querySelector('#modalDelete .name').innerText = name;
-                // document.querySelector('#modalDelete form').setAttribute("action",  )
-                // document.querySelector('#modalDelete form').action = `users/${id}`;
-                document.querySelector('#modalDelete form').action =
-                    "{{ route('admin.users.destroy', ['user' => ':id']) }}".replace(':id', id);
-            })
-        })
-    </script> --}}
 @endsection
