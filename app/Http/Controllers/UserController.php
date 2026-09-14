@@ -15,10 +15,26 @@ class UserController extends Controller
      */
     public function index()
     {
+        $roles = Role::all();
         $users = User::with('role')->orderBy('id', 'desc')->paginate(15);
         // dd($users->first());
         // dd($users->first()->role->name);
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'roles'));
+    }
+
+    public function roleIndex($role_id = null)
+    {
+        
+        $roles = Role::all();
+
+        if($role_id) {
+            $users = User::with('role')->where('role_id', $role_id)->orderBy('id', 'desc')->paginate(15);
+        } else {
+            $users = User::with('role')->orderBy('id', 'desc')->paginate(15);
+        }
+        
+        return view('admin.users.index', compact('users', 'roles', 'role_id'));
+        // return redirect()->route('admin.users.index', compact('users', 'roles', 'role_id'));
     }
 
     /**

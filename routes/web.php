@@ -16,6 +16,8 @@ Route::put('admin/users/{user}/' , [UserController::class, 'update'])->name('adm
 Route::put('admin/users/{user}/' , [UserController::class, 'update'])->name('admin.users.update');
 Route::delete('admin/users/{user}/' , [UserController::class, 'destroy'])->name('admin.users.destroy');
 Route::post('/admin/users' , [UserController::class, 'store'])->name('admin.users.store');
+// custom
+Route::post('/admin/users/role/{role}' , [UserController::class, 'roleIndex'])->name('admin.users.roleIndex');
 
 // Products
 Route::get('/admin/products' , function () {

@@ -51,11 +51,12 @@
                                             </div>
                                             <select id="user-role-filter" class="form-select form-select-sm w-auto"
                                                 aria-label="Filter by role">
-                                                <option value="all" selected="">All roles</option>
-                                                <option value="administrator">Administrator</option>
-                                                <option value="editor">Editor</option>
-                                                <option value="author">Author</option>
-                                                <option value="subscriber">Subscriber</option>
+                                                <option value="0" selected="">All roles</option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->id }}"
+                                                        @if (isset($role_id)) @selected($role_id == $role->id) @endif>
+                                                        {{ $role->name }}</option>
+                                                @endforeach
                                             </select>
                                             <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-person-plus-fill me-1" aria-hidden="true"> </i>
@@ -145,4 +146,31 @@
         <!--end::App Content-->
     </main>
 
+@endsection
+
+<form method="POST" class="d-none role-change-form">
+    @csrf
+    <input type="hidden" name="role_id">
+    <button type="submit">submit</button>
+</form>
+{{-- <form method="GET" class="d-none role-change-form">
+    @csrf
+    <input type="hidden" name="role_id">
+    <button type="submit">submit</button>
+</form> --}}
+
+@section('scripts')
+    <script>
+        const roleSelector = document.querySelector('#user-role-filter');
+        const roleChangeForm = document.querySelector('.role-change-form');
+        console.log(roleSelector);
+        roleSelector.addEventListener('change', () => {
+            console.log(roleSelector.value);
+            // const route = `{{ route('admin.users.index',) }}`;
+            const route = (`{{ route('admin.users.roleIndex', ['role' => 0]) }}`.replace('0', roleSelector.value));
+            roleChangeForm.action = route;
+            console.log(roleChangeForm);
+            roleChangeForm.submit();
+        })
+    </script>
 @endsection
