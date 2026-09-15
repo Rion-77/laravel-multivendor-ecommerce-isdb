@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category', 'brand')->orderBy('id', 'desc')->paginate(15);
+
         return view('admin.products.index', compact('products'));
     }
 
@@ -25,6 +26,7 @@ class ProductController extends Controller
     {
         $brands = Brand::all();
         $categories = Category::all();
+
         return view('admin.products.create', compact('brands', 'categories'));
     }
 
@@ -41,7 +43,9 @@ class ProductController extends Controller
                 'brand_id' => 'required',
                 'description' => 'required|min:10|max:255',
                 'base_price' => 'required|numeric|min:0',
-                'offer_price' => 'nullable|numeric|min:0|lt:base_price'
+                'offer_price' => 'nullable|numeric|min:0|lt:base_price',
+                'product_image' => 'nullable|array',
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
             ]
         );
 
@@ -60,7 +64,18 @@ class ProductController extends Controller
         //         ->toMediaCollection('profile_image');
         // }
 
-        return redirect()->route('admin.products.index')->with('success', "Product added succesfully");
+        if ($request->hasFile('product_image')) {
+
+            // $product->addMediaFromRequest('thumbnail')
+            //     ->toMediaCollection('thumbnail');
+
+            $product->addMultipleMediaFromRequest(['product_image'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('product_image');
+                });
+        }
+
+        return redirect()->route('admin.products.index')->with('success', 'Product added succesfully');
     }
 
     /**
@@ -68,7 +83,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product = Product::findOrFail($product->id);
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -79,6 +95,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($product->id);
         $brands = Brand::all();
         $categories = Category::all();
+
         return view('admin.products.edit', compact('product', 'brands', 'categories'));
     }
 
@@ -97,7 +114,7 @@ class ProductController extends Controller
                 'brand_id' => 'required',
                 'description' => 'required|min:10|max:255',
                 'base_price' => 'required|numeric|min:0',
-                'offer_price' => 'nullable|numeric|min:0|lt:base_price'
+                'offer_price' => 'nullable|numeric|min:0|lt:base_price',
             ]
         );
 
@@ -116,7 +133,7 @@ class ProductController extends Controller
         //         ->toMediaCollection('profile_image');
         // }
 
-        return redirect()->route('admin.products.index')->with('success', "Product updated succesfully");
+        return redirect()->route('admin.products.index')->with('success', 'Product updated succesfully');
     }
 
     /**
@@ -125,6 +142,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         Product::destroy($product->id);
-        return redirect()->route('admin.products.index')->with('success', "Product deleted succesfully");
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted succesfully');
     }
 }

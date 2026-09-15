@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class UserController extends Controller
 {
@@ -17,6 +16,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $users = User::with('role')->orderBy('id', 'desc')->paginate(15);
+
         // dd($users->first());
         // dd($users->first()->role->name);
         return view('admin.users.index', compact('users', 'roles'));
@@ -24,15 +24,15 @@ class UserController extends Controller
 
     public function roleIndex($role_id = null)
     {
-        
+
         $roles = Role::all();
 
-        if($role_id) {
+        if ($role_id) {
             $users = User::with('role')->where('role_id', $role_id)->orderBy('id', 'desc')->paginate(15);
         } else {
             $users = User::with('role')->orderBy('id', 'desc')->paginate(15);
         }
-        
+
         return view('admin.users.index', compact('users', 'roles', 'role_id'));
         // return redirect()->route('admin.users.index', compact('users', 'roles', 'role_id'));
     }
@@ -59,7 +59,7 @@ class UserController extends Controller
                 'phone' => 'required|phone|unique:users,phone',
                 'password' => 'required|min:3|max:15',
                 'password_confirmation' => 'required|same:password',
-                'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048'
+                'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048',
             ],
             [
                 'phone.phone' => 'The phone number is invalid.',
@@ -75,12 +75,13 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+
         if ($request->hasFile('profile_image')) {
             $user->addMediaFromRequest('profile_image')
                 ->toMediaCollection('profile_image');
         }
 
-        return redirect()->route('admin.users.index')->with('success', "User added succesfully");
+        return redirect()->route('admin.users.index')->with('success', 'User added succesfully');
     }
 
     /**
@@ -97,9 +98,10 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
+
         return view('admin.users.edit', [
             'roles' => Role::all(),
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -115,7 +117,7 @@ class UserController extends Controller
                 'role_id' => 'required',
                 'email' => "required|email|unique:users,email,$id",
                 'phone' => "required|phone|unique:users,phone,$id",
-                'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048'
+                'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048',
             ],
             [
                 'phone.phone' => 'The phone number is invalid.',
@@ -135,7 +137,7 @@ class UserController extends Controller
                 ->toMediaCollection('profile_image');
         }
 
-        return redirect()->route('admin.users.index')->with('success', "User Edited succesfully");
+        return redirect()->route('admin.users.index')->with('success', 'User Edited succesfully');
     }
 
     /**
@@ -145,6 +147,7 @@ class UserController extends Controller
     {
         dd($id);
         User::destroy($id);
-        return redirect()->route('admin.users.index')->with('success', "User deleted succesfully");
+
+        return redirect()->route('admin.users.index')->with('success', 'User deleted succesfully');
     }
 }

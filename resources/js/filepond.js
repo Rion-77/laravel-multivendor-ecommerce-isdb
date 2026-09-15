@@ -9,6 +9,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css
 FilePond.registerPlugin(FilePondPluginImagePreview);
 
 // Select the file input element
+if(document.querySelector("#profile_image")) {
 const inputElement = document.querySelector("#profile_image");
 
 // Create the FilePond instance
@@ -20,3 +21,21 @@ const pond = FilePond.create(inputElement, {
     // allowMultiple: true,
     labelIdle: 'Drag & Drop your image or <span class="filepond--label-action"> Browse </span>',
 });
+
+}
+
+if(document.querySelector("#product_image")) {
+const inputElement = document.querySelector("#product_image");
+
+// Create the FilePond instance
+const pond = FilePond.create(inputElement, {
+    storeAsFile: true,
+    allowImagePreview: true,
+    imagePreviewHeight: 80,
+    imagePreviewMaxHeight: 80,
+    allowMultiple: true,
+    itemInsertAspectRatio: '1:1', 
+    labelIdle: 'Drag & Drop your image or <span class="filepond--label-action"> Browse </span>',
+});
+
+}

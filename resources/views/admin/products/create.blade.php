@@ -2,6 +2,27 @@
 
 @section('title', 'Add Product')
 
+@section('styles')
+    <style>
+        @media (min-width: 50em) {
+            .filepond--item {
+                width: calc(33.33% - 0.5em);
+            }
+        }
+
+        /* Enable a 2-column horizontal layout on medium screens/tablets */
+        @media (min-width: 30em) and (max-width: 50em) {
+            .filepond--item {
+                width: calc(50% - 0.5em);
+            }
+        }
+    </style>
+@endsection
+
+@section('scripts')
+    @vite(['resources/js/filepond.js'])
+@endsection
+
 @section('content')
     <main class="app-main" id="main" tabindex="-1">
 
@@ -9,11 +30,11 @@
 
         <div class="app-content">
             <div class="container-fluid">
+                <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-8 order-2 order-lg-1">
 
-                <div class="row">
-                    <div class="col-lg-8">
-                        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
                             <div class="card card-primary card-outline mb-3">
                                 <div class="card-header">
                                     <h3 class="card-title">General Information</h3>
@@ -25,11 +46,6 @@
                                             placeholder="e.g. Wireless Earbuds Pro" name="name"
                                             value="{{ old('name') }}" />
 
-                                        {{-- <div class="col-12">
-                                            <label class="form-label" for="p-name">Product name</label>
-                                            <input type="text" class="form-control" id="p-name"
-                                                placeholder="e.g. Wireless Earbuds Pro">
-                                        </div> --}}
 
                                         <!-- Vendor -->
                                         <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
@@ -160,10 +176,24 @@
                                     Product" />
                                 <x-admin.buttons.cancel href="{{ route('admin.products.index') }}" />
                             </div>
-                        </form>
-                    </div>
 
-                    <div class="col-lg-4">
+                        </div>
+
+                        <div class="col-lg-4 order-1 order-lg-2">
+                            <div class="card card-outline card-primary mb-3">
+                                <div class="card-header">
+                                    <h3 class="card-title">Product Image</h3>
+                                </div>
+                                <div class="card-body">
+                                    <input type="file" id="product_image" class="filepond" accept="image/*"
+                                        name="product_image[]" multiple>
+                                    <p class="text-secondary fs-7 mt-2 mb-0">Optional. Image Only, up to 2MB.</p>
+                                    <x-admin.error-message name="product_image" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="col-lg-4">
                         <div class="card card-outline card-primary mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">Product Images</h3>
@@ -192,7 +222,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="card card-outline card-secondary mb-3">
+                        <div class="card card-outline card-secondary mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">Publishing</h3>
                             </div>
@@ -208,9 +238,9 @@
                                     <label class="form-check-label" for="p-featured">Feature on homepage</label>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
-                        {{-- <div class="card card-outline card-info">
+                        <div class="card card-outline card-info">
                             <div class="card-header">
                                 <h3 class="card-title">SEO</h3>
                             </div>
@@ -221,10 +251,10 @@
                                 <label class="form-label" for="p-meta-desc">Meta description</label>
                                 <textarea class="form-control" id="p-meta-desc" rows="3" placeholder="Short SEO description"></textarea>
                             </div>
-                        </div> --}}
+                        </div>
+                    </div> --}}
                     </div>
-                </div>
-
+                </form>
             </div>
         </div>
     </main>

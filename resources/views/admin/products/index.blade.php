@@ -68,11 +68,23 @@
                                                             aria-label="Select Wireless Earbuds Pro" /></td> --}}
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img src="{{ asset('img/prod-1.jpg') }}" alt=""
-                                                                class="rounded me-2"
-                                                                style="width:40px;height:40px;object-fit:cover;" />
+                                                            @if ($product->hasMedia('product_image'))
+                                                                @foreach ($product->getMedia('product_image') as $media)
+                                                                    <img src="{{ $media->getUrl('thumbnail') }}"
+                                                                        alt="" class="rounded me-2"
+                                                                        style="width:40px;height:40px;object-fit:cover;" />
+                                                                    {{-- <img src="{{ $product->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                                                    alt="" class="rounded me-2"
+                                                                    style="width:40px;height:40px;object-fit:cover;" /> --}}
+                                                                @endforeach
+                                                            @else
+                                                                <img src="{{ asset('img/prod-1.jpg') }}" alt=""
+                                                                    class="rounded me-2"
+                                                                    style="width:40px;height:40px;object-fit:cover;" />
+                                                            @endif
+
                                                             <div>
-                                                                <div class="fw-medium">{{ $product->name }}</div>
+                                                                <div class="fw-medium"><a href="{{ route('admin.products.show', ['product' => $product->id]) }}">{{ $product->name }}</a></div>
                                                                 {{-- <div class="text-secondary fs-7">SKU: WEP-2201</div> --}}
                                                             </div>
                                                         </div>
@@ -98,19 +110,12 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                <span class="text-secondary fs-7">Showing 1 to 7 of 4,312 products</span>
-                                <nav aria-label="Products pagination">
-                                    <ul class="pagination pagination-sm m-0">
-                                        <li class="page-item disabled"><a class="page-link" href="#"
-                                                tabindex="-1">Previous</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
+                            {{-- <div class="card-footer clearfix d-flex justify-content-between align-items-center"> --}}
+                            <div class="card-footer clearfix">  
+                                <!-- Pagination -->
+                                {{ $products->links() }}
                             </div>
+
                         </div>
                     </div>
                 </div>
