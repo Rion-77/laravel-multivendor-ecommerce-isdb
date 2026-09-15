@@ -12,42 +12,53 @@
 
                 <div class="row">
                     <div class="col-lg-8">
-                        <form>
+                        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card card-primary card-outline mb-3">
                                 <div class="card-header">
                                     <h3 class="card-title">General Information</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
-                                        <div class="col-12">
+                                        <!-- Product Name -->
+                                        <x-admin.form.input class="col-12" label="Product name" type="text"
+                                            placeholder="e.g. Wireless Earbuds Pro" name="name"
+                                            value="{{ old('name') }}" />
+
+                                        {{-- <div class="col-12">
                                             <label class="form-label" for="p-name">Product name</label>
                                             <input type="text" class="form-control" id="p-name"
                                                 placeholder="e.g. Wireless Earbuds Pro">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="p-vendor">Vendor</label>
-                                            <select class="form-select" id="p-vendor">
-                                                <option selected="">Nova Electronics</option>
-                                                <option>Aarav Textiles Co.</option>
-                                                <option>Urban Sole Footwear</option>
-                                                <option>Bloom &amp; Co. Home Decor</option>
-                                                <option>Pixel Gadgets Store</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="p-category">Category</label>
-                                            <select class="form-select" id="p-category">
-                                                <option selected="">Electronics</option>
-                                                <option>Fashion &amp; Apparel</option>
-                                                <option>Footwear</option>
-                                                <option>Home &amp; Living</option>
-                                                <option>Groceries</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12">
-                                            <label class="form-label" for="p-desc">Description</label>
-                                            <textarea class="form-control" id="p-desc" rows="4" placeholder="Describe the product features and benefits"></textarea>
-                                        </div>
+                                        </div> --}}
+
+                                        <!-- Vendor -->
+                                        <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
+                                            <option value="1">Nova Electronics</option>
+                                            <option value="2">Aarav Textiles Co.</option>
+                                            <option value="3">Urban Sole Footwear</option>
+                                        </x-admin.form.select>
+
+                                        <!-- Categoy -->
+                                        <x-admin.form.select class="col-md-4" label="Category" name="category_id">
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" @selected(old('role_id') == $category->id)>
+                                                    {{ $category->name }}</option>
+                                            @endforeach
+                                        </x-admin.form.select>
+
+                                        <!-- Brand -->
+                                        <x-admin.form.select class="col-md-4" label="Brand" name="brand_id">
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}" @selected(old('role_id') == $brand->id)>
+                                                    {{ $brand->name }}</option>
+                                            @endforeach
+                                        </x-admin.form.select>
+
+
+                                        <!-- Textarea -->
+                                        <x-admin.form.textarea class="col-12" label="Description"
+                                            placeholder="Describe the product features and benefits" name="description"
+                                            value="{{ old('description') }}" />
                                     </div>
                                 </div>
                             </div>
@@ -58,22 +69,19 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label" for="p-price">Price</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control" id="p-price" value="79.00">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label" for="p-compare-price">Compare-at price</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control" id="p-compare-price"
-                                                    value="99.00">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
+
+                                        <!-- Price -->
+                                        <x-admin.form.input class="col-md-6" label="Price" type="number" name="base_price"
+                                            value="{{ old('base_price') }}">$</x-admin.form.input>
+
+                                        <!-- Offer Price -->
+                                        <x-admin.form.input class="col-md-6" label="Offer Price" type="number"
+                                            name="offer_price" value="{{ old('offer_price') }}">$</x-admin.form.input>
+
+
+
+
+                                        {{-- <div class="col-md-4">
                                             <label class="form-label" for="p-sku">SKU</label>
                                             <input type="text" class="form-control" id="p-sku" value="WEP-2201">
                                         </div>
@@ -93,12 +101,12 @@
                                                 <label class="form-check-label" for="p-track-inventory">Track
                                                     inventory</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card card-primary card-outline mb-3">
+                            {{-- <div class="card card-primary card-outline mb-3">
                                 <div class="card-header">
                                     <h3 class="card-title">Variants</h3>
                                     <div class="card-tools">
@@ -145,13 +153,12 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="d-flex gap-2">
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save
-                                    Product</button>
-                                <button type="button" class="btn btn-outline-secondary">Save as Draft</button>
-                                <a href="./products-list.html" class="btn btn-outline-secondary">Cancel</a>
+                                <x-admin.buttons.submit label="Save
+                                    Product" />
+                                <x-admin.buttons.cancel href="{{ route('admin.products.index') }}" />
                             </div>
                         </form>
                     </div>
@@ -179,14 +186,13 @@
                                 <label for="p-image-upload" class="btn btn-outline-primary btn-sm w-100">
                                     <i class="bi bi-upload me-1"></i>Upload images
                                 </label>
-                                <input type="file" id="p-image-upload" class="d-none" accept="image/*"
-                                    multiple="">
+                                <input type="file" id="p-image-upload" class="d-none" accept="image/*" multiple="">
                                 <p class="text-secondary fs-7 mt-2 mb-0">First image is used as the thumbnail. JPG or PNG,
                                     up to 5MB each.</p>
                             </div>
                         </div>
 
-                        <div class="card card-outline card-secondary mb-3">
+                        {{-- <div class="card card-outline card-secondary mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">Publishing</h3>
                             </div>
@@ -202,9 +208,9 @@
                                     <label class="form-check-label" for="p-featured">Feature on homepage</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="card card-outline card-info">
+                        {{-- <div class="card card-outline card-info">
                             <div class="card-header">
                                 <h3 class="card-title">SEO</h3>
                             </div>
@@ -215,7 +221,7 @@
                                 <label class="form-label" for="p-meta-desc">Meta description</label>
                                 <textarea class="form-control" id="p-meta-desc" rows="3" placeholder="Short SEO description"></textarea>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

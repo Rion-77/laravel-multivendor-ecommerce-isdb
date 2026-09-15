@@ -96,7 +96,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.users.edit', [
             'roles' => Role::all(),
             'user' => $user
@@ -143,6 +143,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        dd($id);
         User::destroy($id);
         return redirect()->route('admin.users.index')->with('success', "User deleted succesfully");
     }

@@ -22,12 +22,8 @@
             <!--begin::Container-->
             <div class="container-fluid">
                 <!-- Flash Message -->
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                <x-admin.success-flash-message />
+
                 <!--begin::Row-->
                 <div class="row">
                     <div class="col-12">
@@ -58,10 +54,9 @@
                                                         {{ $role->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-primary">
-                                                <i class="bi bi-person-plus-fill me-1" aria-hidden="true"> </i>
-                                                New user
-                                            </a>
+                                            <!-- Add Button -->
+                                            <x-admin.buttons.add href="{{ route('admin.users.create') }}"
+                                                label="New user" />
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +161,7 @@
         console.log(roleSelector);
         roleSelector.addEventListener('change', () => {
             console.log(roleSelector.value);
-            // const route = `{{ route('admin.users.index',) }}`;
+            // const route = `{{ route('admin.users.index') }}`;
             const route = (`{{ route('admin.users.roleIndex', ['role' => 0]) }}`.replace('0', roleSelector.value));
             roleChangeForm.action = route;
             console.log(roleChangeForm);

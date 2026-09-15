@@ -1,7 +1,7 @@
-@props(['label', 'name'])
+@props(['label', 'name', 'class' => 'col-md-6'])
 
 
-<div class="col-md-6">
+<div class="{{ $class }}">
     <label class="form-label" for="{{ $name }}">{{ $label }}</label>
     <select class="form-select" id="{{ $name }}" name="{{ $name }}">
         <option selected disabled>Select {{ strtolower($label) }}</option>
