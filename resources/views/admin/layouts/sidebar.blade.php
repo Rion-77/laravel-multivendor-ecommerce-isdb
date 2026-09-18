@@ -1,3 +1,8 @@
+@php
+    function activeLink($route_name) {
+        return request()->routeIs("$route_name") ? 'active' : "";
+    }
+@endphp
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
@@ -646,15 +651,16 @@
                 id="navigation" tabindex="-1">
 
                 <li class="nav-item">
-                    <a href="../index.html" class="nav-link">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ activeLink('admin.dashboard') }}">
                         <i class="nav-icon bi bi-speedometer"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
                 <li class="nav-header">CATALOG</li>
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link" aria-expanded="true">
+                {{-- <li class="nav-item menu-open"> --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ activeLink('admin.products*') }}" aria-expanded="true">
                         <i class="nav-icon bi bi-box-seam"></i>
                         <p>
                             Products
@@ -663,13 +669,13 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: block;">
                         <li class="nav-item">
-                            <a href="{{ route('admin.products.index') }}" class="nav-link">
+                            <a href="{{ route('admin.products.index') }}" class="nav-link {{ activeLink('admin.products.index') }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>All Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.products.create') }}" class="nav-link">
+                            <a href="{{ route('admin.products.create') }}" class="nav-link {{ activeLink('admin.products.create') }}" >
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Add Product</p>
                             </a>
@@ -685,7 +691,7 @@
 
                 <li class="nav-header">MARKETPLACE</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" aria-expanded="false">
+                    <a href="#" class="nav-link {{ activeLink('admin.vendors*') }}" aria-expanded="false">
                         <i class="nav-icon bi bi-shop"></i>
                         <p>
                             Vendors
@@ -694,23 +700,23 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.vendors.index') }}" class="nav-link">
+                            <a href="{{ route('admin.vendors.index') }}" class="nav-link {{ activeLink('admin.vendors.index') }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>All Vendors</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.vendors.create') }}" class="nav-link">
+                            <a href="{{ route('admin.vendors.create') }}" class="nav-link {{ activeLink('admin.vendors.create') }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Add Vendor</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('admin.vendors.show') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Vendor Profile</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -738,29 +744,29 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="./payouts.html" class="nav-link">
                         <i class="nav-icon bi bi-cash-coin"></i>
                         <p>Payouts</p>
                     </a>
-                </li>
+                </li> --}}
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="./coupons-list.html" class="nav-link">
                         <i class="nav-icon bi bi-ticket-perforated"></i>
                         <p>Coupons</p>
                     </a>
-                </li>
+                </li> --}}
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="./reviews.html" class="nav-link">
                         <i class="nav-icon bi bi-star-half"></i>
                         <p>Reviews</p>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-header">PEOPLE</li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link" aria-expanded="false">
                         <i class="nav-icon bi bi-people"></i>
                         <p>
@@ -782,12 +788,12 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="{{ route('admin.users.index') }}" class="nav-link">
                         <i class="nav-icon bi bi-person-badge"></i>
-                        <p>Admin Users</p>
+                        <p>Users</p>
                     </a>
                 </li>
 

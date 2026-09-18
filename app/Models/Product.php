@@ -30,6 +30,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Brand::class);
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
 

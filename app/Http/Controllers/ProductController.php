@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'brand')->orderBy('id', 'desc')->paginate(15);
+        $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
 
         return view('admin.products.index', compact('products'));
     }
@@ -24,10 +25,11 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $vendors = Vendor::all();
         $brands = Brand::all();
         $categories = Category::all();
 
-        return view('admin.products.create', compact('brands', 'categories'));
+        return view('admin.products.create', compact('vendors', 'brands', 'categories'));
     }
 
     /**
@@ -59,16 +61,9 @@ class ProductController extends Controller
         $product->offer_price = $request->offer_price;
         $product->save();
 
-        // if ($request->hasFile('profile_image')) {
-        //     $product->addMediaFromRequest('profile_image')
-        //         ->toMediaCollection('profile_image');
-        // }
+
 
         if ($request->hasFile('product_image')) {
-
-            // $product->addMediaFromRequest('thumbnail')
-            //     ->toMediaCollection('thumbnail');
-
             $product->addMultipleMediaFromRequest(['product_image'])
                 ->each(function ($fileAdder) {
                     $fileAdder->toMediaCollection('product_image');
@@ -95,8 +90,9 @@ class ProductController extends Controller
         $product = Product::findOrFail($product->id);
         $brands = Brand::all();
         $categories = Category::all();
+        $vendors = Vendor::all();
 
-        return view('admin.products.edit', compact('product', 'brands', 'categories'));
+        return view('admin.products.edit', compact('product', 'brands', 'categories', 'vendors'));
     }
 
     /**
@@ -115,6 +111,8 @@ class ProductController extends Controller
                 'description' => 'required|min:10|max:255',
                 'base_price' => 'required|numeric|min:0',
                 'offer_price' => 'nullable|numeric|min:0|lt:base_price',
+                'product_image' => 'nullable|array',
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
             ]
         );
 
@@ -128,10 +126,13 @@ class ProductController extends Controller
         $product->offer_price = $request->offer_price;
         $product->save();
 
-        // if ($request->hasFile('profile_image')) {
-        //     $product->addMediaFromRequest('profile_image')
-        //         ->toMediaCollection('profile_image');
-        // }
+        if ($request->hasFile('product_image')) {
+            $product->clearMediaCollection('product_image');
+            $product->addMultipleMediaFromRequest(['product_image'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('product_image');
+                });
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated succesfully');
     }

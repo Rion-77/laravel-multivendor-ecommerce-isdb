@@ -43,6 +43,11 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Role::class);
     }
+    
+    public function vendors()
+    {
+        return $this->hasMany(Vendor::class);
+    }
 
     public function registerMediaConversions(?Media $media = null): void
     {

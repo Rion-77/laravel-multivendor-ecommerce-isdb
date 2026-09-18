@@ -89,7 +89,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $product->vendor_id }}</td>
+                                                    <td>{{ $product->vendor->shop_name }}</td>
                                                     <td>{{ $product->category->name }}</td>
                                                     <td>{{ $product->brand->name }}</td>
                                                     <td>{{ $product->base_price }}</td>
@@ -110,19 +110,16 @@
                                     </table>
                                 </div>
                             </div>
-                            {{-- <div class="card-footer clearfix d-flex justify-content-between align-items-center"> --}}
-                            <div class="card-footer clearfix">  
-                                <!-- Pagination -->
-                                {{ $products->links() }}
-                            </div>
+                            <!-- Pagination -->
+                            <x-admin.pagination :for="$products" />
 
                         </div>
                     </div>
                 </div>
 
-                <!--begin::Delete User Modal-->
+                <!-- Delete Modal -->
                 <x-admin.delete-modal />
-                <!--end::Delete User Modal-->
+                
             </div>
         </div>
     </main>

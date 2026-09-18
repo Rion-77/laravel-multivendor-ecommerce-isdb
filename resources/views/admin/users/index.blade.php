@@ -119,9 +119,10 @@
                             </div>
                             <!--end::Card Body-->
                             <!--begin::Card Footer-->
-                            <div class="card-footer clearfix">
-                                {{ $users->links() }}
-                            </div>
+                            
+                            <!-- Pagination -->
+                            <x-admin.pagination :for="$users" />
+                            
                             <!--end::Card Footer-->
                         </div>
                         <!--end::Card-->

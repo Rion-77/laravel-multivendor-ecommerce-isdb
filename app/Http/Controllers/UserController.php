@@ -133,6 +133,7 @@ class UserController extends Controller
         $user->save();
 
         if ($request->hasFile('profile_image')) {
+            $user->clearMediaCollection('profile_image');
             $user->addMediaFromRequest('profile_image')
                 ->toMediaCollection('profile_image');
         }

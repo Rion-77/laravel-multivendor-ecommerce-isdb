@@ -18,8 +18,20 @@ const pond = FilePond.create(inputElement, {
     allowImagePreview: true,
     imagePreviewHeight: 170,
     imagePreviewMaxHeight: 250,
-    // allowMultiple: true,
     labelIdle: 'Drag & Drop your image or <span class="filepond--label-action"> Browse </span>',
+});
+
+}
+if(document.querySelector("#shop_logo")) {
+const inputElement = document.querySelector("#shop_logo");
+
+// Create the FilePond instance
+const pond = FilePond.create(inputElement, {
+    storeAsFile: true,
+    allowImagePreview: true,
+    imagePreviewHeight: 170,
+    imagePreviewMaxHeight: 250,
+    labelIdle: 'Drag & Drop your logo or <span class="filepond--label-action"> Browse </span>',
 });
 
 }

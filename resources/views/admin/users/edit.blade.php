@@ -60,6 +60,24 @@
 
                         </div>
 
+                        <div class="col-lg-4 order-1 order-lg-2">
+                            <div class="card card-outline card-primary mb-3">
+                                <div class="card-header">
+                                    <h3 class="card-title">Profile Image</h3>
+                                    @if ($user->hasMedia('profile_image'))
+                                        <div class="p-3 w-100 border overflow-hidden rounded bg-light d-flex justify-content-center align-items-center">
+                                            <img src="{{ $user->getFirstMediaUrl('profile_image', 'thumbnail') }}"
+                                                class="w-50 rounded me-2">
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <input type="file" id="profile_image" class="filepond" accept="image/*"
+                                        name="profile_image">
+                                    <p class="text-secondary fs-7 mt-2 mb-0">Optional. Image Only, up to 2MB.</p>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </form>
