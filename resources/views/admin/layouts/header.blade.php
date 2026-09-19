@@ -227,25 +227,37 @@
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="{{ asset('img/user2-160x160.jpg') }}" class="user-image rounded-circle shadow"
-                        alt="Alexander Pierce" />
-                    <span class="d-none d-md-inline">Alexander Pierce</span>
+                     @if (auth()->user()->hasMedia('profile_image'))
+                        <img src="{{ auth()->user()->getFirstMediaUrl('profile_image', 'avatar') }}"
+                            class="user-image rounded-circle shadow" alt="{{ auth()->user()->name }}" />
+                    @else
+                        <img src="https://i.pravatar.cc/150?img={{ auth()->user()->id }}"
+                            alt="{{ auth()->user()->name }}" class="user-image rounded-circle shadow" />
+                    @endif
+                    
+                    <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <!--begin::User Image-->
                     <li class="user-header text-bg-primary">
-                        <img src="{{ asset('img/user2-160x160.jpg') }}" class="rounded-circle shadow"
-                            alt="Alexander Pierce" />
+                        @if (auth()->user()->hasMedia('profile_image'))
+                            <img src="{{ auth()->user()->getFirstMediaUrl('profile_image', 'avatar') }}"
+                                class="rounded-circle shadow">
+                        @else
+                            <img src="https://i.pravatar.cc/150?img={{ auth()->user()->id }}" alt=""
+                                class="rounded-circle shadow">
+                        @endif
+    
                         <p>
-                            Alexander Pierce - Web Developer
-                            <small>Member since Nov. 2023</small>
+                            {{ auth()->user()->name }}
+                            <small>Member since {{ auth()->user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>
                     <!--end::User Image-->
                     <!--begin::Menu Body-->
                     <li class="user-body">
                         <!--begin::Row-->
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
@@ -255,7 +267,7 @@
                             <div class="col-4 text-center">
                                 <a href="#">Friends</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <!--end::Row-->
                     </li>
                     <!--end::Menu Body-->

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-/* 
+/*
 Route::middleware('auth', 'role_id:1,2,3,4')->group(function () {
     Route::resource('products', ProductController::class);
 });
@@ -28,11 +28,12 @@ Route::get('/', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+// Admin Routes
+Route::middleware('auth', 'role_id:1')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -48,7 +49,6 @@ Route::middleware('auth')->group(function () {
         return view('admin.categories.index');
     })->name('admin.categories.index');
 
-
     // Oders
     Route::get('/admin/orders', function () {
         return view('admin.orders.index');
@@ -57,9 +57,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/orders/single', function () {
         return view('admin.orders.show');
     })->name('admin.orders.show');
-    
+
     // Custom
     Route::post('/admin/users/role/{role}', [UserController::class, 'roleIndex'])->name('admin.users.roleIndex');
 });
 
-require __DIR__ . '/auth.php';
+// Vendor Routes
+Route::middleware('auth', 'role_id:1,3')->group(function () {
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::resource('products', ProductController::class);
+        // Route::resource('vendors', VendorController::class);
+    });
+    
+    Route::get("admin/vendors/{vendor}", [VendorController::class, 'show'])->name('admin.vendors.show');
+});
+
+require __DIR__.'/auth.php';

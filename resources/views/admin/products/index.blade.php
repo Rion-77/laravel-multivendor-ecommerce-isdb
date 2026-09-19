@@ -84,7 +84,7 @@
                                                             @endif
 
                                                             <div>
-                                                                <div class="fw-medium"><a href="{{ route('admin.products.show', ['product' => $product->id]) }}">{{ $product->name }}</a></div>
+                                                                <div class="fw-medium">{{ $product->name }}</div>
                                                                 {{-- <div class="text-secondary fs-7">SKU: WEP-2201</div> --}}
                                                             </div>
                                                         </div>
@@ -97,6 +97,7 @@
                                                     {{-- <td><span class="badge text-bg-success">Published</span></td> --}}
                                                     <td class="text-end">
                                                         <div class="btn-group btn-group-sm">
+                                                            <x-admin.buttons.view href="{{ route('admin.products.show', ['product' => $product->id]) }}" />        
                                                             <x-admin.buttons.edit
                                                                 href="{{ route('admin.products.edit', ['product' => $product->id]) }}" />
                                                             <x-admin.buttons.delete item-name="{{ $product->name }}"

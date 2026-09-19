@@ -28,6 +28,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        /////////////////////
+        // dd($request->user());
+        if($request->user()->role_id == 3) {
+            $vendor = \App\Models\Vendor::where('user_id', $request->user()->id)->first();
+            $request->session()->put('user_vendor_id', $vendor->id);
+            return redirect()->intended(route('admin.vendors.show', ['vendor' => $vendor->id]));
+        }
+        /////////////////////
+
         return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 

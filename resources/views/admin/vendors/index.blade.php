@@ -101,14 +101,7 @@
                                     <table class="table table-hover align-middle m-0" role="table">
                                         <thead>
                                             <tr>
-                                                {{-- 
-                                                 $table->id();
-                                                $table->bigInteger('user_id');
-                                                $table->string('shop_name');
-                                                $table->text('description');
-                                                $table->string('status')->default('active');
-                                                $table->timestamps();   
-                                                --}}
+                                               
                                                 <th scope="col">Vendor</th>
                                                 <th scope="col">Owner</th>
                                                 {{-- <th scope="col">Store</th> --}}
@@ -148,10 +141,8 @@
                                                     </td>
                                                     <td class="text-end">
                                                         <div class="btn-group btn-group-sm">
-                                                            <a href="{{ route('admin.vendors.show', ['vendor' => $vendor->id]) }}"
-                                                                class="btn btn-outline-secondary"
-                                                                aria-label="View Aarav Textiles"><i
-                                                                    class="bi bi-eye"></i></a>
+                                                            
+                                                            <x-admin.buttons.view href="{{ route('admin.vendors.show', ['vendor' => $vendor->id]) }}" />        
                                                             <x-admin.buttons.edit
                                                                 href="{{ route('admin.vendors.edit', ['vendor' => $vendor->id]) }}" />
                                                             <x-admin.buttons.delete item-name="{{ $vendor->shop_name }}"
@@ -168,7 +159,7 @@
 
                             <!-- Pagination -->
                             <x-admin.pagination :for="$vendors" />
-                            
+
                         </div>
                     </div>
                 </div>

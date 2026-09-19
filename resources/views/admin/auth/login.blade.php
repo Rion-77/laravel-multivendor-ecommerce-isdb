@@ -16,13 +16,23 @@
                     <x-admin.error-message name="password" />
                 </div>
 
+                <div class="my-3 d-flex gap-2 justify-content-center flex-wrap">
+                    <button class="btn btn-primary email-change-btn" style="width: auto"type="button"
+                        data-email="admin@example.com">
+                        <span>Admin</span>
+                    </button>
+                    <button class="btn btn-primary email-change-btn" style="width: auto"type="button"
+                        data-email="vendor@example.com">
+                        <span>Vendor</span>
+                    </button>
+                </div>
 
                 <form action="{{ route('admin.login') }}" method="post">
                     @csrf
                     <label class="visually-hidden" for="loginEmail">Email</label>
                     <div class="input-group mb-3">
                         <input id="loginEmail" type="email" name="email" class="form-control" placeholder="Email"
-                            value="emmanuelle.dickinson@example.net">
+                            value="admin@example.com">
                         <div class="input-group-text">
                             <span class="bi bi-envelope"></span>
                         </div>
@@ -75,4 +85,14 @@
             <!-- /.login-card-body -->
         </div>
     </main>
+@endsection
+
+@section('scripts')
+ <script>
+        document.querySelectorAll('.email-change-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('#loginEmail').value = button.dataset.email;
+            })
+        });
+    </script>
 @endsection

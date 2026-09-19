@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
+         if (Auth::user()->role_id == 3) {
+             $products = Product::with('category', 'brand', 'vendor')->orderBy('created_at', 'desc')->whereHas('vendor', function($query){
+                $query->where('user_id', Auth::user()->id);
+             })->paginate(15);
+        } else {
+             $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
+        }
+        // $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
 
         return view('admin.products.index', compact('products'));
     }
