@@ -30,6 +30,7 @@ Route::post('/admin/users/role/{role}', [UserController::class, 'roleIndex'])->n
 //     return view('admin.products.create');
 // })->name('admin.products.create');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('vendors', VendorController::class);
 });

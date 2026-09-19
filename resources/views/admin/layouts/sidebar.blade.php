@@ -651,7 +651,7 @@
                 id="navigation" tabindex="-1">
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ activeLink('admin.dashboard') }}">
+                    <a href="route('admin.dashboard')" class="nav-link {{ activeLink('admin.dashboard') }}">
                         <i class="nav-icon bi bi-speedometer"></i>
                         <p>Dashboard</p>
                     </a>
