@@ -1,0 +1,59 @@
+This is a guide to how to create enums in laravel using best practice.
+#Use case : For status tables, most status has fixed value and creating separate table for every status is considered over engineered.
+
+# Steps (For example vendor status is used)
+1. Use php artisan commmand  
+php artisan make:enum Enums/VendorStatus --string
+
+2 . Use case and label
+
+    <?php
+
+    namespace App\Enums;
+
+    enum VendorStatus: string
+    {
+        
+        case Active = 'active';
+        case Inactive = 'inactive';
+        case Suspended = 'suspended';
+
+        public function label(): string
+        {
+            return match ($this) {
+                self::Active => 'Active',
+                self::Inactive => 'Inactive',
+                self::Suspended => 'Suspended',
+            };
+        }
+
+    }
+
+3. Go to the model and add the $cast value 
+
+    <?php
+
+    namespace App\Models;
+
+    use App\Enums\VendorStatus;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
+
+    class Vendor extends Model
+    {
+        /** @use HasFactory<\Database\Factories\VendorFactory> */
+        use HasFactory;
+
+        protected $casts = [
+            'status' => VendorStatus::class,
+        ];
+    }
+
+
+the'status' is the column name in database and its schema should be like this 
+
+    $table->string('status')->default('active');
+
+#status value accessing
+ 
+  $vendor->status->value

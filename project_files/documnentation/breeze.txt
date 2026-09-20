@@ -1,0 +1,25 @@
+
+1. Install Laravel Breeze
+composer require laravel/breeze --dev
+
+2. Install Breeze scaffolding
+
+For the default Blade setup:
+
+php artisan breeze:install
+
+If Laravel asks which stack you want, choose Blade.
+
+You can also explicitly install Blade:
+
+php artisan breeze:install blade
+
+
+You should now have Breeze authentication pages such as:
+
+/login
+/register
+/forgot-password
+/reset-password
+/verify-email
+/dashboard

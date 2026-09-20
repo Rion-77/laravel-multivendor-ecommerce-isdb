@@ -16,12 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-         if (Auth::user()->role_id == 3) {
-             $products = Product::with('category', 'brand', 'vendor')->orderBy('created_at', 'desc')->whereHas('vendor', function($query){
+        if (Auth::user()->role_id == 3) {
+            $products = Product::with('category', 'brand', 'vendor')->orderBy('created_at', 'desc')->whereHas('vendor', function ($query) {
                 $query->where('user_id', Auth::user()->id);
-             })->paginate(15);
+            })->paginate(15);
         } else {
-             $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
+            $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
         }
         // $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(15);
 
@@ -55,13 +55,19 @@ class ProductController extends Controller
                 'base_price' => 'required|numeric|min:0',
                 'offer_price' => 'nullable|numeric|min:0|lt:base_price',
                 'product_image' => 'nullable|array',
-                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:2048',
             ]
         );
 
         $product = new Product;
+
+        if (Auth::user()->role_id == 3) {
+            $product->vendor_id = session('user_vendor_id');
+        } else {
+            $product->vendor_id = $request->vendor_id;
+        }
+
         $product->name = $request->name;
-        $product->vendor_id = $request->vendor_id;
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->description = $request->description;
@@ -86,6 +92,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if (Auth::user()->role_id == 3 && $product->vendor_id != session('user_vendor_id')) {
+            abort(403, 'Unauthorized action.');
+        }
         $product = Product::findOrFail($product->id);
         return view('admin.products.show', compact('product'));
     }
@@ -95,6 +104,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        if (Auth::user()->role_id == 3 && $product->vendor_id != session('user_vendor_id')) {
+            abort(403, 'Unauthorized action.');
+        }
         $product = Product::findOrFail($product->id);
         $brands = Brand::all();
         $categories = Category::all();
@@ -120,13 +132,19 @@ class ProductController extends Controller
                 'base_price' => 'required|numeric|min:0',
                 'offer_price' => 'nullable|numeric|min:0|lt:base_price',
                 'product_image' => 'nullable|array',
-                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:2048',
             ]
         );
 
         $product = Product::findOrFail($product->id);
+
+        if (Auth::user()->role_id == 3) {
+            $product->vendor_id = session('user_vendor_id');
+        } else {
+            $product->vendor_id = $request->vendor_id;
+        }
+
         $product->name = $request->name;
-        $product->vendor_id = $request->vendor_id;
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->description = $request->description;
@@ -150,6 +168,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if (Auth::user()->role_id == 3 && $product->vendor_id != session('user_vendor_id')) {
+            abort(403, 'Unauthorized action.');
+        }
         Product::destroy($product->id);
 
         return redirect()->route('admin.products.index')->with('success', 'Product deleted succesfully');

@@ -35,16 +35,12 @@
                         </div>
                     </div>
                     <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-outline-secondary">
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i>Back to list
                         </a>
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">
                             <i class="bi bi-pencil-square me-1"></i>Edit Product
                         </a>
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteProductModal">
-                            <i class="bi bi-trash me-1"></i>Delete
-                        </button>
                     </div>
                 </div>
                 <!--end::Title row-->

@@ -48,17 +48,30 @@
 
 
                                         <!-- Vendor -->
-                                        <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
-                                            @foreach ($vendors as $vendor)
-                                                <option value="{{ $vendor->id }}" @selected(old('vendor_id') == $vendor->id)>
-                                                    {{ $vendor->shop_name }}</option>
-                                            @endforeach
-                                        </x-admin.form.select>
+                                        {{-- session('user_vendor_id') --}}
+                                        @if (auth()->user()->role_id == 3)
+                                            <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
+                                                @foreach ($vendors as $vendor)
+                                                    @if($vendor->id == session('user_vendor_id'))
+                                                        <option value="{{ $vendor->id }}" selected>
+                                                            {{ $vendor->shop_name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </x-admin.form.select>
+                                        @else
+                                            <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
+                                                @foreach ($vendors as $vendor)
+                                                    <option value="{{ $vendor->id }}" @selected(old('vendor_id') == $vendor->id)>
+                                                        {{ $vendor->shop_name }}</option>
+                                                @endforeach
+                                            </x-admin.form.select>
+                                        @endif
+                                        
 
                                         <!-- Categoy -->
                                         <x-admin.form.select class="col-md-4" label="Category" name="category_id">
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}" @selected(old('role_id') == $category->id)>
+                                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
                                                     {{ $category->name }}</option>
                                             @endforeach
                                         </x-admin.form.select>
@@ -66,7 +79,7 @@
                                         <!-- Brand -->
                                         <x-admin.form.select class="col-md-4" label="Brand" name="brand_id">
                                             @foreach ($brands as $brand)
-                                                <option value="{{ $brand->id }}" @selected(old('role_id') == $brand->id)>
+                                                <option value="{{ $brand->id }}" @selected(old('brand_id') == $brand->id)>
                                                     {{ $brand->name }}</option>
                                             @endforeach
                                         </x-admin.form.select>
@@ -98,12 +111,12 @@
 
 
 
-                                       
+
                                     </div>
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="d-flex gap-2">
                                 <x-admin.buttons.submit label="Save
@@ -127,7 +140,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </form>
             </div>

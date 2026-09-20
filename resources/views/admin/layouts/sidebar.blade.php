@@ -8,7 +8,7 @@
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="../index.html" class="brand-link">
+        <a href="/" class="brand-link">
             <!--begin::Brand Image-->
             <img src="{{ asset('img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
             <!--end::Brand Image-->
@@ -69,6 +69,12 @@
                                 <a href="{{ route('admin.categories.index') }}" class="nav-link">
                                     <i class="nav-icon bi bi-circle"></i>
                                     <p>Categories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.brands.index') }}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Brands</p>
                                 </a>
                             </li>
                         </ul>

@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Wireless Earbuds Pro | Product Details</title>
+
+    <!--begin::Theme Init (prevents flash of incorrect theme on load)-->
+    <script>
+      (() => {
+        'use strict';
+        const root = document.documentElement;
+        const STORAGE_KEY = 'lte-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(STORAGE_KEY);
+        } catch {
+          /* localStorage may be unavailable */
+        }
+        const authored = root.getAttribute('data-bs-theme');
+        let resolved = 'light';
+        if (stored === 'dark' || stored === 'light') {
+          resolved = stored;
+        } else if (authored === 'dark' || authored === 'light') {
+          resolved = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
+          resolved = 'dark';
+        }
+        root.setAttribute('data-bs-theme', resolved);
+        root.style.colorScheme = resolved;
+      })();
+    </script>
+    <!--end::Theme Init-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!--begin::Fonts-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+      crossorigin="anonymous"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <!--end::Fonts-->
+
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+      crossorigin="anonymous"
+    />
+    <!--end::Third Party Plugin(OverlayScrollbars)-->
+
+    <!--begin::Third Party Plugin(Bootstrap Icons)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      crossorigin="anonymous"
+    />
+    <!--end::Third Party Plugin(Bootstrap Icons)-->
+
+    <!--begin::Required Plugin(AdminLTE)-->
+    <link rel="stylesheet" href="./assets/css/adminlte.min.css" />
+    <!--end::Required Plugin(AdminLTE)-->
+
+    <style>
+      .product-gallery-main {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 0.375rem;
+        border: 1px solid var(--bs-border-color);
+        background-color: var(--bs-tertiary-bg);
+      }
+      .product-gallery-thumb {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 0.375rem;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: border-color 0.15s ease-in-out;
+      }
+      .product-gallery-thumb:hover {
+        border-color: var(--bs-border-color);
+      }
+      .product-gallery-thumb.active {
+        border-color: var(--bs-primary);
+      }
+      .price-offer {
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+      .price-base-struck {
+        text-decoration: line-through;
+        color: var(--bs-secondary-color);
+      }
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--bs-border-color);
+      }
+      .detail-row:last-child {
+        border-bottom: none;
+      }
+      .detail-row dt {
+        color: var(--bs-secondary-color);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      .detail-row dd {
+        margin: 0;
+        text-align: right;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <!--end::Head-->
+
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <!--begin::Header-->
+      <nav class="app-header navbar navbar-expand bg-body">
+        <div class="container-fluid">
+          <!--begin::Start Navbar Links-->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button" aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+              </a>
+            </li>
+            <li class="nav-item d-none d-md-block">
+              <a href="index.html" class="nav-link">Dashboard</a>
+            </li>
+            <li class="nav-item d-none d-md-block">
+              <a href="#" class="nav-link">Products</a>
+            </li>
+          </ul>
+          <!--end::Start Navbar Links-->
+
+          <!--begin::End Navbar Links-->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link" data-bs-toggle="dropdown" href="#" aria-label="Notifications">
+                <i class="bi bi-bell"></i>
+                <span class="navbar-badge badge text-bg-warning">2</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                <span class="dropdown-item dropdown-header">2 Notifications</span>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                  <i class="bi bi-box-seam me-2"></i> Low stock: Wireless Earbuds Pro
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                  <i class="bi bi-cart-check me-2"></i> New order received
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-lte-toggle="fullscreen" href="#" role="button" aria-label="Toggle fullscreen">
+                <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
+                <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" hidden></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown user-menu">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-label="User menu">
+                <img src="./assets/img/avatar.png" class="user-image rounded-circle shadow" alt="User avatar" />
+                <span class="d-none d-md-inline">Admin User</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                <li class="user-header text-bg-primary">
+                  <img src="./assets/img/avatar.png" class="rounded-circle shadow" alt="User avatar" />
+                  <p>
+                    Admin User
+                    <small>Store Administrator</small>
+                  </p>
+                </li>
+                <li class="user-footer">
+                  <a href="#" class="btn btn-outline-secondary">Profile</a>
+                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--end::End Navbar Links-->
+        </div>
+      </nav>
+      <!--end::Header-->
+
+      <!--begin::Sidebar-->
+      <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <img src="./assets/img/AdminLTELogo.png" alt="MartHub Logo" class="brand-image opacity-75 shadow" />
+            <span class="brand-text fw-light">MartHub Admin</span>
+          </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+          <nav class="mt-2" aria-label="Main navigation">
+            <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-speedometer2"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon bi bi-box-seam"></i>
+                  <p>
+                    Products
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>All Products</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Categories</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Brands</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-cart-check"></i>
+                  <p>Orders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-people"></i>
+                  <p>Vendors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-gear"></i>
+                  <p>Settings</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <!--end::Sidebar-->
+
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">Product Details</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Wireless Earbuds Pro</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end::App Content Header-->
+
+        <!--begin::App Content-->
+        <div class="app-content">
+          <div class="container-fluid">
+            <!--begin::Title row with quick actions-->
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+              <div>
+                <h2 class="fs-4 mb-1">Wireless Earbuds Pro</h2>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <span class="badge text-bg-success">Published</span>
+                  <span class="text-secondary fs-7">SKU: WEP-2201</span>
+                  <span class="text-secondary fs-7">&bull;</span>
+                  <span class="text-secondary fs-7">Product ID: #10245</span>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btn-outline-secondary">
+                  <i class="bi bi-arrow-left me-1"></i>Back to list
+                </a>
+                <a href="#" class="btn btn-primary">
+                  <i class="bi bi-pencil-square me-1"></i>Edit Product
+                </a>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                  <i class="bi bi-trash me-1"></i>Delete
+                </button>
+              </div>
+            </div>
+            <!--end::Title row-->
+
+            <div class="row">
+              <!--begin::Left column-->
+              <div class="col-lg-8">
+                <!--begin::Gallery card-->
+                <div class="card card-primary card-outline mb-3">
+                  <div class="card-header">
+                    <h3 class="card-title">Product Image</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <img
+                          id="mainProductImage"
+                          src="./assets/img/prod-1.jpg"
+                          alt="Wireless Earbuds Pro - main image"
+                          class="product-gallery-main"
+                        />
+                      </div>
+                      <div class="col-12">
+                        <div class="row g-2">
+                          <div class="col-3">
+                            <img
+                              src="./assets/img/prod-1.jpg"
+                              alt="Wireless Earbuds Pro thumbnail 1"
+                              class="product-gallery-thumb active"
+                              onclick="document.getElementById('mainProductImage').src=this.src; document.querySelectorAll('.product-gallery-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                            />
+                          </div>
+                          <div class="col-3">
+                            <img
+                              src="./assets/img/prod-2.jpg"
+                              alt="Wireless Earbuds Pro thumbnail 2"
+                              class="product-gallery-thumb"
+                              onclick="document.getElementById('mainProductImage').src=this.src; document.querySelectorAll('.product-gallery-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                            />
+                          </div>
+                          <div class="col-3">
+                            <img
+                              src="./assets/img/prod-3.jpg"
+                              alt="Wireless Earbuds Pro thumbnail 3"
+                              class="product-gallery-thumb"
+                              onclick="document.getElementById('mainProductImage').src=this.src; document.querySelectorAll('.product-gallery-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                            />
+                          </div>
+                          <div class="col-3">
+                            <img
+                              src="./assets/img/prod-4.jpg"
+                              alt="Wireless Earbuds Pro thumbnail 4"
+                              class="product-gallery-thumb"
+                              onclick="document.getElementById('mainProductImage').src=this.src; document.querySelectorAll('.product-gallery-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--end::Gallery card-->
+
+                <!--begin::General information card-->
+                <div class="card card-primary card-outline mb-3">
+                  <div class="card-header">
+                    <h3 class="card-title">General Information</h3>
+                  </div>
+                  <div class="card-body">
+                    <dl class="mb-0">
+                      <div class="detail-row">
+                        <dt>Product name</dt>
+                        <dd>Wireless Earbuds Pro</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Vendor</dt>
+                        <dd>Nova Electronics</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Category</dt>
+                        <dd><span class="badge text-bg-secondary">Electronics &amp; Accessories</span></dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Brand</dt>
+                        <dd><span class="badge text-bg-secondary">SoundWave</span></dd>
+                      </div>
+                    </dl>
+                    <hr />
+                    <h4 class="fs-6 mb-2">Description</h4>
+                    <p class="mb-0 text-body">
+                      Premium true-wireless earbuds featuring active noise cancellation, 30-hour total
+                      battery life with the charging case, IPX5 sweat resistance, and a low-latency
+                      gaming mode. Includes three sizes of memory-foam ear tips for a secure,
+                      all-day comfortable fit.
+                    </p>
+                  </div>
+                </div>
+                <!--end::General information card-->
+              </div>
+              <!--end::Left column-->
+
+              <!--begin::Right column-->
+              <div class="col-lg-4">
+                <!--begin::Pricing card-->
+                <div class="card card-outline card-success mb-3">
+                  <div class="card-header">
+                    <h3 class="card-title">Pricing &amp; Inventory</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-baseline gap-2 mb-1">
+                      <span class="price-offer text-success">$79.00</span>
+                      <span class="price-base-struck">$89.00</span>
+                    </div>
+                    <span class="badge text-bg-danger mb-3">11% OFF</span>
+                    <dl class="mb-0">
+                      <div class="detail-row">
+                        <dt>Base price</dt>
+                        <dd>$89.00</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Offer price</dt>
+                        <dd>$79.00</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Stock quantity</dt>
+                        <dd>142 units</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Weight</dt>
+                        <dd>0.25 kg</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <!--end::Pricing card-->
+
+                <!--begin::Status card-->
+                <div class="card card-outline card-secondary mb-3">
+                  <div class="card-header">
+                    <h3 class="card-title">Status</h3>
+                  </div>
+                  <div class="card-body">
+                    <dl class="mb-0">
+                      <div class="detail-row">
+                        <dt>Visibility</dt>
+                        <dd><span class="badge text-bg-success">Published</span></dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Featured</dt>
+                        <dd><span class="badge text-bg-info">Homepage</span></dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Created</dt>
+                        <dd>Aug 14, 2026</dd>
+                      </div>
+                      <div class="detail-row">
+                        <dt>Last updated</dt>
+                        <dd>Sep 10, 2026</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <!--end::Status card-->
+
+                <!--begin::Quick actions card-->
+                <div class="card card-outline card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Quick Actions</h3>
+                  </div>
+                  <div class="card-body d-grid gap-2">
+                    <a href="#" class="btn btn-primary">
+                      <i class="bi bi-pencil-square me-1"></i>Edit Product
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary">
+                      <i class="bi bi-arrow-left me-1"></i>Back to Product List
+                    </a>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+                      <i class="bi bi-trash me-1"></i>Delete Product
+                    </button>
+                  </div>
+                </div>
+                <!--end::Quick actions card-->
+              </div>
+              <!--end::Right column-->
+            </div>
+          </div>
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+
+      <!--begin::Footer-->
+      <footer class="app-footer">
+        <div class="float-end d-none d-sm-inline">Version 1.0.0</div>
+        <strong>
+          Copyright &copy; 2026&nbsp;
+          <a href="#" class="text-decoration-none">MartHub</a>.
+        </strong>
+        All rights reserved.
+      </footer>
+      <!--end::Footer-->
+    </div>
+    <!--end::App Wrapper-->
+
+    <!--begin::Delete Confirmation Modal-->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteProductModalLabel">Delete Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete <strong>Wireless Earbuds Pro</strong>? This action cannot be undone.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger">
+              <i class="bi bi-trash me-1"></i>Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end::Delete Confirmation Modal-->
+
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Third Party Plugin(OverlayScrollbars)-->
+    <!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Required Plugin(popperjs for Bootstrap 5)-->
+    <!--begin::Required Plugin(Bootstrap 5)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Required Plugin(Bootstrap 5)-->
+    <!--begin::Required Plugin(AdminLTE)-->
+    <script src="./assets/js/adminlte.min.js"></script>
+    <!--end::Required Plugin(AdminLTE)-->
+  </body>
+  <!--end::Body-->
+</html>

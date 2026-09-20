@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -9,20 +11,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-/*
-Route::middleware('auth', 'role_id:1,2,3,4')->group(function () {
-    Route::resource('products', ProductController::class);
-});
-
-Route::get('/dashboard', function () {
-    return view('admin.pages.dashboard');
-})->middleware(['auth', 'verified', 'role_id:1,2,3,4'])->name('dashboard');
-
-auth()->user()->name
-
-auth()->user()->role_id != 5
-*/
 
 Route::get('/', function () {
     return view('admin.dashboard');
@@ -45,9 +33,8 @@ Route::middleware('auth', 'role_id:1')->group(function () {
     });
 
     // Categories
-    Route::get('/admin/categories', function () {
-        return view('admin.categories.index');
-    })->name('admin.categories.index');
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+    Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands.index');
 
     // Oders
     Route::get('/admin/orders', function () {

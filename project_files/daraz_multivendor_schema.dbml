@@ -1,0 +1,403 @@
+// ============================================================================
+// MULTIVENDOR E-COMMERCE DATABASE — dbdiagram.io (DBML) 
+// Paste this into https://dbdiagram.io  (or File > Import > DBML)
+// ============================================================================
+
+Table roles {
+  role_id int [pk, increment]
+  role_name varchar [unique, not null, note: 'customer, seller, admin, staff']
+}
+
+Table users {
+  user_id bigint [pk, increment]
+  role_id int [not null]
+  full_name varchar [not null]
+  email varchar [unique, not null]
+  phone varchar [unique]
+  password_hash varchar [not null]
+  profile_image varchar
+  status varchar [default: 'active', note: 'active, suspended, deleted']
+  email_verified boolean [default: false]
+  phone_verified boolean [default: false]
+  created_at datetime [default: `now()`]
+  updated_at datetime [default: `now()`]
+}
+
+Table addresses {
+  address_id bigint [pk, increment]
+  user_id bigint [not null]
+  label varchar [note: 'Home, Office']
+  recipient_name varchar
+  recipient_phone varchar
+  address_line varchar [not null]
+  city varchar [not null]
+  district varchar
+  postal_code varchar
+  country varchar [default: 'Bangladesh']
+  is_default boolean [default: false]
+  created_at datetime [default: `now()`]
+}
+
+Table sellers {
+  seller_id bigint [pk, increment]
+  user_id bigint [unique, not null]
+  shop_name varchar [not null]
+  shop_slug varchar [unique, not null]
+  shop_logo_url varchar
+  shop_banner_url varchar
+  description text
+  business_reg_no varchar
+  commission_rate decimal [default: 10.00]
+  verification_status varchar [default: 'pending', note: 'pending, verified, rejected']
+  rating_avg decimal [default: 0.00]
+  status varchar [default: 'active', note: 'active, suspended, closed']
+  created_at datetime [default: `now()`]
+}
+
+Table seller_documents {
+  document_id bigint [pk, increment]
+  seller_id bigint [not null]
+  doc_type varchar [note: 'NID, Trade License, TIN']
+  doc_url varchar [not null]
+  verified boolean [default: false]
+  uploaded_at datetime [default: `now()`]
+}
+
+Table warehouses {
+  warehouse_id bigint [pk, increment]
+  seller_id bigint [not null]
+  name varchar [not null]
+  address_id bigint
+  is_default boolean [default: true]
+}
+
+Table categories {
+  category_id bigint [pk, increment]
+  parent_id bigint [note: 'self-referencing FK for subcategories']
+  name varchar [not null]
+  slug varchar [unique, not null]
+  icon_url varchar
+  display_order int [default: 0]
+}
+
+Table brands {
+  brand_id bigint [pk, increment]
+  name varchar [unique, not null]
+  logo_url varchar
+}
+
+Table products {
+  product_id bigint [pk, increment]
+  seller_id bigint [not null]
+  category_id bigint [not null]
+  brand_id bigint
+  name varchar [not null]
+  slug varchar [unique, not null]
+  description text
+  base_price decimal [not null]
+  status varchar [default: 'draft', note: 'draft, pending_review, active, rejected, archived']
+  total_sold int [default: 0]
+  rating_avg decimal [default: 0.00]
+  rating_count int [default: 0]
+  created_at datetime [default: `now()`]
+  updated_at datetime [default: `now()`]
+}
+
+Table product_images {
+  image_id bigint [pk, increment]
+  product_id bigint [not null]
+  image_url varchar [not null]
+  is_primary boolean [default: false]
+  display_order int [default: 0]
+}
+
+Table attributes {
+  attribute_id bigint [pk, increment]
+  name varchar [unique, not null, note: 'Color, Size, Storage']
+}
+
+Table attribute_values {
+  attribute_value_id bigint [pk, increment]
+  attribute_id bigint [not null]
+  value varchar [not null, note: 'Red, XL, 128GB']
+}
+
+Table product_variants {
+  variant_id bigint [pk, increment]
+  product_id bigint [not null]
+  sku varchar [unique, not null]
+  price decimal [not null]
+  discount_price decimal
+  weight_kg decimal
+  status varchar [default: 'active', note: 'active, inactive']
+}
+
+Table variant_attribute_values {
+  variant_id bigint [not null]
+  attribute_value_id bigint [not null]
+
+  indexes {
+    (variant_id, attribute_value_id) [pk]
+  }
+}
+
+Table inventory {
+  inventory_id bigint [pk, increment]
+  variant_id bigint [not null]
+  warehouse_id bigint [not null]
+  quantity int [default: 0]
+  reserved_quantity int [default: 0]
+  updated_at datetime [default: `now()`]
+
+  indexes {
+    (variant_id, warehouse_id) [unique]
+  }
+}
+
+Table carts {
+  cart_id bigint [pk, increment]
+  user_id bigint [unique, not null]
+  created_at datetime [default: `now()`]
+}
+
+Table cart_items {
+  cart_item_id bigint [pk, increment]
+  cart_id bigint [not null]
+  variant_id bigint [not null]
+  quantity int [default: 1]
+  added_at datetime [default: `now()`]
+
+  indexes {
+    (cart_id, variant_id) [unique]
+  }
+}
+
+Table wishlists {
+  wishlist_id bigint [pk, increment]
+  user_id bigint [not null]
+  product_id bigint [not null]
+  added_at datetime [default: `now()`]
+
+  indexes {
+    (user_id, product_id) [unique]
+  }
+}
+
+Table coupons {
+  coupon_id bigint [pk, increment]
+  code varchar [unique, not null]
+  discount_type varchar [not null, note: 'flat, percentage']
+  discount_value decimal [not null]
+  min_order_amount decimal [default: 0]
+  max_discount_amount decimal
+  usage_limit int
+  times_used int [default: 0]
+  valid_from datetime
+  valid_to datetime
+  status varchar [default: 'active', note: 'active, expired, disabled']
+}
+
+Table campaigns {
+  campaign_id bigint [pk, increment]
+  name varchar [not null]
+  start_date datetime [not null]
+  end_date datetime [not null]
+  banner_url varchar
+}
+
+Table campaign_products {
+  campaign_id bigint [not null]
+  variant_id bigint [not null]
+  discounted_price decimal [not null]
+  stock_limit int
+
+  indexes {
+    (campaign_id, variant_id) [pk]
+  }
+}
+
+Table orders {
+  order_id bigint [pk, increment]
+  user_id bigint [not null]
+  order_number varchar [unique, not null]
+  shipping_address_id bigint [not null]
+  subtotal_amount decimal [not null]
+  shipping_fee decimal [default: 0]
+  discount_amount decimal [default: 0]
+  tax_amount decimal [default: 0]
+  total_amount decimal [not null]
+  coupon_id bigint
+  order_status varchar [default: 'placed', note: 'placed, confirmed, processing, shipped, delivered, cancelled, returned']
+  payment_status varchar [default: 'unpaid', note: 'unpaid, paid, refunded, failed']
+  placed_at datetime [default: `now()`]
+}
+
+Table order_items {
+  order_item_id bigint [pk, increment]
+  order_id bigint [not null]
+  seller_id bigint [not null]
+  variant_id bigint [not null]
+  quantity int [not null]
+  unit_price decimal [not null]
+  subtotal decimal [not null]
+  item_status varchar [default: 'pending', note: 'pending, confirmed, packed, shipped, delivered, cancelled, return_requested, returned']
+}
+
+Table payment_methods {
+  payment_method_id int [pk, increment]
+  name varchar [unique, not null, note: 'bKash, Nagad, Card, COD']
+}
+
+Table payments {
+  payment_id bigint [pk, increment]
+  order_id bigint [not null]
+  payment_method_id int [not null]
+  amount decimal [not null]
+  transaction_id varchar
+  status varchar [default: 'pending', note: 'pending, success, failed, refunded']
+  paid_at datetime
+}
+
+Table couriers {
+  courier_id int [pk, increment]
+  name varchar [not null, note: 'Pathao, RedX, Daraz Express']
+  contact_info varchar
+}
+
+Table shipments {
+  shipment_id bigint [pk, increment]
+  order_item_id bigint [not null]
+  courier_id int [not null]
+  tracking_number varchar
+  status varchar [default: 'pending', note: 'pending, picked_up, in_transit, delivered, failed']
+  shipped_at datetime
+  delivered_at datetime
+}
+
+Table returns_refunds {
+  return_id bigint [pk, increment]
+  order_item_id bigint [not null]
+  reason varchar
+  description text
+  status varchar [default: 'requested', note: 'requested, approved, rejected, refunded']
+  refund_amount decimal
+  requested_at datetime [default: `now()`]
+  resolved_at datetime
+}
+
+Table reviews {
+  review_id bigint [pk, increment]
+  product_id bigint [not null]
+  user_id bigint [not null]
+  order_item_id bigint [unique, not null]
+  rating int [not null, note: '1 to 5']
+  comment text
+  image_url varchar
+  created_at datetime [default: `now()`]
+}
+
+Table seller_ratings {
+  seller_rating_id bigint [pk, increment]
+  seller_id bigint [not null]
+  user_id bigint [not null]
+  order_id bigint [not null]
+  rating int [not null, note: '1 to 5']
+  comment text
+  created_at datetime [default: `now()`]
+}
+
+Table commissions {
+  commission_id bigint [pk, increment]
+  order_item_id bigint [unique, not null]
+  seller_id bigint [not null]
+  gross_amount decimal [not null]
+  commission_rate decimal [not null]
+  commission_amount decimal [not null]
+  net_payable decimal [not null]
+}
+
+Table seller_payouts {
+  payout_id bigint [pk, increment]
+  seller_id bigint [not null]
+  amount decimal [not null]
+  period_start date [not null]
+  period_end date [not null]
+  status varchar [default: 'pending', note: 'pending, processed, failed']
+  payout_date datetime
+}
+
+Table notifications {
+  notification_id bigint [pk, increment]
+  user_id bigint [not null]
+  title varchar
+  message text
+  type varchar [note: 'order_update, promo, system']
+  is_read boolean [default: false]
+  created_at datetime [default: `now()`]
+}
+
+// ============================================================================
+// RELATIONSHIPS
+// ============================================================================
+
+Ref: users.role_id > roles.role_id
+Ref: addresses.user_id > users.user_id
+Ref: sellers.user_id - users.user_id
+Ref: seller_documents.seller_id > sellers.seller_id
+Ref: warehouses.seller_id > sellers.seller_id
+Ref: warehouses.address_id > addresses.address_id
+
+Ref: categories.parent_id > categories.category_id
+Ref: products.seller_id > sellers.seller_id
+Ref: products.category_id > categories.category_id
+Ref: products.brand_id > brands.brand_id
+Ref: product_images.product_id > products.product_id
+
+Ref: attribute_values.attribute_id > attributes.attribute_id
+Ref: product_variants.product_id > products.product_id
+Ref: variant_attribute_values.variant_id > product_variants.variant_id
+Ref: variant_attribute_values.attribute_value_id > attribute_values.attribute_value_id
+
+Ref: inventory.variant_id > product_variants.variant_id
+Ref: inventory.warehouse_id > warehouses.warehouse_id
+
+Ref: carts.user_id > users.user_id
+Ref: cart_items.cart_id > carts.cart_id
+Ref: cart_items.variant_id > product_variants.variant_id
+
+Ref: wishlists.user_id > users.user_id
+Ref: wishlists.product_id > products.product_id
+
+Ref: campaign_products.campaign_id > campaigns.campaign_id
+Ref: campaign_products.variant_id > product_variants.variant_id
+
+Ref: orders.user_id > users.user_id
+Ref: orders.shipping_address_id > addresses.address_id
+Ref: orders.coupon_id > coupons.coupon_id
+
+Ref: order_items.order_id > orders.order_id
+Ref: order_items.seller_id > sellers.seller_id
+Ref: order_items.variant_id > product_variants.variant_id
+
+Ref: payments.order_id > orders.order_id
+Ref: payments.payment_method_id > payment_methods.payment_method_id
+
+Ref: shipments.order_item_id > order_items.order_item_id
+Ref: shipments.courier_id > couriers.courier_id
+
+Ref: returns_refunds.order_item_id > order_items.order_item_id
+
+Ref: reviews.product_id > products.product_id
+Ref: reviews.user_id > users.user_id
+Ref: reviews.order_item_id > order_items.order_item_id
+
+Ref: seller_ratings.seller_id > sellers.seller_id
+Ref: seller_ratings.user_id > users.user_id
+Ref: seller_ratings.order_id > orders.order_id
+
+Ref: commissions.order_item_id > order_items.order_item_id
+Ref: commissions.seller_id > sellers.seller_id
+
+Ref: seller_payouts.seller_id > sellers.seller_id
+
+Ref: notifications.user_id > users.user_id
