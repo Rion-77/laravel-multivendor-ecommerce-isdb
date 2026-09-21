@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ProductStatus;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,6 +28,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(),
             'base_price' => $basePrice,
             'offer_price' => $this->faker->randomFloat(2, 500, $basePrice),
+            'status' => $this->faker->randomElement([ProductStatus::Active, ProductStatus::Inactive, ProductStatus::PendingReview, ProductStatus::OutOfStock, ProductStatus::Rejected]),
         ];
     }
-}
+} 

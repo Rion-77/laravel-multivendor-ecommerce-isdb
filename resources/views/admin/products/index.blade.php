@@ -57,7 +57,7 @@
                                                 <th>Brand</th>
                                                 <th>Price</th>
                                                 {{-- <th>Stock</th> --}}
-                                                {{-- <th>Status</th> --}}
+                                                <th>Status</th>
                                                 <th class="text-end">Actions</th>
                                             </tr>
                                         </thead>
@@ -94,7 +94,7 @@
                                                     <td>{{ $product->brand->name }}</td>
                                                     <td>{{ $product->base_price }}</td>
                                                     {{-- <td>142</td> --}}
-                                                    {{-- <td><span class="badge text-bg-success">Published</span></td> --}}
+                                                    <td><span class="badge text-{{ $product->status->color() }}">{{ $product->status->label() }}</span></td>
                                                     <td class="text-end">
                                                         <div class="btn-group btn-group-sm">
                                                             <x-admin.buttons.view href="{{ route('admin.products.show', ['product' => $product->id]) }}" />        

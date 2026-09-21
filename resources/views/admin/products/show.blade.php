@@ -61,7 +61,7 @@
                                         <div class="row g-2">
                                             @if ($product->hasMedia('product_image'))
                                                 @foreach ($product->getMedia('product_image') as $media)
-                                                    <div class="col-4 overflow-hidden">
+                                                    <div class="col-3 overflow-hidden">
                                                         <img src="{{ $media->getUrl('thumbnail') }}"
                                                             alt="Wireless Earbuds Pro thumbnail 1"
                                                             class="product-gallery-thumb"

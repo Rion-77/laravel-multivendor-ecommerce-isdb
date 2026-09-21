@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\ProductStatus;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // for spatie Media
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -19,6 +20,10 @@ class Product extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $with = ['media'];
+
+    protected $casts = [
+        'status' => ProductStatus::class,
+    ];
 
     public function category()
     {

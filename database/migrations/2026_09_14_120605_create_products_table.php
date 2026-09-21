@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->decimal('base_price');
             $table->decimal('offer_price');
+            $table->string('status')->default('pending_review');
             $table->timestamps();
         });
     }

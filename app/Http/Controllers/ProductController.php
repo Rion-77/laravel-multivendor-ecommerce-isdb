@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ProductStatus;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Enum;
 
 class ProductController extends Controller
 {
@@ -56,6 +58,7 @@ class ProductController extends Controller
                 'offer_price' => 'nullable|numeric|min:0|lt:base_price',
                 'product_image' => 'nullable|array',
                 'product_image.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:2048',
+                'status' => new Enum(ProductStatus::class),
             ]
         );
 
@@ -73,9 +76,8 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->base_price = $request->base_price;
         $product->offer_price = $request->offer_price;
+        $product->status = $request->status;
         $product->save();
-
-
 
         if ($request->hasFile('product_image')) {
             $product->addMultipleMediaFromRequest(['product_image'])
@@ -96,6 +98,7 @@ class ProductController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $product = Product::findOrFail($product->id);
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -133,6 +136,7 @@ class ProductController extends Controller
                 'offer_price' => 'nullable|numeric|min:0|lt:base_price',
                 'product_image' => 'nullable|array',
                 'product_image.*' => 'image|mimes:jpeg,png,jpg,webp,avif|max:2048',
+                'status' => new Enum(ProductStatus::class),
             ]
         );
 
@@ -150,6 +154,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->base_price = $request->base_price;
         $product->offer_price = $request->offer_price;
+        $product->status = $request->status;
         $product->save();
 
         if ($request->hasFile('product_image')) {

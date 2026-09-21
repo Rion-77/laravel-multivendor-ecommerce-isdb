@@ -1,3 +1,7 @@
+@php
+    use App\Enums\ProductStatus;
+@endphp
+
 @extends('admin.layouts.app')
 
 @section('title', 'Edit Product')
@@ -50,15 +54,44 @@
                                             value="{{ $product->name }}" />
 
                                         <!-- Vendor -->
-                                        <x-admin.form.select class="col-md-4" label="Vendor" name="vendor_id">
-                                            @foreach ($vendors as $vendor)
-                                                <option value="{{ $vendor->id }}" @selected($product->vendor_id == $vendor->id)>
-                                                    {{ $vendor->shop_name }}</option>
-                                            @endforeach
-                                        </x-admin.form.select>
+                                        @if (auth()->user()->role_id == 3)
+                                            <x-admin.form.select class="col-md-6" label="Vendor" name="vendor_id">
+                                                @foreach ($vendors as $vendor)
+                                                    @if ($vendor->id == session('user_vendor_id'))
+                                                        <option value="{{ $vendor->id }}" selected>
+                                                            {{ $vendor->shop_name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </x-admin.form.select>
+                                        @else
+                                            <x-admin.form.select class="col-md-6" label="Vendor" name="vendor_id">
+                                                @foreach ($vendors as $vendor)
+                                                    <option value="{{ $vendor->id }}" @selected($product->vendor_id == $vendor->id)>
+                                                        {{ $vendor->shop_name }}</option>
+                                                @endforeach
+                                            </x-admin.form.select>
+                                        @endif
+
+                                        <!-- Status -->
+
+                                        @if (auth()->user()->role_id == 3)
+                                            <x-admin.form.select class="col-md-6" label="Status" name="status">
+                                                <option value="pending_review" selected>Pending Review</option>
+                                            </x-admin.form.select>
+                                        @else
+                                            <x-admin.form.select class="col-md-6" label="Status" name="status">
+
+                                                @foreach (ProductStatus::cases() as $status)
+                                                    <option value="{{ $status->value }}"
+                                                        {{ old('status', $product->status->value ?? '') === $status->value ? 'selected' : '' }}>
+                                                        {{ $status->label() }}
+                                                    </option>
+                                                @endforeach
+                                            </x-admin.form.select>
+                                        @endif
 
                                         <!-- Categoy -->
-                                        <x-admin.form.select class="col-md-4" label="Category" name="category_id">
+                                        <x-admin.form.select class="col-md-6" label="Category" name="category_id">
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}" @selected($product->category_id == $category->id)>
                                                     {{ $category->name }}</option>
@@ -66,7 +99,7 @@
                                         </x-admin.form.select>
 
                                         <!-- Brand -->
-                                        <x-admin.form.select class="col-md-4" label="Brand" name="brand_id">
+                                        <x-admin.form.select class="col-md-6" label="Brand" name="brand_id">
                                             @foreach ($brands as $brand)
                                                 <option value="{{ $brand->id }}" @selected($product->brand_id == $brand->id)>
                                                     {{ $brand->name }}</option>
