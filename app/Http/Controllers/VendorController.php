@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\VendorStatus;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Enum;
 
 class VendorController extends Controller
 {
@@ -43,6 +45,7 @@ class VendorController extends Controller
                 'description' => 'required|min:3|max:500',
                 'user_id' => 'required',
                 'shop_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048',
+                'status' => [new Enum(VendorStatus::class)],
             ]
         );
 
@@ -100,6 +103,7 @@ class VendorController extends Controller
                 'description' => 'required|min:3|max:500',
                 'user_id' => 'required',
                 'shop_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,avif|max:2048',
+                'status' => [new Enum(VendorStatus::class)],
             ]
         );
 
