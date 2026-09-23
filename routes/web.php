@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+    return view('frontend.home');
+});
+// Route::get('/', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
