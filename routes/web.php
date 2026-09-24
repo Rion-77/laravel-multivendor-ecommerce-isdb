@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('frontend.home');
+    $products = App\Models\Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(12);
+    return view('frontend.home', compact('products'));
 });
 // Route::get('/', function () {
 //     return view('admin.dashboard');

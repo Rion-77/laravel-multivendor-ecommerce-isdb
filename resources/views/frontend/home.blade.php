@@ -9,20 +9,20 @@
                     <span class="badge bg-secondary text-white rounded-pill px-3 py-2 mb-3"
                         style="font-size: 13px; letter-spacing: .4px;"><i class="fas fa-store me-2"></i>480+ Verified
                         Local Vendors</span>
-                    <h1 class="mb-4 display-3 text-primary">Fresh Organic Veggies &amp; Fruits, From Farm to Door</h1>
-                    <p class="mb-4" style="max-width: 520px;">Shop seasonal produce from hundreds of independent
-                        growers on one marketplace &mdash; quality checked, fairly priced.</p>
+                    <h1 class="mb-4 display-3 text-primary">Everything You Love, From Sellers You Trust</h1>
+                    <p class="mb-4" style="max-width: 520px;">Discover everyday essentials, unique finds, and local
+                        favorites from independent sellers in one easy-to-shop marketplace.</p>
                     <div class="position-relative mx-auto">
                         <input class="form-control border-0 shadow-sm w-75 py-3 px-4 rounded-pill" type="text"
-                            placeholder="Search fruits, vegetables, vendors...">
+                            placeholder="Search products, categories, or stores...">
                         <button type="submit"
                             class="btn btn-primary py-3 px-4 position-absolute rounded-pill text-white h-100"
                             style="top: 0; right: 25%;">Search</button>
                     </div>
                     <div class="hero-trust-bar">
-                        <div class="item"><i class="fas fa-truck"></i> Free delivery over $50</div>
+                        <div class="item"><i class="fas fa-truck"></i> Fast, reliable delivery</div>
                         <div class="item"><i class="fas fa-shield-alt"></i> Secure payments</div>
-                        <div class="item"><i class="fas fa-undo"></i> 30-day guarantee</div>
+                        <div class="item"><i class="fas fa-undo"></i> Easy returns</div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5">
@@ -31,12 +31,12 @@
                             <div class="carousel-item active rounded">
                                 <img src="{{ asset('img/hero-img-1.png') }}"
                                     class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                                <a href="#" class="btn px-4 py-2 text-white rounded">Shop fresh picks</a>
                             </div>
                             <div class="carousel-item rounded">
                                 <img src="{{ asset('img/hero-img-2.jpg') }}" class="img-fluid w-100 h-100 rounded"
                                     alt="Second slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                <a href="#" class="btn px-4 py-2 text-white rounded">Explore local stores</a>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
@@ -58,7 +58,7 @@
 
 
     <!-- Featurs Section Start -->
-    <div class="container-fluid featurs py-5">
+    {{-- <div class="container-fluid featurs py-5">
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
@@ -67,8 +67,8 @@
                             <i class="fas fa-car-side fa-3x text-white"></i>
                         </div>
                         <div class="featurs-content text-center">
-                            <h5>Free Shipping</h5>
-                            <p class="mb-0">Free on order over $300</p>
+                            <h5>Convenient Delivery</h5>
+                            <p class="mb-0">Flexible options at checkout</p>
                         </div>
                     </div>
                 </div>
@@ -78,8 +78,8 @@
                             <i class="fas fa-user-shield fa-3x text-white"></i>
                         </div>
                         <div class="featurs-content text-center">
-                            <h5>Security Payment</h5>
-                            <p class="mb-0">100% security payment</p>
+                            <h5>Secure Payments</h5>
+                            <p class="mb-0">Protected from checkout to delivery</p>
                         </div>
                     </div>
                 </div>
@@ -89,8 +89,8 @@
                             <i class="fas fa-exchange-alt fa-3x text-white"></i>
                         </div>
                         <div class="featurs-content text-center">
-                            <h5>30 Day Return</h5>
-                            <p class="mb-0">30 day money guarantee</p>
+                            <h5>Simple Returns</h5>
+                            <p class="mb-0">Shop confidently with buyer protection</p>
                         </div>
                     </div>
                 </div>
@@ -100,14 +100,14 @@
                             <i class="fa fa-phone-alt fa-3x text-white"></i>
                         </div>
                         <div class="featurs-content text-center">
-                            <h5>24/7 Support</h5>
-                            <p class="mb-0">Support every time fast</p>
+                            <h5>Seller Support</h5>
+                            <p class="mb-0">Helpful support when you need it</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Featurs Section End -->
 
 
@@ -117,7 +117,7 @@
             <div class="tab-class text-center">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start">
-                        <h1>Our Organic Products</h1>
+                        <h1>Shop Popular Categories</h1>
                     </div>
                     <div class="col-lg-8 text-end">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
@@ -129,22 +129,22 @@
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                    <span class="text-dark" style="width: 130px;">Vegetables</span>
+                                    <span class="text-dark" style="width: 130px;">Home &amp; Living</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                    <span class="text-dark" style="width: 130px;">Fruits</span>
+                                    <span class="text-dark" style="width: 130px;">Fashion</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                    <span class="text-dark" style="width: 130px;">Bread</span>
+                                    <span class="text-dark" style="width: 130px;">Beauty</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                    <span class="text-dark" style="width: 130px;">Meat</span>
+                                    <span class="text-dark" style="width: 130px;">Electronics</span>
                                 </a>
                             </li>
                         </ul>
@@ -155,198 +155,40 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-5.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Green Valley Farms</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
+                                    @forelse ($products as $product)
+                                        <div class="col-md-6 col-lg-4 col-xl-3">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    @if ($product->hasMedia('product_image'))
+                                                        <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                                            class="img-fluid w-100 rounded-top" alt="">
+                                                    @else
+                                                        <img src="https://i.pravatar.cc/150?img={{ $product->id }}">
+                                                    @endif
+
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                    style="top: 10px; left: 10px;">Fruits</div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4>{{ $product->name }}</h4>
+                                                    <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by<a
+                                                            href="vendor-detail.html">{{ $product->vendor->shop_name }}</a>
+                                                    </div>
+                                                    <p>Thoughtfully selected by independent sellers and ready to ship.</p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                        <a href="#"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+                                                            cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-5.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Sunny Orchards Co.</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-2.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Harvest Hub</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-4.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Apricots</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Nature's Basket</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-3.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Banana</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Golden Fields Organic</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-1.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Oranges</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Fresh Route Traders</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-2.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Evergreen Growers</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
-                                            <div class="fruite-img">
-                                                <img src="{{ asset('img/fruite-item-5.jpg') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="">
-                                            </div>
-                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                style="top: 10px; left: 10px;">Fruits</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                                        href="vendor-detail.html">Orchard & Vine</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#"
-                                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                                        cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @empty
+                                    @endforelse
+
+
                                 </div>
                             </div>
                         </div>
@@ -367,8 +209,7 @@
                                                 <h4>Grapes</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Green Valley Farms</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -391,8 +232,7 @@
                                                 <h4>Raspberries</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Sunny Orchards Co.</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -423,8 +263,7 @@
                                                 <h4>Oranges</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Harvest Hub</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -447,8 +286,7 @@
                                                 <h4>Apple</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Nature's Basket</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -479,8 +317,7 @@
                                                 <h4>Grapes</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Golden Fields Organic</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -503,8 +340,7 @@
                                                 <h4>Apricots</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Fresh Route Traders</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -535,8 +371,7 @@
                                                 <h4>Banana</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Evergreen Growers</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -559,8 +394,7 @@
                                                 <h4>Raspberries</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Orchard & Vine</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -583,8 +417,7 @@
                                                 <h4>Oranges</h4>
                                                 <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                         href="vendor-detail.html">Green Valley Farms</a></div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                                    eiusmod te incididunt</p>
+                                                <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                                                     <a href="#"
@@ -617,8 +450,8 @@
                                 alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-primary text-center p-4 rounded">
-                                    <h5 class="text-white">Fresh Apples</h5>
-                                    <h3 class="mb-0">20% OFF</h3>
+                                    <h5 class="text-white">Weekly Marketplace Deals</h5>
+                                    <h3 class="mb-0">Up to 20% OFF</h3>
                                 </div>
                             </div>
                         </div>
@@ -631,8 +464,8 @@
                                 alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-light text-center p-4 rounded">
-                                    <h5 class="text-primary">Tasty Fruits</h5>
-                                    <h3 class="mb-0">Free delivery</h3>
+                                    <h5 class="text-primary">Shop Local Sellers</h5>
+                                    <h3 class="mb-0">New finds daily</h3>
                                 </div>
                             </div>
                         </div>
@@ -645,8 +478,8 @@
                                 alt="">
                             <div class="px-4 rounded-bottom">
                                 <div class="service-content bg-secondary text-center p-4 rounded">
-                                    <h5 class="text-white">Exotic Vegitable</h5>
-                                    <h3 class="mb-0">Discount 30$</h3>
+                                    <h5 class="text-white">Limited-Time Offers</h5>
+                                    <h3 class="mb-0">Save up to $30</h3>
                                 </div>
                             </div>
                         </div>
@@ -661,7 +494,7 @@
     <!-- Vesitable Shop Start-->
     <div class="container-fluid vesitable py-5">
         <div class="container py-5">
-            <h1 class="mb-0">Fresh Organic Vegetables</h1>
+            <h1 class="mb-0">Trending From Independent Sellers</h1>
             <div class="owl-carousel vegetable-carousel justify-content-center">
                 <div class="border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
@@ -669,12 +502,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Home &amp; Living</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
+                        <h4>Handcrafted Home Decor</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Sunny
                                 Orchards Co.</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -688,12 +521,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Fashion</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
+                        <h4>Everyday Canvas Backpack</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                 href="vendor-detail.html">Harvest Hub</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -707,12 +540,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Beauty</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Banana</h4>
+                        <h4>Natural Skincare Set</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                 href="vendor-detail.html">Nature's Basket</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -726,12 +559,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Electronics</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Bell Papper</h4>
+                        <h4>Wireless Earbuds</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Golden
                                 Fields Organic</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -745,12 +578,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Kitchen</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Potatoes</h4>
+                        <h4>Reusable Kitchen Set</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Fresh
                                 Route Traders</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -764,12 +597,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Gifts</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
+                        <h4>Handmade Gift Box</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                 href="vendor-detail.html">Evergreen Growers</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -783,12 +616,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Sports</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Potatoes</h4>
+                        <h4>Daily Fitness Essentials</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                 href="vendor-detail.html">Orchard & Vine</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -802,12 +635,12 @@
                             alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">Accessories</div>
                     <div class="p-4 rounded-bottom">
-                        <h4>Parsely</h4>
+                        <h4>Minimalist Leather Wallet</h4>
                         <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Green
                                 Valley Farms</a></div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
                             <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -827,12 +660,12 @@
             <div class="row g-4 align-items-center">
                 <div class="col-lg-6">
                     <div class="py-4">
-                        <h1 class="display-3 text-white">Fresh Exotic Fruits</h1>
-                        <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
-                        <p class="mb-4 text-dark">The generated Lorem Ipsum is therefore always free from repetition
-                            injected humour, or non-characteristic words etc.</p>
+                        <h1 class="display-3 text-white">Find Your Next Favorite</h1>
+                        <p class="fw-normal display-3 text-dark mb-4">all in one place</p>
+                        <p class="mb-4 text-dark">Compare products from trusted sellers, discover something new, and enjoy
+                            a simpler way to shop online.</p>
                         <a href="#"
-                            class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
+                            class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">SHOP NOW</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -858,9 +691,8 @@
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="text-center mx-auto mb-5" style="max-width: 700px;">
-                <h1 class="display-4">Bestseller Products</h1>
-                <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which
-                    looks reasonable.</p>
+                <h1 class="display-4">Bestsellers This Week</h1>
+                <p>Popular picks from our community of shoppers, featuring quality products from independent stores.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-6 col-xl-4">
@@ -871,7 +703,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Classic Cotton T-Shirt</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -894,7 +726,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Smart LED Desk Lamp</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -917,7 +749,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Artisan Coffee Blend</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -940,7 +772,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Everyday Crossbody Bag</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -963,7 +795,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Wireless Earbuds</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -986,7 +818,7 @@
                                     alt="">
                             </div>
                             <div class="col-6">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Natural Skincare Set</a>
                                 <div class="d-flex my-3">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -1005,7 +837,7 @@
                     <div class="text-center">
                         <img src="{{ asset('img/fruite-item-1.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="py-4">
-                            <a href="#" class="h5">Organic Tomato</a>
+                            <a href="#" class="h5">Ceramic Serving Bowl</a>
                             <div class="d-flex my-3 justify-content-center">
                                 <i class="fas fa-star text-primary"></i>
                                 <i class="fas fa-star text-primary"></i>
@@ -1023,7 +855,7 @@
                     <div class="text-center">
                         <img src="{{ asset('img/fruite-item-2.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="py-4">
-                            <a href="#" class="h5">Organic Tomato</a>
+                            <a href="#" class="h5">Portable Phone Stand</a>
                             <div class="d-flex my-3 justify-content-center">
                                 <i class="fas fa-star text-primary"></i>
                                 <i class="fas fa-star text-primary"></i>
@@ -1041,7 +873,7 @@
                     <div class="text-center">
                         <img src="{{ asset('img/fruite-item-3.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="py-4">
-                            <a href="#" class="h5">Organic Tomato</a>
+                            <a href="#" class="h5">Handmade Scented Candle</a>
                             <div class="d-flex my-3 justify-content-center">
                                 <i class="fas fa-star text-primary"></i>
                                 <i class="fas fa-star text-primary"></i>
@@ -1059,7 +891,7 @@
                     <div class="text-center">
                         <img src="{{ asset('img/fruite-item-4.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="py-2">
-                            <a href="#" class="h5">Organic Tomato</a>
+                            <a href="#" class="h5">Weekend Travel Organizer</a>
                             <div class="d-flex my-3 justify-content-center">
                                 <i class="fas fa-star text-primary"></i>
                                 <i class="fas fa-star text-primary"></i>
@@ -1125,7 +957,7 @@
             <div class="row g-4 mb-3">
                 <div class="col-lg-6 text-start">
                     <h1>Meet Our Top Vendors</h1>
-                    <p class="mb-0">Hand-picked, verified sellers bringing you the freshest produce.</p>
+                    <p class="mb-0">Meet trusted stores offering quality products across every category.</p>
                 </div>
                 <div class="col-lg-6 text-lg-end my-auto">
                     <a href="vendors.html" class="btn btn-primary rounded-pill px-4 py-2 text-white">View All Vendors
@@ -1219,8 +1051,8 @@
     <div class="container-fluid testimonial py-5">
         <div class="container py-5">
             <div class="testimonial-header text-center">
-                <h4 class="text-primary">Our Testimonial</h4>
-                <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
+                <h4 class="text-primary">Shopper Stories</h4>
+                <h1 class="display-5 mb-5 text-dark">What Our Community Says</h1>
             </div>
             <div class="owl-carousel testimonial-carousel">
                 <div class="testimonial-item img-border-radius bg-light rounded p-4">
@@ -1228,9 +1060,8 @@
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">I love being able to compare products from different stores and still check
+                                out in one place. Everything arrived exactly as described.</p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
@@ -1238,8 +1069,8 @@
                                     style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
+                                <h4 class="text-dark">Maya R.</h4>
+                                <p class="m-0 pb-3">Verified shopper</p>
                                 <div class="d-flex pe-5">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -1256,9 +1087,8 @@
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">The seller reviews made it easy to choose with confidence. I found a
+                                thoughtful gift from a small business and delivery was quick.</p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
@@ -1266,8 +1096,8 @@
                                     style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
+                                <h4 class="text-dark">Daniel K.</h4>
+                                <p class="m-0 pb-3">Verified shopper</p>
                                 <div class="d-flex pe-5">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -1284,9 +1114,8 @@
                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                             style="bottom: 30px; right: 0;"></i>
                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the
-                                industry's standard dummy text ever since the 1500s,
-                            </p>
+                            <p class="mb-0">There is always something new to discover here, from useful everyday
+                                essentials to products I cannot find in local shops.</p>
                         </div>
                         <div class="d-flex align-items-center flex-nowrap">
                             <div class="bg-secondary rounded">
@@ -1294,8 +1123,8 @@
                                     style="width: 100px; height: 100px;" alt="">
                             </div>
                             <div class="ms-4 d-block">
-                                <h4 class="text-dark">Client Name</h4>
-                                <p class="m-0 pb-3">Profession</p>
+                                <h4 class="text-dark">Aisha T.</h4>
+                                <p class="m-0 pb-3">Verified shopper</p>
                                 <div class="d-flex pe-5">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
