@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('frontend.products.show');
     }
 
     

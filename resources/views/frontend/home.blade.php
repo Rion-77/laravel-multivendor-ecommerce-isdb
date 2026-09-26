@@ -103,8 +103,8 @@
                                 <div class="row g-4">
                                     @forelse ($products as $product)
                                         <div class="col-md-6 col-lg-4 col-xl-3">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
+                                            <div class="rounded position-relative fruite-item border border-secondary overflow-hidden">
+                                                <a href="{{ route('products.show', $product) }}" class="fruite-img d-block">
                                                     @if ($product->hasMedia('product_image'))
                                                         <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
                                                             class="img-fluid w-100 rounded-top" alt="">
@@ -113,11 +113,12 @@
                                                             class="img-fluid w-100 rounded-top">
                                                     @endif
 
-                                                </div>
+                                                </a>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                     style="top: 10px; left: 10px;">Fruits</div>
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>{{ $product->name }}</h4>
+                                                {{-- <div class="p-4 border border-secondary border-top-0 rounded-bottom"> --}}
+                                                <div class="p-4 rounded-bottom">
+                                                    <a href="{{ route('products.show', $product) }}"><h4>{{ $product->name }}</h4></a>
                                                     <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                             href="vendor-detail.html">{{ $product->vendor->shop_name }}</a>
                                                     </div>

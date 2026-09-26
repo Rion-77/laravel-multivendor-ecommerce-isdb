@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -10,13 +11,10 @@ use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
-Route::get('/', function () {
-    $vendors = App\Models\Vendor::limit(4)->get();
-    $products = App\Models\Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(12);
-    return view('frontend.home', compact('products', 'vendors'));
-})->name('homepage');
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Route::get('/products', [FrontendProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [FrontendProductController::class, 'show'])->name('products.show');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
