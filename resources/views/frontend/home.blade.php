@@ -57,61 +57,7 @@
     <!-- Hero End -->
 
 
-    <!-- Featurs Section Start -->
-    {{-- <div class="container-fluid featurs py-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-car-side fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Convenient Delivery</h5>
-                            <p class="mb-0">Flexible options at checkout</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-user-shield fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Secure Payments</h5>
-                            <p class="mb-0">Protected from checkout to delivery</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-exchange-alt fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Simple Returns</h5>
-                            <p class="mb-0">Shop confidently with buyer protection</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fa fa-phone-alt fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Seller Support</h5>
-                            <p class="mb-0">Helpful support when you need it</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Featurs Section End -->
-
-
-    <!-- Fruits Shop Start-->
+    <!-- Shop Popular Categories-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
             <div class="tab-class text-center">
@@ -163,7 +109,8 @@
                                                         <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
                                                             class="img-fluid w-100 rounded-top" alt="">
                                                     @else
-                                                        <img src="https://i.pravatar.cc/150?img={{ $product->id }}">
+                                                        <img src="https://picsum.photos/300/{{ $product->id + 150 }}"
+                                                            class="img-fluid w-100 rounded-top">
                                                     @endif
 
                                                 </div>
@@ -171,12 +118,13 @@
                                                     style="top: 10px; left: 10px;">Fruits</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{ $product->name }}</h4>
-                                                    <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by<a
+                                                    <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
                                                             href="vendor-detail.html">{{ $product->vendor->shop_name }}</a>
                                                     </div>
-                                                    <p>Thoughtfully selected by independent sellers and ready to ship.</p>
+                                                    <p>{{ $product->description }}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">
+                                                            {{ (int) $product->base_price }}tk</p>
                                                         <a href="#"
                                                             class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                 class="fa fa-shopping-bag me-2 text-primary"></i> Add to
@@ -491,167 +439,46 @@
     <!-- Featurs End -->
 
 
-    <!-- Vesitable Shop Start-->
+    <!-- Treding-->
     <div class="container-fluid vesitable py-5">
         <div class="container py-5">
             <h1 class="mb-0">Trending From Independent Sellers</h1>
             <div class="owl-carousel vegetable-carousel justify-content-center">
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Home &amp; Living</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Handcrafted Home Decor</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Sunny
-                                Orchards Co.</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+
+                @forelse ($products as $product)
+                    <div class="border border-primary rounded position-relative vesitable-item overflow-hidden">
+                        <div class="vesitable-img">
+                            @if ($product->hasMedia('product_image'))
+                                <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                    class="img-fluid w-100 rounded-top" alt="">
+                            @else
+                                <img src="https://picsum.photos/300/{{ $product->id + 150 }}"
+                                    class="img-fluid w-100 rounded-top">
+                            @endif
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
+                            style="top: 10px; right: 10px;">{{ $product->category->name }}</div>
+                        <div class="p-4 rounded-bottom">
+                            <h4>{{ $product->name }}</h4>
+                            <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
+                                    href="vendor-detail.html">{{ $product->vendor->shop_name }}.</a></div>
+                            <p>{{ $product->description }}</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold mb-0">{{ (int) $product->base_price }}tk</p>
+                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-1.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Fashion</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Everyday Canvas Backpack</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                href="vendor-detail.html">Harvest Hub</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-3.png') }}" class="img-fluid w-100 rounded-top bg-light"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Beauty</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Natural Skincare Set</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                href="vendor-detail.html">Nature's Basket</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-4.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Electronics</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Wireless Earbuds</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Golden
-                                Fields Organic</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-5.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Kitchen</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Reusable Kitchen Set</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Fresh
-                                Route Traders</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Gifts</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Handmade Gift Box</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                href="vendor-detail.html">Evergreen Growers</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-5.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Sports</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Daily Fitness Essentials</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
-                                href="vendor-detail.html">Orchard & Vine</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="{{ asset('img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top"
-                            alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Accessories</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4>Minimalist Leather Wallet</h4>
-                        <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a href="vendor-detail.html">Green
-                                Valley Farms</a></div>
-                        <p>Thoughtfully selected by independent sellers and ready to ship.</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p>No products to show here</p>
+                @endforelse
+
+
             </div>
         </div>
     </div>
-    <!-- Vesitable Shop End -->
+    <!-- Tredig End -->
 
 
     <!-- Banner Section Start-->
@@ -687,7 +514,7 @@
     <!-- Banner Section End -->
 
 
-    <!-- Bestsaler Product Start -->
+    <!-- Bestseller Product Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="text-center mx-auto mb-5" style="max-width: 700px;">
@@ -695,260 +522,107 @@
                 <p>Popular picks from our community of shoppers, featuring quality products from independent stores.</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-1.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Classic Cotton T-Shirt</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
+                {{-- 
+                
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    @if ($product->hasMedia('product_image'))
+                                                        <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                                            class="img-fluid w-100 rounded-top" alt="">
+                                                    @else
+                                                        <img src="https://picsum.photos/300/{{ $product->id + 150 }}">
+                                                    @endif
+
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                    style="top: 10px; left: 10px;">Fruits</div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4>{{ $product->name }}</h4>
+                                                    <div class="sold-by"><i class="fas fa-store me-1"></i>Sold by <a
+                                                            href="vendor-detail.html">{{ $product->vendor->shop_name }}</a>
+                                                    </div>
+                                                    <p>{{ $product->description }}</p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0">{{ (int)$product->base_price }}tk</p>
+                                                        <a href="#"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+                                                            cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                --}}
+                @forelse ($products as $product)
+                    @if ($loop->index <= 5)
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="p-4 rounded bg-light">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        @if ($product->hasMedia('product_image'))
+                                            <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                                class="img-fluid rounded-circle w-100" alt="{{ $product->name }}">
+                                        @else
+                                            <img src="https://picsum.photos/{{ $product->id + 150 }}/{{ $product->id + 150 }}"
+                                                class="img-fluid rounded-circle w-100" alt="{{ $product->name }}">
+                                        @endif
+
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="h5">Classic Cotton T-Shirt</a>
+                                        <div class="d-flex my-3">
+                                            <i class="fas fa-star text-primary"></i>
+                                            <i class="fas fa-star text-primary"></i>
+                                            <i class="fas fa-star text-primary"></i>
+                                            <i class="fas fa-star text-primary"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <h4 class="mb-3">3.12 $</h4>
+                                        <a href="#"
+                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    </div>
                                 </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-2.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Smart LED Desk Lamp</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
+                    @else
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="text-center">
+
+                                @if ($product->hasMedia('product_image'))
+                                    <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                        class="img-fluid rounded" alt="{{ $product->name }}">
+                                @else
+                                    <img src="https://picsum.photos/300/{{ $product->id + 180 }}"
+                                        class="img-fluid rounded" alt="{{ $product->name }}">
+                                @endif
+                                <div class="py-4">
+                                    <a href="#" class="h5">Ceramic Serving Bowl</a>
+                                    <div class="d-flex my-3 justify-content-center">
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4 class="mb-3">3.12 $</h4>
+                                    <a href="#"
+                                        class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                            class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                 </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-3.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Artisan Coffee Blend</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-4.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Everyday Crossbody Bag</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-5.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Wireless Earbuds</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4">
-                    <div class="p-4 rounded bg-light">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="{{ asset('img/best-product-6.jpg') }}" class="img-fluid rounded-circle w-100"
-                                    alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Natural Skincare Set</a>
-                                <div class="d-flex my-3">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="{{ asset('img/fruite-item-1.jpg') }}" class="img-fluid rounded" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Ceramic Serving Bowl</a>
-                            <div class="d-flex my-3 justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4 class="mb-3">3.12 $</h4>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="{{ asset('img/fruite-item-2.jpg') }}" class="img-fluid rounded" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Portable Phone Stand</a>
-                            <div class="d-flex my-3 justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4 class="mb-3">3.12 $</h4>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="{{ asset('img/fruite-item-3.jpg') }}" class="img-fluid rounded" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Handmade Scented Candle</a>
-                            <div class="d-flex my-3 justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4 class="mb-3">3.12 $</h4>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="{{ asset('img/fruite-item-4.jpg') }}" class="img-fluid rounded" alt="">
-                        <div class="py-2">
-                            <a href="#" class="h5">Weekend Travel Organizer</a>
-                            <div class="d-flex my-3 justify-content-center">
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star text-primary"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h4 class="mb-3">3.12 $</h4>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+
+                @empty
+                @endforelse
             </div>
         </div>
     </div>
-    <!-- Bestsaler Product End -->
+    <!-- Bestseller Product End -->
 
-
-    <!-- Fact Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="bg-light p-5 rounded">
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
-                            <i class="fa fa-users text-secondary"></i>
-                            <h4>satisfied customers</h4>
-                            <h1>1963</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
-                            <i class="fa fa-users text-secondary"></i>
-                            <h4>quality of service</h4>
-                            <h1>99%</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
-                            <i class="fa fa-users text-secondary"></i>
-                            <h4>quality certificates</h4>
-                            <h1>33</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="counter bg-white rounded p-5">
-                            <i class="fa fa-users text-secondary"></i>
-                            <h4>Available Products</h4>
-                            <h1>789</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fact Start -->
 
 
     <!-- Top Vendors Start -->
@@ -965,179 +639,41 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="vendor-card">
-                        <img src="{{ asset('img/baner-1.png') }}" class="vendor-cover" alt="">
-                        <div class="text-center px-3 pb-4">
-                            <img src="{{ asset('img/testimonial-1.jpg') }}" class="vendor-logo mb-2" alt="">
-                            <h5 class="mb-0">Green Valley Farms <i
-                                    class="fas fa-check-circle vendor-badge-verified"></i></h5>
-                            <div class="rating d-flex justify-content-center my-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                                <span class="rating-count">(4.5)</span>
+                @forelse ($vendors as $vendor)
+                    <div class="col-md-6 col-lg-3">
+                        <div class="vendor-card">
+                            {{-- <img src="{{ asset('img/baner-1.png') }}" class="vendor-cover" alt=""> --}}
+                            <div class="text-center px-3 pb-4">
+                                @if ($product->hasMedia('shop_logo'))
+                                    <img src="{{ $user->getFirstMediaUrl('shop_logo', 'logo') }}"
+                                        class="vendor-logo mb-2" alt="{{ $vendor->name }}">
+                                @else
+                                    <img src="https://picsum.photos/{{ $vendor->id + 100 }}/{{ $vendor->id + 100 }}"
+                                        class="vendor-logo mb-2" alt="{{ $product->name }}">
+                                @endif
+                                {{-- <img src="{{ asset('img/testimonial-1.jpg') }}" class="vendor-logo mb-2" alt=""> --}}
+                                <h5 class="mb-0">Green Valley Farms <i
+                                        class="fas fa-check-circle vendor-badge-verified"></i></h5>
+                                <div class="rating d-flex justify-content-center my-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="rating-count">(4.5)</span>
+                                </div>
+                                <p class="vendor-stats mb-3">128 Products</p>
+                                <a href="vendor-detail.html"
+                                    class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
+                                    Store</a>
                             </div>
-                            <p class="vendor-stats mb-3">128 Products</p>
-                            <a href="vendor-detail.html"
-                                class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
-                                Store</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="vendor-card">
-                        <img src="{{ asset('img/baner-1.png') }}" class="vendor-cover" alt="">
-                        <div class="text-center px-3 pb-4">
-                            <img src="{{ asset('img/avatar.jpg') }}" class="vendor-logo mb-2" alt="">
-                            <h5 class="mb-0">Sunny Orchards Co. <i
-                                    class="fas fa-check-circle vendor-badge-verified"></i></h5>
-                            <div class="rating d-flex justify-content-center my-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <span class="rating-count">(5.0)</span>
-                            </div>
-                            <p class="vendor-stats mb-3">94 Products</p>
-                            <a href="vendor-detail.html"
-                                class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
-                                Store</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="vendor-card">
-                        <img src="{{ asset('img/baner-1.png') }}" class="vendor-cover" alt="">
-                        <div class="text-center px-3 pb-4">
-                            <img src="{{ asset('img/testimonial-1.jpg') }}" class="vendor-logo mb-2" alt="">
-                            <h5 class="mb-0">Harvest Hub <i class="fas fa-check-circle vendor-badge-verified"></i>
-                            </h5>
-                            <div class="rating d-flex justify-content-center my-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                                <span class="rating-count">(4.6)</span>
-                            </div>
-                            <p class="vendor-stats mb-3">210 Products</p>
-                            <a href="vendor-detail.html"
-                                class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
-                                Store</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="vendor-card">
-                        <img src="{{ asset('img/baner-1.png') }}" class="vendor-cover" alt="">
-                        <div class="text-center px-3 pb-4">
-                            <img src="{{ asset('img/avatar.jpg') }}" class="vendor-logo mb-2" alt="">
-                            <h5 class="mb-0">Nature's Basket <i class="fas fa-check-circle vendor-badge-verified"></i>
-                            </h5>
-                            <div class="rating d-flex justify-content-center my-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <span class="rating-count">(4.9)</span>
-                            </div>
-                            <p class="vendor-stats mb-3">76 Products</p>
-                            <a href="vendor-detail.html"
-                                class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
-                                Store</a>
-                        </div>
-                    </div>
-                </div>
+
+                @empty
+                <p>No vendor found...</p>
+                @endforelse
             </div>
         </div>
     </div>
     <!-- Top Vendors End -->
 
 
-    <!-- Tastimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container py-5">
-            <div class="testimonial-header text-center">
-                <h4 class="text-primary">Shopper Stories</h4>
-                <h1 class="display-5 mb-5 text-dark">What Our Community Says</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">I love being able to compare products from different stores and still check
-                                out in one place. Everything arrived exactly as described.</p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="{{ asset('img/testimonial-1.jpg') }}" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Maya R.</h4>
-                                <p class="m-0 pb-3">Verified shopper</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">The seller reviews made it easy to choose with confidence. I found a
-                                thoughtful gift from a small business and delivery was quick.</p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="{{ asset('img/testimonial-1.jpg') }}" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Daniel K.</h4>
-                                <p class="m-0 pb-3">Verified shopper</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                    <div class="position-relative">
-                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                            style="bottom: 30px; right: 0;"></i>
-                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                            <p class="mb-0">There is always something new to discover here, from useful everyday
-                                essentials to products I cannot find in local shops.</p>
-                        </div>
-                        <div class="d-flex align-items-center flex-nowrap">
-                            <div class="bg-secondary rounded">
-                                <img src="{{ asset('img/testimonial-1.jpg') }}" class="img-fluid rounded"
-                                    style="width: 100px; height: 100px;" alt="">
-                            </div>
-                            <div class="ms-4 d-block">
-                                <h4 class="text-dark">Aisha T.</h4>
-                                <p class="m-0 pb-3">Verified shopper</p>
-                                <div class="d-flex pe-5">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Tastimonial End -->
 @endsection

@@ -73,8 +73,8 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="shop.html" class="nav-item nav-link ">Shop</a>
+                        <a href="{{ route('homepage') }}" class="nav-item nav-link {{ activeLink('homepage') }}">Home</a>
+                        <a href="{{ route('products.index') }}" class="nav-item nav-link {{ activeLink('products.index') }}">Shop</a>
                         <a href="vendors.html" class="nav-item nav-link ">Vendors</a>
                         <a href="become-vendor.html" class="nav-item nav-link ">Sell on Fruitables</a>
                         <div class="nav-item dropdown">
