@@ -2,6 +2,21 @@
 
 @section('title', $product->name)
 
+@section('styles')
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
@@ -58,7 +73,8 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control form-control-sm text-center border-0"
+                                <input type="number"
+                                    class="form-control form-control-sm text-center border-0 cart-item-input"
                                     value="1">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">
@@ -66,9 +82,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <a href="#"
-                                class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            <!-- Add to Cart Button -->
+                            <x-frontend.buttons.add-to-card :product="$product" />
                         </div>
                         <div class="col-lg-12">
                             <nav>
@@ -254,16 +269,18 @@
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rounded" style="width: 100px; height: 100px;">
                                         @if ($product->hasMedia('product_image'))
-                                            <img src="{{ $product->getFirstMediaUrl('product_image', 'thumbnail') }}" class="img-fluid rounded"
-                                            alt="Image">
+                                            <img src="{{ $product->getFirstMediaUrl('product_image', 'thumbnail') }}"
+                                                class="img-fluid rounded" alt="Image">
                                         @else
-                                            <img src="https://picsum.photos/130/{{ $product->id + 100 }}" class="img-fluid rounded"
-                                            alt="Image">
+                                            <img src="https://picsum.photos/130/{{ $product->id + 100 }}"
+                                                class="img-fluid rounded" alt="Image">
                                         @endif
-                                        
+
                                     </div>
                                     <div>
-                                        <a href="{{ route('products.show', $product) }}"><h6 class="mb-2">{{ $product->name }}</h6></a>
+                                        <a href="{{ route('products.show', $product) }}">
+                                            <h6 class="mb-2">{{ $product->name }}</h6>
+                                        </a>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -273,7 +290,8 @@
                                         </div>
                                         <div class="d-flex mb-2">
                                             <h5 class="fw-bold me-2">{{ (int) $product->offer_price }}৳</h5>
-                                            <h5 class="text-danger text-decoration-line-through">{{ (int)$product->base_price }}৳</h5>
+                                            <h5 class="text-danger text-decoration-line-through">
+                                                {{ (int) $product->base_price }}৳</h5>
                                         </div>
                                     </div>
                                 </div>

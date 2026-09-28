@@ -23,19 +23,24 @@ document.addEventListener("click", (event) => {
     if (!addToCartButton) return;
 
     const product = JSON.parse(addToCartButton.dataset.product);
-
-    add(product);
+    const cartItemInput = document.querySelector(".cart-item-input");
+    if (cartItemInput && cartItemInput.value > 0) {
+        add(product, Number(cartItemInput.value));
+    } else {
+        add(product);
+    }
 
     resetCounter();
 });
 
 if (document.querySelector(".cart-table-body")) {
-    const cartWrapper = document.querySelector('.cart-wrapper');
+    const cartWrapper = document.querySelector(".cart-wrapper");
     const cartTableBody = document.querySelector(".cart-table-body");
     const subtotal = document.querySelector(".subtotal");
     const totalWithCharges = document.querySelector(".total");
-    const emptyCartMessage = document.querySelector('.empty-cart-message');
+    const emptyCartMessage = document.querySelector(".empty-cart-message");
 
+    console.log(list());
     // Cart display fucntion for cart page
     function displayCart() {
         if (list().length > 0) {
@@ -45,17 +50,15 @@ if (document.querySelector(".cart-table-body")) {
                  <tr>
                                     <th scope="row">
                                         <div class="d-flex align-items-center">
-                                            <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle"
+                                            <img src="${item.image}" class="img-fluid me-5 rounded-circle"
                                                 style="width: 80px; height: 80px;" alt="">
                                         </div>
                                     </th>
                                     <td>
                                         <p class="mb-0 mt-4">${item.name}</p>
-                                        <p class="sold-by mb-0">Sold by <a href="vendor-detail.html">Sunny Orchards Co.</a>
-                                        </p>
                                     </td>
                                     <td>
-                                        <p class="mb-0 mt-4">${item.price}tk</p>
+                                        <p class="mb-0 mt-4">${item.price}৳</p>
                                     </td>
                                     <td>
                                         <div class="input-group quantity mt-4" style="width: 100px;">
@@ -74,7 +77,7 @@ if (document.querySelector(".cart-table-body")) {
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="mb-0 mt-4">${Math.round(item.price * item.quantity)}tk</p>
+                                        <p class="mb-0 mt-4">${Math.round(item.price * item.quantity)}৳</p>
                                     </td>
                                     <td>
                                         <button class="btn btn-md rounded-circle bg-light border mt-4 cart-remove" data-id=${item.id}>
@@ -86,15 +89,14 @@ if (document.querySelector(".cart-table-body")) {
 					`,
                 )
                 .join("");
-            
 
-            emptyCartMessage.classList.add('d-none');
-            cartWrapper.classList.remove('d-none');
+            emptyCartMessage.classList.add("d-none");
+            cartWrapper.classList.remove("d-none");
             subtotal.innerText = Math.round(total()) + "৳";
             totalWithCharges.innerText = Math.round(total() + 120) + "৳";
         } else {
-            emptyCartMessage.classList.remove('d-none');
-            cartWrapper.classList.add('d-none');
+            emptyCartMessage.classList.remove("d-none");
+            cartWrapper.classList.add("d-none");
             subtotal.innerText = 0 + "৳";
             totalWithCharges.innerText = 0 + "৳";
         }

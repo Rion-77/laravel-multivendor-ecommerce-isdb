@@ -23,8 +23,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <h4 class="mb-3">{{ $product->base_price }} $</h4>
-                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                        class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                <x-frontend.buttons.add-to-card :product="$product" />
             </div>
         </div>
     </div>
