@@ -1,5 +1,5 @@
 @props(['for'])
 
-<div class="card-footer">
+<div class="col-12 py-4">
     {{ $for->links() }}
 </div>

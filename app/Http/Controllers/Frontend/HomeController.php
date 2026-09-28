@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-    $vendors = Vendor::limit(4)->get();
+    $vendors = Vendor::withCount('products')->limit(4)->get();
     $products = Product::with('category', 'brand', 'vendor')->orderBy('id', 'desc')->paginate(12);
     return view('frontend.home', compact('products', 'vendors')); 
     } 

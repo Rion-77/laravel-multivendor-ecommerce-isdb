@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Frontend\VendorController as FrontendVendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -15,16 +16,23 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Route::get('/products', [FrontendProductController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [FrontendProductController::class, 'show'])->name('products.show');
+Route::get('/vendors', [FrontendVendorController::class, 'index'])->name('vendors.index');
+Route::get('/become-vendor', function () {
+    return view('frontend.become-vendor');
+})->name('become-vendor');
+Route::get('/contact-us', function () {
+    return view('frontend.contact');
+})->name('contact-us');
+Route::get('/cart', function () {
+    return view('frontend.cart');
+})->name('cart');
 
+
+// Admin Routes
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Admin Routes
 Route::middleware('auth', 'role_id:1')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -60,8 +68,8 @@ Route::middleware('auth', 'role_id:1,3')->group(function () {
         Route::resource('products', ProductController::class);
         // Route::resource('vendors', VendorController::class);
     });
-    
+
     Route::get("admin/vendors/{vendor}", [VendorController::class, 'show'])->name('admin.vendors.show');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
