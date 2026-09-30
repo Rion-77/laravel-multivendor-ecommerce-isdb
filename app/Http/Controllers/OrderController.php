@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -59,6 +60,7 @@ class OrderController extends Controller
             'order_items' => ['required', 'array', 'min:1'],
         ]);
 
+        dd($request->order_items);
         $order = new Order();
         $order->guest_name = $request->guest_name;
         $order->guest_email = $request->guest_email;
@@ -69,7 +71,30 @@ class OrderController extends Controller
         $order->shipping_address_line = $request->shipping_address_line;    
         $order->shipping_district = $request->shipping_district;
         $order->order_number = date('Y-m-d');
-        $order->save();       
+        // $order->save();      
+        
+        foreach($request->order_items as $order_item) {
+            $product = Product::findOrFail($order_item['id']);
+            $order->orderItems()->create([
+                /* 
+                $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
+            $table->integer('quantity')->unsigned();
+            $table->decimal('unit_price', 12, 2);
+                */
+              'product_id' => $item->id,
+              'quantity' => $item->quantity
+            ]);
+        }
+        // foreach($items as $item) {
+        //     $order->details()->create([
+        //       'product_id' => $item->id,
+        //       'quantity' => $item->quantity
+        //     ]);
+        // }
+        /* $table->decimal('subtotal_amount');
+            $table->decimal('shipping_fee');
+            $table->decimal('total_amount'); */
     }
 
     /**

@@ -29,7 +29,7 @@ return new class extends Migration
             // Financial Breakdowns
             $table->decimal('subtotal_amount');
             $table->decimal('shipping_fee');
-            $table->decimal('total_amount', 12, 2);
+            $table->decimal('total_amount');
             $table->bigInteger('order_status_id')->default(1);
             $table->timestamps();
         });
