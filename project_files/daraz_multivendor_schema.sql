@@ -31,7 +31,9 @@ CREATE TABLE users (
 
 CREATE TABLE addresses (
     address_id      BIGINT PRIMARY KEY AUTO_INCREMENT,
-    user_id         BIGINT NOT NULL,
+    user_id         BIGINT NULL,                 -- nullable: not used for guest checkout;
+                                                  -- guest shipping details are snapshotted
+                                                  -- directly onto the order instead (see orders table)
     label           VARCHAR(50),                 -- Home, Office
     recipient_name  VARCHAR(150),
     recipient_phone VARCHAR(20),
@@ -42,7 +44,7 @@ CREATE TABLE addresses (
     country         VARCHAR(100) DEFAULT 'Bangladesh',
     is_default      BOOLEAN DEFAULT FALSE,
     created_at      DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE  -- FK allows NULL
 );
 
 -- ============================================================================
@@ -253,9 +255,35 @@ CREATE TABLE campaign_products (
 
 CREATE TABLE orders (
     order_id            BIGINT PRIMARY KEY AUTO_INCREMENT,
-    user_id             BIGINT NOT NULL,
+
+    -- Registered customer link. NULL when the order is placed as a guest.
+    user_id             BIGINT NULL,
+
+    -- Guest contact info. Required when user_id IS NULL; used for
+    -- order confirmation and for the "track my order" lookup
+    -- (order_number + email/phone acts as the guest's credential).
+    guest_name          VARCHAR(150),
+    guest_email         VARCHAR(150),
+    guest_phone         VARCHAR(20),
+
     order_number        VARCHAR(50) NOT NULL UNIQUE,
-    shipping_address_id BIGINT NOT NULL,
+
+    -- Optional FK to a saved address book entry (registered users only).
+    -- Guests will have this NULL and rely purely on the snapshot fields below.
+    shipping_address_id BIGINT NULL,
+
+    -- Shipping details are always snapshotted onto the order itself,
+    -- for BOTH guests and registered users. This preserves the exact
+    -- address an order shipped to even if the user later edits/deletes
+    -- the saved address, and is the only source of truth for guests.
+    shipping_recipient_name  VARCHAR(150) NOT NULL,
+    shipping_phone           VARCHAR(20)  NOT NULL,
+    shipping_address_line    VARCHAR(255) NOT NULL,
+    shipping_city            VARCHAR(100) NOT NULL,
+    shipping_district        VARCHAR(100),
+    shipping_postal_code     VARCHAR(20),
+    shipping_country         VARCHAR(100) DEFAULT 'Bangladesh',
+
     subtotal_amount     DECIMAL(12,2) NOT NULL,
     shipping_fee        DECIMAL(12,2) DEFAULT 0,
     discount_amount     DECIMAL(12,2) DEFAULT 0,
@@ -268,7 +296,13 @@ CREATE TABLE orders (
     placed_at           DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (shipping_address_id) REFERENCES addresses(address_id),
-    FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id)
+    FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id),
+
+    -- Enforce: either a registered user, or full guest contact info — never neither
+    CONSTRAINT chk_order_owner CHECK (
+        user_id IS NOT NULL
+        OR (guest_email IS NOT NULL AND guest_phone IS NOT NULL AND guest_name IS NOT NULL)
+    )
 );
 
 -- Each order_item belongs to exactly one seller -> supports multivendor split
@@ -350,6 +384,9 @@ CREATE TABLE returns_refunds (
 -- 10. REVIEWS & RATINGS
 -- ============================================================================
 
+-- NOTE: user_id is NOT NULL here by design -- guest orders cannot leave
+-- reviews, since a review is tied to an authenticated identity, not just
+-- an order. This is a deliberate business rule, not an oversight.
 CREATE TABLE reviews (
     review_id       BIGINT PRIMARY KEY AUTO_INCREMENT,
     product_id      BIGINT NOT NULL,
@@ -430,5 +467,6 @@ CREATE INDEX idx_products_status     ON products(status);
 CREATE INDEX idx_order_items_order   ON order_items(order_id);
 CREATE INDEX idx_order_items_seller  ON order_items(seller_id);
 CREATE INDEX idx_orders_user         ON orders(user_id);
+CREATE INDEX idx_orders_guest_lookup ON orders(order_number, guest_email, guest_phone);  -- guest "track my order"
 CREATE INDEX idx_inventory_variant   ON inventory(variant_id);
 CREATE INDEX idx_reviews_product     ON reviews(product_id);

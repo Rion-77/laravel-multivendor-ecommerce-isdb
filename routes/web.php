@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\VendorController as FrontendVendorController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -26,7 +27,11 @@ Route::get('/contact-us', function () {
 Route::get('/cart', function () {
     return view('frontend.cart');
 })->name('cart');
+Route::get('/checkout', function () {
+    return view('frontend.checkout');
+})->name('checkout');
 
+Route::resource('orders', OrderController::class);
 
 // Admin Routes
 Route::get('/admin/dashboard', function () {

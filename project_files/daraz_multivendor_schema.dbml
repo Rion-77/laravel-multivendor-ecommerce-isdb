@@ -25,7 +25,7 @@ Table users {
 
 Table addresses {
   address_id bigint [pk, increment]
-  user_id bigint [not null]
+  user_id bigint [note: 'nullable - not used for guest checkout; guest shipping is snapshotted onto orders instead']
   label varchar [note: 'Home, Office']
   recipient_name varchar
   recipient_phone varchar
@@ -218,9 +218,28 @@ Table campaign_products {
 
 Table orders {
   order_id bigint [pk, increment]
-  user_id bigint [not null]
+
+  user_id bigint [note: 'NULL when order is placed as a guest']
+
+  guest_name varchar [note: 'required if user_id is NULL']
+  guest_email varchar [note: 'required if user_id is NULL; used for guest order tracking']
+  guest_phone varchar [note: 'required if user_id is NULL; used for guest order tracking']
+
   order_number varchar [unique, not null]
-  shipping_address_id bigint [not null]
+
+  shipping_address_id bigint [note: 'optional FK to saved address book; NULL for guests']
+
+  // Shipping details snapshotted onto every order (guest AND registered),
+  // so the order preserves exactly where it shipped even if a saved
+  // address is later edited or deleted.
+  shipping_recipient_name varchar [not null]
+  shipping_phone varchar [not null]
+  shipping_address_line varchar [not null]
+  shipping_city varchar [not null]
+  shipping_district varchar
+  shipping_postal_code varchar
+  shipping_country varchar [default: 'Bangladesh']
+
   subtotal_amount decimal [not null]
   shipping_fee decimal [default: 0]
   discount_amount decimal [default: 0]
@@ -288,7 +307,7 @@ Table returns_refunds {
 Table reviews {
   review_id bigint [pk, increment]
   product_id bigint [not null]
-  user_id bigint [not null]
+  user_id bigint [not null, note: 'guests cannot review - reviews require a registered account']
   order_item_id bigint [unique, not null]
   rating int [not null, note: '1 to 5']
   comment text

@@ -7,6 +7,8 @@
 import { add, list, quantity, remove, total } from "cart-localstorage";
 
 const cartItemCounter = document.querySelector(".cart-item-counter");
+const itemshiddenInput = document.querySelector("input[name='order_items']");
+
 
 // Cart Item Counter and display counter
 function resetCounter() {
@@ -131,4 +133,8 @@ if (document.querySelector(".cart-table-body")) {
     });
     // const cartIncrease = document.querySelectorAll(".cart-increase");
     // console.log(cartIncrease);
+}
+
+if(itemshiddenInput) {
+    itemshiddenInput.value = JSON.stringify(list());
 }
