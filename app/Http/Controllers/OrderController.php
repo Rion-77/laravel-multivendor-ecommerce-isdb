@@ -29,24 +29,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
 
-        // Decode the string into an array if it exists
+        // converts order items into array for validation
         if ($request->order_items && is_string($request->order_items)) {
             $request->merge(['order_items' => json_decode($request->order_items, true)]);
         }
-
-        /*  "guest_name" => "Gregory Lyons"
-  "guest_phone" => "+8801968988709"
-  "guest_email" => "wuvymog@mailinator.com"
-  "shipping_address_id" => null
-  "shipping_recipient_name" => null
-  "shipping_phone" => null
-  "shipping_address_line" => "Doloremque consequun"
-  "shipping_district" => "Velit maxime volupta"
-  "shipping_fee" => "8"
-  "payment_method" => "cod"
-  "order_items" => "[{"id":13,"name":"quisquam et ullam","price":"1741.73","image":"https://placehold.net/400x400.png","quantity":3}]" */
 
         $request->validate([
             'guest_name' => 'required|string|max:255',
@@ -60,41 +47,50 @@ class OrderController extends Controller
             'order_items' => ['required', 'array', 'min:1'],
         ]);
 
-        dd($request->order_items);
+        $order_items_validated = [];
+
+        $subtotal = 0;
+
+
+        foreach ($request->order_items as $order_item) {
+            $product = Product::findOrFail($order_item['id']);
+
+            // dd($product);
+
+            array_push($order_items_validated, [
+                'product_id' => $product->id,
+                'quantity'  => $order_item['quantity'],
+                'unit_price' => $product->base_price,
+            ]);
+
+            $subtotal += $product->base_price * $order_item['quantity'];
+        }
+
+        $shipping_fee = 120;
+        $total_amount = $subtotal + $shipping_fee;
+
         $order = new Order();
         $order->guest_name = $request->guest_name;
         $order->guest_email = $request->guest_email;
         $order->guest_phone = $request->guest_phone;
         // $order->shipping_address_id = $request->shipping_address_id;
-        $order->shipping_recipient_name = $request->shipping_recipient_name;    
-        $order->shipping_phone = $request->shipping_phone;    
-        $order->shipping_address_line = $request->shipping_address_line;    
+        $order->shipping_recipient_name = $request->guest_name;
+        $order->shipping_phone = $request->guest_phone;
+        $order->shipping_address_line = $request->shipping_address_line;
         $order->shipping_district = $request->shipping_district;
-        $order->order_number = date('Y-m-d');
-        // $order->save();      
-        
-        foreach($request->order_items as $order_item) {
-            $product = Product::findOrFail($order_item['id']);
-            $order->orderItems()->create([
-                /* 
-                $table->bigInteger('order_id')->unsigned();
-            $table->bigInteger('product_id')->unsigned();
-            $table->integer('quantity')->unsigned();
-            $table->decimal('unit_price', 12, 2);
-                */
-              'product_id' => $item->id,
-              'quantity' => $item->quantity
-            ]);
+        $order->order_number = date('Y-m-d H:i:s');
+        $order->subtotal_amount = $subtotal;
+        $order->shipping_fee = $shipping_fee;
+        $order->total_amount = $total_amount;
+        $order->save();
+
+
+        foreach ($order_items_validated as $order_item) {
+            $order->orderItems()->create($order_item);
         }
-        // foreach($items as $item) {
-        //     $order->details()->create([
-        //       'product_id' => $item->id,
-        //       'quantity' => $item->quantity
-        //     ]);
-        // }
-        /* $table->decimal('subtotal_amount');
-            $table->decimal('shipping_fee');
-            $table->decimal('total_amount'); */
+        return redirect()->route('frontend.order-confirmed')->with([
+            'success' => 'Order created successfully.',
+        ]);
     }
 
     /**

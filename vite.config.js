@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/css/adminlte.css', 
                 'resources/js/adminlte.js', 
                 'resources/js/filepond.js', 
+                'resources/js/cart.js', 
                 'resources/js/app.js',
                 ],
             refresh: true,

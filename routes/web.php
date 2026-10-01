@@ -30,8 +30,16 @@ Route::get('/cart', function () {
 Route::get('/checkout', function () {
     return view('frontend.checkout');
 })->name('checkout');
+Route::get('/order-confirmed', function () {
+    
+    if (!session('success')) {
+        return redirect()->route('cart');
+    }
+    return view('frontend.order-confirmed');
+})->name('frontend.order-confirmed');
 
 Route::resource('orders', OrderController::class);
+
 
 // Admin Routes
 Route::get('/admin/dashboard', function () {

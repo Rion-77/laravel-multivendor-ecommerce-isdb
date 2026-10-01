@@ -97,116 +97,92 @@
 
                     <!-- ========== ORDER SUMMARY ========== -->
                     <div class="col-md-12 col-lg-6 col-xl-5">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Products</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Line items are stored in order_items, not in orders -->
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="d-flex align-items-center mt-2">
-                                                <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle"
-                                                    style="width:90px;height:90px;" alt="">
-                                            </div>
-                                        </th>
-                                        <td class="py-5">Awesome Brocoli</td>
-                                        <td class="py-5">$69.00</td>
-                                        <td class="py-5">2</td>
-                                        <td class="py-5 line-total">$138.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="d-flex align-items-center mt-2">
-                                                <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle"
-                                                    style="width:90px;height:90px;" alt="">
-                                            </div>
-                                        </th>
-                                        <td class="py-5">Potatoes</td>
-                                        <td class="py-5">$69.00</td>
-                                        <td class="py-5">2</td>
-                                        <td class="py-5 line-total">$138.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="d-flex align-items-center mt-2">
-                                                <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle"
-                                                    style="width:90px;height:90px;" alt="">
-                                            </div>
-                                        </th>
-                                        <td class="py-5">Big Banana</td>
-                                        <td class="py-5">$69.00</td>
-                                        <td class="py-5">2</td>
-                                        <td class="py-5 line-total">$138.00</td>
-                                    </tr>
-
-                                    <!-- subtotal_amount -->
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td class="py-5"></td>
-                                        <td class="py-5"></td>
-                                        <td class="py-5">
-                                            <p class="mb-0 text-dark py-3">Subtotal</p>
-                                        </td>
-                                        <td class="py-5">
-                                            <div class="py-3 border-bottom border-top">
-                                                <p class="mb-0 text-dark" id="subtotalText">$414.00</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- shipping_fee (radios, one choice) -->
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td class="py-5">
-                                            <p class="mb-0 text-dark py-4">Shipping</p>
-                                        </td>
-                                        <td colspan="3" class="py-5">
-                                            <div class="form-check text-start">
-                                                <input type="radio" class="form-check-input bg-primary border-0"
-                                                    id="Shipping-1" name="shipping_fee" value="0" data-fee="0"
-                                                    checked>
-                                                <label class="form-check-label" for="Shipping-1">Free Shipping</label>
-                                            </div>
-                                            <div class="form-check text-start">
-                                                <input type="radio" class="form-check-input bg-primary border-0"
-                                                    id="Shipping-2" name="shipping_fee" value="15" data-fee="15">
-                                                <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
-                                            </div>
-                                            <div class="form-check text-start">
-                                                <input type="radio" class="form-check-input bg-primary border-0"
-                                                    id="Shipping-3" name="shipping_fee" value="8" data-fee="8">
-                                                <label class="form-check-label" for="Shipping-3">Local Pickup:
-                                                    $8.00</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                   
-
-                                    <!-- total_amount -->
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td class="py-5">
-                                            <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-                                        </td>
-                                        <td class="py-5"></td>
-                                        <td class="py-5"></td>
-                                        <td class="py-5">
-                                            <div class="py-3 border-bottom border-top">
-                                                <p class="mb-0 text-dark" id="totalText">$414.00</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="bg-light rounded">
+                            <div class="p-4 pb-0">
+                                <h1 class="display-6 mb-4">Order <span class="fw-normal">Summary</span></h1>
+                            </div>
+                            <div class="table-responsive px-4">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Products</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Line items are stored in order_items, not in orders -->
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle"
+                                                        style="width:56px;height:56px;" alt="">
+                                                </div>
+                                            </th>
+                                            <td class="py-2">Awesome Brocoli</td>
+                                            <td class="py-2">$69.00</td>
+                                            <td class="py-2">2</td>
+                                            <td class="py-2 line-total">$138.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle"
+                                                        style="width:56px;height:56px;" alt="">
+                                                </div>
+                                            </th>
+                                            <td class="py-2">Potatoes</td>
+                                            <td class="py-2">$69.00</td>
+                                            <td class="py-2">2</td>
+                                            <td class="py-2 line-total">$138.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle"
+                                                        style="width:56px;height:56px;" alt="">
+                                                </div>
+                                            </th>
+                                            <td class="py-2">Big Banana</td>
+                                            <td class="py-2">$69.00</td>
+                                            <td class="py-2">2</td>
+                                            <td class="py-2 line-total">$138.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-4 pt-0">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="mb-0 me-4">Subtotal</h5>
+                                    <p class="mb-0" id="subtotalText">$414.00</p>
+                                </div>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="mb-0 me-4">Shipping</h5>
+                                    <div>
+                                        <div class="form-check text-start">
+                                            <input type="radio" class="form-check-input bg-primary border-0"
+                                                id="Shipping-1" name="shipping_fee" value="0" data-fee="0" checked>
+                                            <label class="form-check-label" for="Shipping-1">Free Shipping</label>
+                                        </div>
+                                        <div class="form-check text-start">
+                                            <input type="radio" class="form-check-input bg-primary border-0"
+                                                id="Shipping-2" name="shipping_fee" value="15" data-fee="15">
+                                            <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
+                                        </div>
+                                        <div class="form-check text-start">
+                                            <input type="radio" class="form-check-input bg-primary border-0"
+                                                id="Shipping-3" name="shipping_fee" value="8" data-fee="8">
+                                            <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="py-4 border-top border-bottom d-flex justify-content-between">
+                                    <h5 class="mb-0">Total</h5>
+                                    <p class="mb-0" id="totalText">$414.00</p>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Payment method: NOT a column in `orders` (see notes). Kept as radios so only one can be chosen. -->

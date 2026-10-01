@@ -56,7 +56,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/cart.js'])
+    @yield('scripts')
 
 </body>
 
