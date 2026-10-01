@@ -40,6 +40,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Vendor::class);
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
 

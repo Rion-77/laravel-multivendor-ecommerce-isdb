@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.orders.show') }}" class="nav-link">
+                                <a href="{{ route('admin.orders.show', 1) }}" class="nav-link">
                                     <i class="nav-icon bi bi-circle"></i>
                                     <p>Order Details</p>
                                 </a>

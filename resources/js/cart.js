@@ -9,7 +9,6 @@ import { add, list, quantity, remove, total, destroy } from "cart-localstorage";
 const cartItemCounter = document.querySelector(".cart-item-counter");
 const itemshiddenInput = document.querySelector("input[name='order_items']");
 
-
 // Cart Item Counter and display counter
 function resetCounter() {
     cartItemCounter.innerText = list().reduce((sum, item) => {
@@ -35,6 +34,8 @@ document.addEventListener("click", (event) => {
     resetCounter();
 });
 
+// ////////////////////////////////////////////////////
+// For Cart Page
 if (document.querySelector(".cart-table-body")) {
     const cartWrapper = document.querySelector(".cart-wrapper");
     const cartTableBody = document.querySelector(".cart-table-body");
@@ -135,11 +136,61 @@ if (document.querySelector(".cart-table-body")) {
     // console.log(cartIncrease);
 }
 
-if(itemshiddenInput) {
+// ////////////////////////////////////////////////////
+// For Checkout Page
+if (document.querySelector("#checkout-products-table-body")) {
+    const checkoutWrapper = document.querySelector("#checkout-wrapper");
+    const emptyCheckoutMessage = document.querySelector(".empty-checkout-message");
+    const checkoutProductTableBody = document.querySelector(
+        "#checkout-products-table-body",
+    );
+    const checkoutSubtotal = document.querySelector("#checkoutSubtotalText");
+    const checkoutTotal = document.querySelector("#checkoutTotalText");
+
+    console.log(list());
+    // Cart display fucntion for checkoout page
+    function displayCheckoutProducts() {
+        if (list().length > 0) {
+            checkoutProductTableBody.innerHTML = list()
+                .map(
+                    (item) => `
+
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <img src="${item.image}" class="img-fluid rounded-circle"
+                                                        style="width:56px;height:56px;" alt="">
+                                                </div>
+                                            </th>
+                                            <td class="py-2">${item.name}</td>
+                                            <td class="py-2">${item.price}৳</td>
+                                            <td class="py-2">${item.quantity}</td>
+                                            <td class="py-2 line-total">${(item.price * item.quantity).toFixed(2)}৳</td>
+                                        </tr>
+
+					`,
+                )
+                .join("");
+
+            emptyCheckoutMessage.classList.add("d-none");
+            checkoutWrapper.classList.remove("d-none");
+            checkoutSubtotal.innerText = total().toFixed(2) + "৳";
+            checkoutTotal.innerText = (total() + 120).toFixed(2) + "৳";
+        } else {
+            emptyCheckoutMessage.classList.remove("d-none");
+            checkoutWrapper.classList.add("d-none");
+            checkoutSubtotal.innerText = 0 + "৳";
+            checkoutTotal.innerText = 0 + "৳";
+        }
+    }
+    displayCheckoutProducts();
+}
+
+if (itemshiddenInput) {
     itemshiddenInput.value = JSON.stringify(list());
 }
 
-// Clreaing the card 
+// Clreaing the card
 function clearCart() {
     destroy();
     resetCounter();

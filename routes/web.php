@@ -6,12 +6,14 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\VendorController as FrontendVendorController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
+///////////////////////////////////
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
@@ -30,6 +32,10 @@ Route::get('/cart', function () {
 Route::get('/checkout', function () {
     return view('frontend.checkout');
 })->name('checkout');
+
+// Order Routes
+Route::post('/order', [FrontendOrderController::class, 'store'])->name('frontend.orders.store');
+
 Route::get('/order-confirmed', function () {
     
     if (!session('success')) {
@@ -38,7 +44,11 @@ Route::get('/order-confirmed', function () {
     return view('frontend.order-confirmed');
 })->name('frontend.order-confirmed');
 
-Route::resource('orders', OrderController::class);
+
+// Route::group(['prefix' => 'frontend', 'as' => 'frontend.'], function () {
+//         Route::resource('orders', FrontendOrderController::class);
+// });
+
 
 
 // Admin Routes
@@ -55,6 +65,7 @@ Route::middleware('auth', 'role_id:1')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('products', ProductController::class);
         Route::resource('vendors', VendorController::class);
+        Route::resource('orders', OrderController::class);
     });
 
     // Categories
@@ -62,13 +73,13 @@ Route::middleware('auth', 'role_id:1')->group(function () {
     Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands.index');
 
     // Oders
-    Route::get('/admin/orders', function () {
+    /* Route::get('/admin/orders', function () {
         return view('admin.orders.index');
     })->name('admin.orders.index');
 
     Route::get('/admin/orders/single', function () {
         return view('admin.orders.show');
-    })->name('admin.orders.show');
+    })->name('admin.orders.show'); */
 
     // Custom
     Route::post('/admin/users/role/{role}', [UserController::class, 'roleIndex'])->name('admin.users.roleIndex');

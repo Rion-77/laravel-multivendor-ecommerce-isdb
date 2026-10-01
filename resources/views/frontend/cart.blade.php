@@ -66,8 +66,18 @@
             </div>
             <!-- Empty Cart Message -->
             <div class="empty-cart-message">
-             <p class="text-center">No items in the cart</p>
-        </div>
+             <div class="text-center bg-light rounded p-4 p-md-5 mx-auto" style="max-width: 720px;">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white text-primary shadow-sm mb-3"
+                        style="width: 80px; height: 80px;">
+                        <i class="fas fa-shopping-basket fa-2x" aria-hidden="true"></i>
+                    </span>
+                    <h2 class="h3 mb-2">Your cart is waiting</h2>
+                    <p class="text-muted mb-3">There are no items in your cart yet. Find something amazing to get started.</p>
+                    <a href="{{ url('/') }}" class="btn btn-primary rounded-pill px-4 py-2">
+                        <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Continue shopping
+                    </a>
+                </div>
+            </div>
             
         </div>
         
