@@ -1,3 +1,16 @@
+@php
+    $order_status_badges = [
+        '1' => 'text-bg-warning',
+        '2' => 'text-bg-primary',
+        '3' => 'text-bg-info',
+        '4' => 'text-bg-secondary',
+        '5' => 'text-bg-success',
+        '6' => 'text-bg-danger',
+        '7' => 'text-bg-warning',
+        '8' => 'text-bg-dark',
+    ];
+@endphp
+
 @extends('admin.layouts.app')
 
 @section('title', 'Vendors')
@@ -5,7 +18,8 @@
 @section('content')
     <main class="app-main" id="main" tabindex="-1">
 
-        <x-admin.content-header title="{{ '#ORD-' .$order->order_number }}"></x-admin.content-header>
+        <x-admin.content-header title="{{ '#ORD-' . $order->order_number }}"></x-admin.content-header>
+
 
         <div class="app-content">
             <div class="container-fluid">
@@ -18,8 +32,8 @@
                     <a href="#" class="btn btn-outline-secondary">
                         <i class="bi bi-download me-1" aria-hidden="true"></i>PDF
                     </a>
-                    <a href="#" class="btn btn-primary">
-                        <i class="bi bi-send me-1" aria-hidden="true"></i>Send order
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">
+                        <i class="bi bi-arrow-left" aria-hidden="true"></i>Back to all orders
                     </a>
                 </div>
 
@@ -44,7 +58,8 @@
                                         <p class="text-secondary mb-0">
                                             <span class="fw-semibold">#</span>ORD-{{ $order->order_number }}
                                         </p>
-                                        <span class="badge text-bg-success mt-1">Delivered</span>
+                                        <span
+                                            class="badge {{ $order_status_badges[$order->orderStatus->id] ?? 'text-bg-secondary' }} mt-1">{{ $order->orderStatus->name }}</span>
                                     </div>
                                 </div>
 
@@ -93,7 +108,8 @@
                                                             <img src="{{ $order_item->product->hasMedia('product_image') ? $order_item->product->getFirstMediaUrl('product_image', 'thumbnail') : 'https://placehold.co/400' }}"
                                                                 alt="" class="rounded me-2 d-print-none"
                                                                 style="width:40px;height:40px;object-fit:cover;">
-                                                            <p class="mb-0 fw-semibold">{{ $order_item->product->name }}</p>
+                                                            <p class="mb-0 fw-semibold">{{ $order_item->product->name }}
+                                                            </p>
                                                         </div>
                                                     </td>
                                                     <td class="text-end">{{ $order_item->quantity }}</td>
@@ -176,17 +192,26 @@
                                 <h3 class="card-title">Order Status</h3>
                             </div>
                             <div class="card-body">
-                                <select class="form-select mb-3" aria-label="Update order status">
-                                    <option>Processing</option>
-                                    <option>Shipped</option>
-                                    <option selected="">Delivered</option>
-                                    <option>Cancelled</option>
-                                    <option>Refunded</option>
-                                </select>
-                                <button type="button" class="btn btn-primary w-100 mb-2"><i
-                                        class="bi bi-check-lg me-1"></i>Update Status</button>
-                                <button type="button" class="btn btn-outline-danger w-100"><i
-                                        class="bi bi-arrow-counterclockwise me-1"></i>Issue Refund</button>
+                                <!-- Flash Message -->
+                                <x-admin.success-flash-message />
+                                <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <select class="form-select mb-3" aria-label="Update order status"
+                                        name="order_status_id">
+                                        @foreach ($order_statuses as $order_status)
+                                            <option value="{{ $order_status->id }}" @selected($order->order_status_id == $order_status->id)>
+                                                {{ $order_status->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-primary w-100 mb-2"><i
+                                            class="bi bi-check-lg me-1"></i>Update Status</button>
+                                </form>
+
+                                
+                                {{-- <button type="button" class="btn btn-outline-danger w-100"><i
+                                        class="bi bi-arrow-counterclockwise me-1"></i>Issue Refund</button> --}}
                             </div>
                         </div>
                     </div>

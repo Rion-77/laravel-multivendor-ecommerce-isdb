@@ -3,18 +3,13 @@
 <div class="col-lg-6 col-xl-4">
     <div class="p-4 rounded bg-light">
         <div class="row align-items-center">
+            <a href="{{ route('frontend.products.show', $product) }}" class="col-6">   
+                    <img src="{{ productImage($product) }}" 
+                        class="img-fluid rounded-circle" alt="{{ $product->name }}"
+                        style="width: 150px; height: 150px; object-fit: cover; object-position: center">
+            </a>
             <div class="col-6">
-                @if ($product->hasMedia('product_image'))
-                    <img src="{{ $product->getFirstMediaUrl('product_image', 'thumbnail') }}"
-                        class="img-fluid rounded-circle w-100" alt="{{ $product->name }}">
-                @else
-                    <img src="https://picsum.photos/{{ $product->id + 150 }}/{{ $product->id + 150 }}"
-                        class="img-fluid rounded-circle w-100" alt="{{ $product->name }}">
-                @endif
-
-            </div>
-            <div class="col-6">
-                <a href="#" class="h5">{{ $product->name }}</a>
+                <a href="{{ route('frontend.products.show', $product) }}" class="h5">{{ $product->name }}</a>
                 <div class="d-flex my-3">
                     <i class="fas fa-star text-primary"></i>
                     <i class="fas fa-star text-primary"></i>

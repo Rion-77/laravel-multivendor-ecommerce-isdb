@@ -18,7 +18,7 @@
                 <span class="rating-count">(4.5)</span>
             </div>
             <p class="vendor-stats mb-3">{{ $vendor->products_count }} Products</p>
-            <a href="vendor-detail.html" class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
+            <a href="{{ route('frontend.vendors.show', $vendor) }}" class="btn border border-secondary rounded-pill px-4 py-1 text-primary">Visit
                 Store</a>
         </div>
     </div>

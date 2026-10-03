@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,9 @@ class OrderController extends Controller
     public function index()
     {
         // $orders = Order::with('orderItems.product')->get();
-        $orders = Order::orderBy('created_at', 'desc')->paginate(15);
+        $orders = Order::with('orderStatus')->orderBy('created_at', 'desc')->paginate(15);
         // dd($orders);
         return view('admin.orders.index', compact('orders'));
-
     }
 
     /**
@@ -102,8 +102,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $order_statuses = OrderStatus::all();
         $order_items = $order->orderItems()->with('product')->get();
-        return view('admin.orders.show', compact('order', 'order_items'));
+        return view('admin.orders.show', compact('order', 'order_items', 'order_statuses'));
     }
 
     /**
@@ -119,7 +120,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $request->validate(
+            [
+                'order_status_id' => 'required|exists:order_statuses,id',
+            ]
+        );
+        $order->order_status_id = $request->order_status_id;
+        $order->save();
+        return redirect()->route('admin.orders.show', $order->id)->with('success', 'Order status updated successfully.');
     }
 
     /**

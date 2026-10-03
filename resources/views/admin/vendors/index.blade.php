@@ -90,7 +90,7 @@
                                             <option value="pending">Pending</option>
                                             <option value="suspended">Suspended</option>
                                         </select>
-                                        <a href="./vendor-add.html" class="btn btn-sm btn-primary">
+                                        <a href="{{ route('admin.vendors.create') }}" class="btn btn-sm btn-primary">
                                             <i class="bi bi-plus-lg me-1"></i>Add Vendor
                                         </a>
                                     </div>

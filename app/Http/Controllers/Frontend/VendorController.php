@@ -21,8 +21,11 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vendor $vendor)
     {
-        //
+        $vendor->loadCount('products');
+        // $products = Product::where('vendor_id', $vendor->id)->orderBy('created_at', 'desc')->paginate(12);
+        $products = $vendor->products()->orderBy('created_at', 'desc')->paginate(12);
+        return view('frontend.vendors.show', compact('vendor', 'products'));
     }
 }
