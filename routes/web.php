@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
-Route::get('/products', [FrontendProductController::class, 'index'])->name('products.index');
-Route::get('/products/{product}', [FrontendProductController::class, 'show'])->name('products.show');
-Route::get('/vendors', [FrontendVendorController::class, 'index'])->name('vendors.index');
+// Product Routes
+Route::get('/products', [FrontendProductController::class, 'index'])->name('frontend.products.index');
+Route::get('/products/{product}', [FrontendProductController::class, 'show'])->name('frontend.products.show');
+// Vendor Routes
+Route::get('/vendors', [FrontendVendorController::class, 'index'])->name('frontend.vendors.index');
+Route::get('/vendors/{vendor}', [FrontendVendorController::class, 'show'])->name('frontend.vendors.show');
 Route::get('/become-vendor', function () {
     return view('frontend.become-vendor');
 })->name('become-vendor');
@@ -37,7 +40,7 @@ Route::get('/checkout', function () {
 Route::post('/order', [FrontendOrderController::class, 'store'])->name('frontend.orders.store');
 
 Route::get('/order-confirmed', function () {
-    
+
     if (!session('success')) {
         return redirect()->route('cart');
     }
@@ -50,7 +53,7 @@ Route::get('/order-confirmed', function () {
 // });
 
 
-
+///////////////////////////////////
 // Admin Routes
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
@@ -85,6 +88,7 @@ Route::middleware('auth', 'role_id:1')->group(function () {
     Route::post('/admin/users/role/{role}', [UserController::class, 'roleIndex'])->name('admin.users.roleIndex');
 });
 
+///////////////////////////////////
 // Vendor Routes
 Route::middleware('auth', 'role_id:1,3')->group(function () {
 

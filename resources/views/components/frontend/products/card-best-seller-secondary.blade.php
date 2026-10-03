@@ -3,15 +3,12 @@
 <div class="col-md-6 col-lg-6 col-xl-3">
     <div class="text-center">
 
-        @if ($product->hasMedia('product_image'))
-            <img src="{{ $user->getFirstMediaUrl('product_image', 'thumbnail') }}" class="img-fluid rounded"
-                alt="{{ $product->name }}">
-        @else
-            <img src="https://picsum.photos/300/{{ $product->id + 180 }}" class="img-fluid rounded"
-                alt="{{ $product->name }}">
-        @endif
+        <a href="{{ route('frontend.products.show', $product) }}">
+        <img src="{{ productImage($product) }}" class="img-fluid rounded" alt="{{ $product->name }}">
+        </a>
+
         <div class="py-4">
-            <a href="#" class="h5">{{ $product->name }}</a>
+            <a href="{{ route('frontend.products.show', $product) }}" class="h5">{{ $product->name }}</a>
             <div class="d-flex my-3 justify-content-center">
                 <i class="fas fa-star text-primary"></i>
                 <i class="fas fa-star text-primary"></i>

@@ -278,7 +278,7 @@
 
                                     </div>
                                     <div>
-                                        <a href="{{ route('products.show', $product) }}">
+                                        <a href="{{ route('frontend.products.index', $product) }}">
                                             <h6 class="mb-2">{{ $product->name }}</h6>
                                         </a>
                                         <div class="d-flex mb-2">

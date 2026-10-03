@@ -75,7 +75,7 @@
                     </li>
 
                     <li class="nav-header">MARKETPLACE</li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="#" class="nav-link {{ activeLink('admin.vendors*') }}" aria-expanded="false">
                             <i class="nav-icon bi bi-shop"></i>
                             <p>
@@ -98,16 +98,19 @@
                                     <p>Add Vendor</p>
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                            <a href="{{ route('admin.vendors.show') }}" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Vendor Profile</p>
-                            </a>
-                        </li> --}}
+                            
                         </ul>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="{{ route('admin.vendors.index') }}" class="nav-link {{ activeLink('admin.vendors*') }}" aria-expanded="false">
+                            <i class="nav-icon bi bi-shop"></i>
+                            <p>
+                                Vendors
+                            </p>
+                        </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="#" class="nav-link" aria-expanded="false">
                             <i class="nav-icon bi bi-cart-check"></i>
                             <p>
@@ -129,6 +132,14 @@
                                 </a>
                             </li>
                         </ul>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="{{ route('admin.orders.index') }}" class="nav-link {{ activeLink('admin.orders*') }}">
+                            <i class="nav-icon bi bi-cart-check"></i>
+                            <p>
+                                Orders
+                            </p>
+                        </a>
                     </li>
 
                     {{-- <li class="nav-item">
@@ -178,7 +189,7 @@
                 </li> --}}
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link {{ activeLink('admin.users*') }}">
                             <i class="nav-icon bi bi-person-badge"></i>
                             <p>Users</p>
                         </a>

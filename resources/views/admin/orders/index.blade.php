@@ -1,3 +1,15 @@
+@php
+    $order_status_badges = [
+        '1' => 'text-bg-warning',
+        '2' => 'text-bg-primary',
+        '3' => 'text-bg-info',
+        '4' => 'text-bg-secondary',
+        '5' => 'text-bg-success',
+        '6' => 'text-bg-danger',
+        '7' => 'text-bg-warning',
+        '8' => 'text-bg-dark',
+    ];
+@endphp
 @extends('admin.layouts.app')
 
 @section('title', 'Vendors')
@@ -10,9 +22,10 @@
         <div class="app-content">
             <div class="container-fluid">
 
+
                 <div class="row">
                     <div class="col-12">
-                        <div class="row mb-3 g-3">
+                        {{-- <div class="row mb-3 g-3">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="card">
                                     <div class="card-body d-flex align-items-center">
@@ -57,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="card">
                             <div class="card-header">
@@ -85,27 +98,6 @@
                                     <table class="table table-hover align-middle m-0" role="table">
                                         <thead>
 
-                                            {{-- 
-                          
-                          "id" => 5
-          "user_id" => null
-          "guest_name" => "Kamal Dillon"
-          "guest_email" => "lolacofu@mailinator.com"
-          "guest_phone" => "+8801123625993"
-          "order_number" => "2026-10-01 05:58:38"
-          "shipping_address_id" => null
-          "shipping_recipient_name" => "Kamal Dillon"
-          "shipping_phone" => "+8801123625993"
-          "shipping_address_line" => "Obcaecati sed aute i"
-          "shipping_district" => "Aut cupiditate aut f"
-          "subtotal_amount" => "747.31"
-          "shipping_fee" => "120.00"
-          "total_amount" => "867.31"
-          "order_status_id" => 1
-          "created_at" => "2026-10-01 05:58:38"
-          "updated_at" => "2026-10-01 05:58:38"
-        ]
-                          --}}
                                             <tr>
                                                 <th scope="col">Order</th>
                                                 <th scope="col">Customer</th>
@@ -130,13 +122,12 @@
                                                     <td>{{ $order->total_amount }}৳</td>
                                                     {{-- <td><span class="badge text-bg-success">Paid</span></td> --}}
                                                     <td><span
-                                                            class="badge text-bg-success">{{ $order->order_status_id }}</span>
+                                                            class="badge {{ $order_status_badges[$order->orderStatus->id] ?? 'text-bg-secondary' }}">{{ $order->orderStatus->name }}</span>
                                                     </td>
                                                     <td>{{ $order->created_at->format('M d, Y') }}</td>
                                                     <td class="text-end">
-                                                        <a href="./order-details.html"
-                                                            class="btn btn-sm btn-outline-secondary"
-                                                            aria-label="View ORD-10234"><i class="bi bi-eye"></i></a>
+                                                        <x-admin.buttons.view
+                                                            href="{{ route('admin.orders.show', ['order' => $order->id]) }}" />
                                                     </td>
                                                 </tr>
                                             @empty

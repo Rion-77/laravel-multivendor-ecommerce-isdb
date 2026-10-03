@@ -1,5 +1,76 @@
 @extends('frontend.layouts.app')
 
+@section('styles')
+    <style>
+        .range-slider {
+            position: relative;
+            height: 24px;
+        }
+
+        .range-track,
+        .range-fill {
+            position: absolute;
+            top: 50%;
+            height: 6px;
+            transform: translateY(-50%);
+            border-radius: 3px;
+        }
+
+        .range-track {
+            width: 100%;
+            background: #dee2e6;
+        }
+
+        .range-fill {
+            background: #4f46e5;
+            /* change to your brand color */
+        }
+
+        .range-slider input[type=range] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 24px;
+            margin: 0;
+            background: transparent;
+            pointer-events: none;
+            /* only the thumbs are clickable */
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .range-slider input[type=range]::-webkit-slider-runnable-track {
+            background: transparent;
+        }
+
+        .range-slider input[type=range]::-moz-range-track {
+            background: transparent;
+        }
+
+        .range-slider input[type=range]::-webkit-slider-thumb {
+            pointer-events: auto;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid #4f46e5;
+            cursor: pointer;
+        }
+
+        .range-slider input[type=range]::-moz-range-thumb {
+            pointer-events: auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid #4f46e5;
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
@@ -16,16 +87,11 @@
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh fruits shop</h1>
             <div class="row g-4">
                 <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-xl-3">
-                            <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords"
-                                    aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                            </div>
+                            
                         </div>
                         <div class="col-6"></div>
                         <div class="col-xl-3">
@@ -46,165 +112,102 @@
                             <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <h4>Search</h4>
+                                        <form method="GET" action="{{ route('frontend.products.index') }}">
+                                            <div class="input-group w-100 mx-auto d-flex">
+                                                <input type="search" class="form-control p-3" placeholder="keywords"
+                                                    aria-describedby="search-icon-1" name="filter[name]">
+                                                <button type="submit" id="search-icon-1" class="input-group-text p-3"><i
+                                                        class="fa fa-search"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
                                         <h4>Categories</h4>
                                         <ul class="list-unstyled fruite-categorie">
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                    <span>(3)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                                    <span>(2)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                                    <span>(8)</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex justify-content-between fruite-name">
-                                                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                                    <span>(5)</span>
-                                                </div>
-                                            </li>
+                                            @forelse ($categories as $category)
+                                                <li>
+                                                    <div class="d-flex justify-content-between fruite-name">
+                                                        <a
+                                                            href="{{ route('frontend.products.index', ['filter' => ['category_id' => $category->id]]) }}"><i
+                                                                class="fas fa-apple-alt me-2"></i>{{ $category->name }}</a>
+                                                        <span>({{ $category->products_count }})</span>
+                                                    </div>
+                                                </li>
+                                            @empty
+                                            @endforelse
+
+
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <h4 class="mb-2">Price</h4>
-                                        <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput"
-                                            min="0" max="500" value="0"
-                                            oninput="amount.value=rangeInput.value">
-                                        <output id="amount" name="amount" min-velue="0" max-value="500"
-                                            for="rangeInput">0</output>
+                                        @php
+                                            $minPrice = request('filter.min_price', 0);
+                                            $maxPrice = request('filter.max_price', 5000);
+                                        @endphp
+
+                                        <form method="GET" id="priceForm" action="{{ route('frontend.products.index') }}">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-8">
+                                                    <div class="range-slider mb-3">
+                                                        <div class="range-track"></div>
+                                                        <div class="range-fill" id="rangeFill"></div>
+                                                        <input type="range" id="minRange" min="0" max="5000"
+                                                            step="10" value="{{ $minPrice }}">
+                                                        <input type="range" id="maxRange" min="0" max="5000"
+                                                            step="10" value="{{ $maxPrice }}">
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-between gap-3">
+                                                        <input type="number"
+                                                            class="form-control form-control-sm text-center" id="minInput"
+                                                            name="filter[min_price]" min="0" max="5000"
+                                                            step="10" value="{{ $minPrice }}">
+                                                        <input type="number"
+                                                            class="form-control form-control-sm text-center" id="maxInput"
+                                                            name="filter[max_price]" min="0" max="5000"
+                                                            step="10" value="{{ $maxPrice }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                                </div>
+                                            </div>
+
+                                            {{-- keep other active filters when applying the price range --}}
+                                            @if (request('filter.category_id'))
+                                                <input type="hidden" name="filter[category_id]"
+                                                    value="{{ request('filter.category_id') }}">
+                                            @endif
+                                            @if (request('filter.name'))
+                                                <input type="hidden" name="filter[name]"
+                                                    value="{{ request('filter.name') }}">
+                                            @endif
+                                            @if (request('sort'))
+                                                <input type="hidden" name="sort" value="{{ request('sort') }}">
+                                            @endif
+                                        </form>
+
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <h4>Additional</h4>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-1" name="Categories-1"
-                                                value="Beverages">
-                                            <label for="Categories-1"> Organic</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-2" name="Categories-1"
-                                                value="Beverages">
-                                            <label for="Categories-2"> Fresh</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-3" name="Categories-1"
-                                                value="Beverages">
-                                            <label for="Categories-3"> Sales</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-4" name="Categories-1"
-                                                value="Beverages">
-                                            <label for="Categories-4"> Discount</label>
-                                        </div>
-                                        <div class="mb-2">
-                                            <input type="radio" class="me-2" id="Categories-5" name="Categories-1"
-                                                value="Beverages">
-                                            <label for="Categories-5"> Expired</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h4 class="mb-3">Featured products</h4>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-start">
-                                        <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                            <img src="img/featur-3.jpg" class="img-fluid rounded" alt="">
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-2">Big Banana</h6>
-                                            <div class="d-flex mb-2">
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star text-secondary"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-flex mb-2">
-                                                <h5 class="fw-bold me-2">2.99 $</h5>
-                                                <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center my-4">
-                                        <a href="#"
-                                            class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew
-                                            More</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="position-relative">
-                                        <img src="img/banner-fruits.jpg" class="img-fluid w-100 rounded" alt="">
-                                        <div class="position-absolute"
-                                            style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                            <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                         <div class="col-lg-9">
-                            <div class="row g-4 justify-content-center">
+                            <div class="row g-4 justify-content-start">
                                 @forelse ($products as $product)
                                     <x-frontend.products.card :product="$product" class="col-md-6 col-lg-6 col-xl-4" />
                                 @empty
                                     <x-frontend.no-data text="No products found..." />
                                 @endforelse
-                                <x-frontend.pagination :for="$products"/>
+                                <x-frontend.pagination :for="$products" />
                             </div>
                         </div>
                     </div>
@@ -213,4 +216,69 @@
         </div>
     </div>
     <!-- Fruits Shop End-->
+@endsection
+
+@section('scripts')
+    <script>
+        const minRange = document.getElementById('minRange');
+        const maxRange = document.getElementById('maxRange');
+        const minInput = document.getElementById('minInput');
+        const maxInput = document.getElementById('maxInput');
+        const fill = document.getElementById('rangeFill');
+        const LIMIT = parseInt(maxRange.max);
+
+        function updateFill() {
+            const min = parseInt(minRange.value);
+            const max = parseInt(maxRange.value);
+            fill.style.left = (min / LIMIT * 100) + '%';
+            fill.style.width = ((max - min) / LIMIT * 100) + '%';
+        }
+
+        function fromSliders(changed) {
+            let min = parseInt(minRange.value);
+            let max = parseInt(maxRange.value);
+
+            if (min > max) {
+                if (changed === 'min') {
+                    min = max;
+                    minRange.value = min;
+                } else {
+                    max = min;
+                    maxRange.value = max;
+                }
+            }
+
+            minInput.value = min;
+            maxInput.value = max;
+            updateFill();
+        }
+
+        function fromInputs() {
+            let min = Math.max(0, parseInt(minInput.value) || 0);
+            let max = Math.min(LIMIT, parseInt(maxInput.value) || LIMIT);
+            if (min > max) min = max;
+
+            minRange.value = min;
+            maxRange.value = max;
+            updateFill();
+        }
+
+        minRange.addEventListener('input', () => fromSliders('min'));
+        maxRange.addEventListener('input', () => fromSliders('max'));
+        minInput.addEventListener('change', fromInputs);
+        maxInput.addEventListener('change', fromInputs);
+
+        document.getElementById('priceForm').addEventListener('submit', function() {
+            if (parseInt(minInput.value) <= 0) minInput.disabled = true;
+            if (parseInt(maxInput.value) >= LIMIT) maxInput.disabled = true;
+        });
+
+        // Re-enable inputs if the user presses the browser Back button
+        window.addEventListener('pageshow', function() {
+            minInput.disabled = false;
+            maxInput.disabled = false;
+        });
+
+        updateFill();
+    </script>
 @endsection

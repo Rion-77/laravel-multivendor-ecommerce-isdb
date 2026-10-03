@@ -557,6 +557,10 @@
     color: #f59e0b;
 }
 
+.product-name-carousel:hover {
+    color: #4f46e5;
+}
+
 /* Feature icon blocks: flatter, roomier, modern */
 .featurs-item {
     box-shadow: 0 4px 18px rgba(43, 58, 51, 0.05);

@@ -40,8 +40,8 @@
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a href="{{ route('homepage') }}" class="nav-item nav-link {{ activeLink('homepage') }}">Home</a>
-                        <a href="{{ route('products.index') }}" class="nav-item nav-link {{ activeLink('products*') }}">Shop</a>
-                        <a href="{{ route('vendors.index') }}" class="nav-item nav-link {{ activeLink('vendors*') }}">Vendors</a>
+                        <a href="{{ route('frontend.products.index') }}" class="nav-item nav-link {{ activeLink('frontend.products*') }}">Shop</a>
+                        <a href="{{ route('frontend.vendors.index') }}" class="nav-item nav-link {{ activeLink('frontend.vendors*') }}">Vendors</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Pages</a>
