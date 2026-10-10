@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens; 
 // for spatie Media
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -23,6 +24,8 @@ class User extends Authenticatable implements HasMedia
     use HasFactory, Notifiable;
 
     use InteractsWithMedia;
+
+    use HasApiTokens;
 
     /**
      * Get the attributes that should be cast.
