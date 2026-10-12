@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Api\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Api\Frontend\CategoryController as FrontendCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,10 +10,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
+/////////////////////////////////
 //Frontend Api
 
 // Route::apiResource('products', ProductController::class);
 
+//Home
 Route::get('frontend/home', [FrontendHomeController::class, 'index']);
+
+//Category
+Route::get('frontend/categories', [FrontendCategoryController::class, 'index']);
+Route::get('frontend/categories/{category}', [FrontendCategoryController::class, 'show']);
+
+//Products
 Route::get('frontend/products', [FrontendProductController::class, 'index']);
 Route::get('frontend/products/{product}', [FrontendProductController::class, 'show']);

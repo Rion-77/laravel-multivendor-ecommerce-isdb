@@ -66,9 +66,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::factory()->createMany([
-            ['name' => 'Shirt'],
-            ['name' => 'Jeans'],
-            ['name' => 'Foot Wear'],
+            ['name' => 'Shirt', 'slug' => 'shirt'],
+            ['name' => 'Jeans', 'slug' =>'jeans'],
+            ['name' => 'Foot Wear','slug' => 'footwear'],
         ]);
 
         Brand::factory()->createMany([
