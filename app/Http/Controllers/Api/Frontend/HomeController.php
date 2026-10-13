@@ -23,6 +23,7 @@ class HomeController extends Controller
                 'name'     => $category->name,
                 'products' => Product::where('category_id', $category->id)
                     ->orderBy('created_at', 'desc')
+                    ->with('brand:id,name')
                     ->limit(10)
                     ->get(),
             ];

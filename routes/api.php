@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Api\Frontend\VendorController as FrontendVendorController;
 use App\Http\Controllers\Api\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Api\Frontend\CategoryController as FrontendCategoryController;
 use Illuminate\Http\Request;
@@ -25,3 +26,7 @@ Route::get('frontend/categories/{category}', [FrontendCategoryController::class,
 //Products
 Route::get('frontend/products', [FrontendProductController::class, 'index']);
 Route::get('frontend/products/{product}', [FrontendProductController::class, 'show']);
+
+//Vendors
+Route::get('frontend/vendors', [FrontendVendorController::class, 'index']);
+Route::get('frontend/vendors/{vendor}', [FrontendVendorController::class, 'show']);
