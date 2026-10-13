@@ -2,6 +2,10 @@
 
 @section('title', 'Product Categories')
 
+@section('scripts')
+    @vite(['resources/js/filepond.js'])
+@endsection
+
 @section('content')
     <main class="app-main" id="main" tabindex="-1">
 
@@ -18,12 +22,12 @@
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="c-name">Category name</label>
-                                        <input type="text" class="form-control" id="c-name"
-                                            placeholder="e.g. Home Appliances">
-                                    </div>
-                                    <div class="mb-3">
+                                    <!-- Category Name -->
+                                    <x-admin.form.input class="col-12" label="Category name" type="text"
+                                        placeholder="e.g. Home Appliances" name="name" value="{{ old('name') }}" />
+
+                                    <!-- Parent Category -->
+                                    {{-- <div class="mb-3">
                                         <label class="form-label" for="c-parent">Parent category</label>
                                         <select class="form-select" id="c-parent">
                                             <option selected="">None (top-level)</option>
@@ -31,16 +35,22 @@
                                             <option>Fashion &amp; Apparel</option>
                                             <option>Home &amp; Living</option>
                                         </select>
-                                    </div>
-                                    <div class="mb-3">
+                                    </div> --}}
+                                    {{-- <div class="mb-3">
                                         <label class="form-label" for="c-desc">Description</label>
                                         <textarea class="form-control" id="c-desc" rows="3" placeholder="Optional short description"></textarea>
-                                    </div>
+                                    </div> --}}
+                                   
+                                    <!-- Category Icon -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="c-icon">Icon</label>
-                                        <input type="text" class="form-control" id="c-icon"
-                                            placeholder="bi-tv (Bootstrap Icon class)">
+                                        <label class="form-label" for="category_icon">Category Icon</label>
+                                        <input type="file" id="category_icon" class="filepond" accept="image/*"
+                                                    name="category_icon">
+                                                <p class="text-secondary fs-7 mt-2 mb-0">Optional. Image Only, up to 2MB.
+                                                </p>
+                                                <x-admin.error-message name="category_icon" />
                                     </div>
+
                                     <button type="submit" class="btn btn-primary w-100"><i
                                             class="bi bi-plus-lg me-1"></i>Add Category</button>
                                 </form>
@@ -79,7 +89,7 @@
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <i class="bi bi-tag fs-5 text-primary me-2"></i>
-                                                            <span class="fw-medium">{{$category->name}}</span>
+                                                            <span class="fw-medium">{{ $category->name }}</span>
                                                         </div>
                                                     </td>
                                                     {{-- <td>—</td> --}}

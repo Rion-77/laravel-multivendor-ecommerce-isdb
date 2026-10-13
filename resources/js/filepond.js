@@ -36,6 +36,9 @@ const pond = FilePond.create(inputElement, {
 
 }
 
+///////////////////////////////////
+// Product Image FilePond
+
 if(document.querySelector("#product_image")) {
 const inputElement = document.querySelector("#product_image");
 
@@ -46,6 +49,24 @@ const pond = FilePond.create(inputElement, {
     imagePreviewHeight: 80,
     imagePreviewMaxHeight: 80,
     allowMultiple: true,
+    itemInsertAspectRatio: '1:1', 
+    labelIdle: 'Drag & Drop your image or <span class="filepond--label-action"> Browse </span>',
+});
+
+}
+
+///////////////////////////////////
+// Category  Icon FilePond
+
+if(document.querySelector("#category_icon")) {
+const inputElement = document.querySelector("#category_icon");
+
+// Create the FilePond instance
+const pond = FilePond.create(inputElement, {
+    storeAsFile: true,
+    allowImagePreview: true,
+    imagePreviewHeight: 80,
+    imagePreviewMaxHeight: 80,
     itemInsertAspectRatio: '1:1', 
     labelIdle: 'Drag & Drop your image or <span class="filepond--label-action"> Browse </span>',
 });

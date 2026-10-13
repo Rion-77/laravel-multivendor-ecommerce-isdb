@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $category = Category::with([
             'products' => function ($query) {
-                $query->with('brand:id,name');
+                $query->with('brand:id,name')->orderBy('id', 'desc');
             },
         ])->where('slug', '=' , $slug)->get();
 
