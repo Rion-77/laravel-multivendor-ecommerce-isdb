@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Str;
 
 class VendorController extends Controller
 {
@@ -51,6 +52,7 @@ class VendorController extends Controller
 
         $vendor = new Vendor;
         $vendor->shop_name = $request->input('shop_name');
+        $vendor->slug = Str::slug($request->input('shop_name'));
         $vendor->commission_rate = $request->input('commission_rate');
         $vendor->description = $request->input('description');
         $vendor->user_id = $request->input('user_id');

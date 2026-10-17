@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       /*  User::factory()->createMany([
+         User::factory()->createMany([
             [
                 'id' => 1,
                 'name' => 'admin',
@@ -47,18 +47,18 @@ class DatabaseSeeder extends Seeder
                 'phone' => '+1-458-827-4388',
                 'password' => Hash::make('password'),
             ],
-        ]); */
+        ]);
 
-       /*  User::factory(27)->create();
+        User::factory(27)->create();
         Product::factory(30)->create();
-        Vendor::factory(10)->create(); */
+        Vendor::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-       /*  Role::factory()->createMany([
+         Role::factory()->createMany([
             ['name' => 'Admin'],
             ['name' => 'Moderator'],
             ['name' => 'Vendor'],
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Easy'],
             ['name' => 'Aarong'],
             ['name' => 'Apex'],
-        ]); */
+        ]);
 
         // [default: 'pending', note: 'pending, confirmed, packed, shipped, delivered, cancelled, return_requested, returned']
         OrderStatus::factory()->createMany([

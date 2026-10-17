@@ -19,20 +19,16 @@ class VendorController extends Controller
     }
 
     
-   public function show(Vendor $vendor)
+   public function show(string $slug)
     {
-        $vendor->loadCount('products');
-        $products = $vendor->products()->with('brand:id,name')->orderBy('created_at', 'desc')->paginate(12);
-        // return view('frontend.vendors.show', compact('vendor', 'products'));
+        $vendor = Vendor::with('products.brand:id,name')->withCount('products')->where('slug', '=' , $slug)->first();
+        
+        
         return response()->json([
             'success' => true,
             'vendor' => $vendor,
-            'products' => $products,
-        ]);
+            // 'products' => $products,
+        ], 200);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
    
 }

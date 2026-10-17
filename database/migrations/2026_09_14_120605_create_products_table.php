@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('category_id');
             $table->bigInteger('brand_id');
             $table->string('name');
+            $table->string('slug');
             $table->string('description');
             $table->decimal('base_price');
             $table->decimal('offer_price');

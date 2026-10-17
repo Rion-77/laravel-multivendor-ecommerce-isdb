@@ -28,7 +28,7 @@
         </div>
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="index.html" class="navbar-brand d-flex align-items-end">
+                <a href="{{ route('homepage') }}" class="navbar-brand d-flex align-items-end">
                     <h1 class="text-primary display-6 mb-0">ShopSphere</h1>
                     <span class="badge bg-secondary text-dark rounded-pill mb-2 ms-2 d-none d-sm-inline-block"
                         style="font-size: 11px;">MARKETPLACE</span>
@@ -43,7 +43,7 @@
                         <a href="{{ route('frontend.products.index') }}" class="nav-item nav-link {{ activeLink('frontend.products*') }}">Shop</a>
                         <a href="{{ route('frontend.vendors.index') }}" class="nav-item nav-link {{ activeLink('frontend.vendors*') }}">Vendors</a>
                         
-                        <div class="nav-item dropdown">
+                        {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                 <a href="vendor-detail.html" class="dropdown-item">Vendor Store</a>
@@ -54,8 +54,10 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
-                        </div>
+                        </div> --}}
+
                         <a href="{{ route('become-vendor') }}" class="nav-item nav-link {{ activeLink('become-vendor') }}">Become a Vendor</a>
+                        <a href="{{ route('admin.products.index') }}" target="_blank" class="nav-item nav-link {{ activeLink('become-vendor') }}">Admin</a>
                         <a href="{{ route('contact-us') }}" class="nav-item nav-link {{ activeLink('c') }}">Contact</a>
                     </div>
                     <div class="d-flex m-3 me-0">

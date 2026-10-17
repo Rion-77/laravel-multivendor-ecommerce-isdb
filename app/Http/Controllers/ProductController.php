@@ -10,6 +10,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -71,6 +72,7 @@ class ProductController extends Controller
         }
 
         $product->name = $request->name;
+        $product->slug = Str::slug($request->name);
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->description = $request->description;

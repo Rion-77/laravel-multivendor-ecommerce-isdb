@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 // for spatie Media
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Vendor extends Model implements HasMedia
 {
@@ -18,6 +18,8 @@ class Vendor extends Model implements HasMedia
 
     use InteractsWithMedia;
     protected $with = ['media'];
+     protected $hidden = ['media'];
+    protected $appends = ['logo_url'];
 
     protected $casts = [
         'status' => VendorStatus::class,
@@ -32,6 +34,23 @@ class Vendor extends Model implements HasMedia
         return $this->hasMany(Product::class);
     }
 
+    public function registerMediaCollections(): void
+    {
+        $placeholder = asset('img/fallback/vendor-fallback.svg');
+        $placeholderPath = public_path('img/fallback/vendor-fallback.svg');
+
+        $this->addMediaCollection('shop_logo')
+            ->singleFile()
+            ->acceptsMimeTypes([
+                'image/png',
+                'image/jpeg',
+                'image/webp',
+            ])
+            ->useFallbackUrl($placeholder)
+            ->useFallbackPath($placeholderPath)
+            ->useFallbackUrl($placeholder, 'webp')
+            ->useFallbackPath($placeholderPath, 'webp');
+    }
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('logo')
@@ -40,5 +59,10 @@ class Vendor extends Model implements HasMedia
             ->height(300)
             ->sharpen(10)
             ->nonQueued();
+    }
+
+     protected function logoUrl(): Attribute
+    {
+        return Attribute::get(fn() => $this->getFirstMediaUrl('shop_logo', 'webp'));
     }
 }

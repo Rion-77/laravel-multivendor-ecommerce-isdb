@@ -10,9 +10,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $products = QueryBuilder::for(Product::class)
@@ -36,16 +33,10 @@ class ProductController extends Controller
         ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(string $slug)
     {
-         $product = Product::with('category', 'brand', 'vendor')->findOrFail($id);
-        // $related_products = Product::orderBy('created_at', 'desc')->limit(6)->get();
-        // $featured_products = Product::orderBy('created_at', 'desc')->limit(6)->get();
-        // $vendor = Vendor::withCount('products')->findOrFail($product->vendor_id);
-        // return view('frontend.products.show', compact('product', 'related_products', 'featured_products', 'vendor'));
+         $product = Product::with('category:id,name', 'brand:id,name', 'vendor:id,shop_name,slug')->where('slug', '=' , $slug)->first();
+        
         return response()->json([
             'success' => true,
             'product' => $product,

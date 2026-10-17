@@ -102,9 +102,10 @@
                                                     {{-- <td><span class="badge text/-bg-success">Active</span></td> --}}
                                                     <td class="text-end">
                                                         <div class="btn-group btn-group-sm">
-                                                            <button type="button" class="btn btn-outline-secondary"
-                                                                aria-label="Edit Electronics"><i
-                                                                    class="bi bi-pencil"></i></button>
+                                                            <a href="{{ route('admin.categories.edit', $category) }}"
+                                                                class="btn btn-outline-secondary"
+                                                                aria-label="Edit {{ $category->name }}"><i
+                                                                    class="bi bi-pencil"></i></a>
                                                             <button type="button" class="btn btn-outline-danger"
                                                                 aria-label="Delete Electronics"><i
                                                                     class="bi bi-trash"></i></button>

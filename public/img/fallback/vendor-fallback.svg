@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- Background Container -->
+  <rect width="200" height="200" fill="#F3F4F6" rx="24" />
+
+  <!-- Storefront Icon -->
+  <g fill="none" stroke="#1c2430" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Store Roof / Awning -->
+    <path d="M25 75 L35 40 L165 40 L175 75 Z" />
+    <path d="M25 75 C32 85 43 85 50 75 C57 85 68 85 75 75 C82 85 93 85 100 75 C107 85 118 85 125 75 C132 85 143 85 150 75 C157 85 168 85 175 75" />
+    
+    <!-- Store Base & Door -->
+    <path d="M35 75 L35 160 L165 160 L165 75" />
+    <rect x="80" y="110" width="40" height="50" rx="4" />
+  </g>
+</svg>

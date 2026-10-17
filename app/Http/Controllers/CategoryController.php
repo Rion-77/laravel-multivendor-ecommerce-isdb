@@ -36,7 +36,7 @@ class CategoryController extends Controller
         $request->validate(
             [
                 'name' => 'required|min:3|max:100',
-                'category_icon' => 'nullable|mimes:jpeg,png,jpg,webp,avif,svg|max:150',
+                'category_icon' => 'nullable|mimes:jpeg,png,jpg,webp,avif,svg|max:2048',
             ]
         );
 
@@ -66,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -74,7 +74,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:100',
+            'category_icon' => 'nullable|mimes:jpeg,png,jpg,webp,avif,svg|max:2048',
+        ]);
+
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->save();
+
+        if ($request->hasFile('category_icon')) {
+            $category->addMediaFromRequest('category_icon')
+                ->toMediaCollection('category_icon');
+        }
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
     /**
