@@ -73,6 +73,9 @@ Route::middleware('auth', 'role_id:1')->group(function () {
 
     // Categories
     Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+    Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+
+    // Brands
     Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands.index');
 
     // Oders

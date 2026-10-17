@@ -14,6 +14,9 @@
         <div class="app-content">
             <div class="container-fluid">
 
+                <!-- Flash Message -->
+                <x-admin.success-flash-message />
+
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card card-primary card-outline">
@@ -21,7 +24,9 @@
                                 <h3 class="card-title">Add Category</h3>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="{{ route('admin.categories.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                                     <!-- Category Name -->
                                     <x-admin.form.input class="col-12" label="Category name" type="text"
                                         placeholder="e.g. Home Appliances" name="name" value="{{ old('name') }}" />
@@ -40,15 +45,15 @@
                                         <label class="form-label" for="c-desc">Description</label>
                                         <textarea class="form-control" id="c-desc" rows="3" placeholder="Optional short description"></textarea>
                                     </div> --}}
-                                   
+
                                     <!-- Category Icon -->
                                     <div class="mb-3">
                                         <label class="form-label" for="category_icon">Category Icon</label>
-                                        <input type="file" id="category_icon" class="filepond" accept="image/*"
-                                                    name="category_icon">
-                                                <p class="text-secondary fs-7 mt-2 mb-0">Optional. Image Only, up to 2MB.
-                                                </p>
-                                                <x-admin.error-message name="category_icon" />
+                                        <input type="file" id="category_icon" class="filepond"
+                                            name="category_icon">
+                                        <p class="text-secondary fs-7 mt-2 mb-0">Optional. Image Only, up to 2MB.
+                                        </p>
+                                        <x-admin.error-message name="category_icon" />
                                     </div>
 
                                     <button type="submit" class="btn btn-primary w-100"><i
@@ -88,7 +93,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <i class="bi bi-tag fs-5 text-primary me-2"></i>
+                                                            <img class="me-2" style="width: 25px; height: auto;" src={{ $category->getFirstMediaUrl('category_icon') }} alt="">
                                                             <span class="fw-medium">{{ $category->name }}</span>
                                                         </div>
                                                     </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -13,6 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('products')->get();
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -29,7 +31,26 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $request->validate(
+            [
+                'name' => 'required|min:3|max:100',
+                'category_icon' => 'nullable|mimes:jpeg,png,jpg,webp,avif,svg|max:150',
+            ]
+        );
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->save();
+
+        if ($request->hasFile('category_icon')) {
+            $category->addMediaFromRequest('category_icon')
+                ->toMediaCollection('category_icon');
+        }
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
     /**

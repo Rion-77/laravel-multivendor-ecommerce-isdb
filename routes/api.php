@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\Frontend\ProductController as FrontendProductController;
-use App\Http\Controllers\Api\Frontend\VendorController as FrontendVendorController;
-use App\Http\Controllers\Api\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Api\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Api\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Api\Frontend\OrderController as FrontendOrderController;
+use App\Http\Controllers\Api\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Api\Frontend\SearchController as FrontendSearchController;
+use App\Http\Controllers\Api\Frontend\VendorController as FrontendVendorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,23 +13,26 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-/////////////////////////////////
-//Frontend Api
+// ///////////////////////////////
+// Frontend Api
 
 // Route::apiResource('products', ProductController::class);
 
-//Home
+// Home
 Route::get('frontend/home', [FrontendHomeController::class, 'index']);
 
-//Category
+// Search
+Route::get('frontend/search', [FrontendSearchController::class, 'index']);
+
+// Category
 Route::get('frontend/categories', [FrontendCategoryController::class, 'index']);
 Route::get('frontend/categories/{category}', [FrontendCategoryController::class, 'show']);
 
-//Products
+// Products
 Route::get('frontend/products', [FrontendProductController::class, 'index']);
 Route::get('frontend/products/{product}', [FrontendProductController::class, 'show']);
 
-//Vendors
+// Vendors
 Route::get('frontend/vendors', [FrontendVendorController::class, 'index']);
 Route::get('frontend/vendors/{vendor}', [FrontendVendorController::class, 'show']);
 
