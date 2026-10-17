@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Frontend\ProductController as FrontendProductContro
 use App\Http\Controllers\Api\Frontend\VendorController as FrontendVendorController;
 use App\Http\Controllers\Api\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Api\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Api\Frontend\OrderController as FrontendOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,7 @@ Route::get('frontend/products/{product}', [FrontendProductController::class, 'sh
 //Vendors
 Route::get('frontend/vendors', [FrontendVendorController::class, 'index']);
 Route::get('frontend/vendors/{vendor}', [FrontendVendorController::class, 'show']);
+
+// Orders
+Route::post('frontend/orders', [FrontendOrderController::class, 'store']);
+Route::get('frontend/orders/{order}', [FrontendOrderController::class, 'show']);

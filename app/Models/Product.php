@@ -11,6 +11,7 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model implements HasMedia
 {
@@ -20,6 +21,8 @@ class Product extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $with = ['media'];
+    protected $hidden = ['media'];
+    protected $appends = ['image_url', 'thumbnail_url'];
 
     protected $casts = [
         'status' => ProductStatus::class,
@@ -45,6 +48,25 @@ class Product extends Model implements HasMedia
         return $this->hasMany(OrderItem::class);
     }
 
+    public function registerMediaCollections(): void
+    {
+        $placeholder = asset('img/fallback/product-fallback-svg.svg');
+        $placeholderPath = public_path('img/fallback/product-fallback-svg.svg');
+
+        $this->addMediaCollection('product_image')
+            ->acceptsMimeTypes([
+                'image/jpeg',
+                'image/png',
+                'image/webp',
+            ])
+            ->useFallbackUrl($placeholder)
+            ->useFallbackPath($placeholderPath)
+            ->useFallbackUrl($placeholder, 'webp')
+            ->useFallbackPath($placeholderPath, 'webp')
+            ->useFallbackUrl($placeholder, 'thumbnail')
+            ->useFallbackPath($placeholderPath, 'thumbnail');
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
 
@@ -64,5 +86,15 @@ class Product extends Model implements HasMedia
             ->fit(Fit::Crop, 300, 300)
             ->sharpen(10)
             ->nonQueued();
+    }
+
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::get(fn() => $this->getFirstMediaUrl('product_image', 'webp'));
+    }
+
+    protected function thumbnailUrl(): Attribute
+    {
+        return Attribute::get(fn() => $this->getFirstMediaUrl('product_image', 'thumbnail'));
     }
 }

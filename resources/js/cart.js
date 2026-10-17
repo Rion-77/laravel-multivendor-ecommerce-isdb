@@ -190,7 +190,7 @@ if (itemshiddenInput) {
     itemshiddenInput.value = JSON.stringify(list());
 }
 
-// Clreaing the card
+// Clreaing the cart
 function clearCart() {
     destroy();
     resetCounter();

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#F3F4F6"/>
+  
+  <!-- Product / Image Box Icon -->
+  <g transform="translate(136, 120)" fill="none" stroke="#9CA3AF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="8" width="112" height="112" rx="16"/>
+    <circle cx="44" cy="44" r="12"/>
+    <path d="M120 88L92 60L32 120"/>
+  </g>
+  
+  <!-- Text Label -->
+  <text x="50%" y="285" dominant-baseline="middle" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" fill="#6B7280">
+    Product Image Not Available
+  </text>
+</svg>

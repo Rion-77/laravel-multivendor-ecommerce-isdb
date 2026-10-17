@@ -10,6 +10,7 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Category extends Model implements HasMedia
 {
@@ -17,9 +18,14 @@ class Category extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $with = ['media'];
+    protected $hidden = ['media'];
+    protected $appends = ['icon_url'];
 
     public function registerMediaCollections(): void
     {
+        $placeholder = asset('img/fallback/category-fallback.svg');
+        $placeholderPath = public_path('img/fallback/category-fallback.svg');
+
         $this->addMediaCollection('category_icon')
             ->singleFile()
             ->acceptsMimeTypes([
@@ -28,17 +34,14 @@ class Category extends Model implements HasMedia
                 'image/webp',
                 'image/avif',
                 'image/svg+xml',
-            ]);
+            ])
+            ->useFallbackUrl($placeholder)
+            ->useFallbackPath($placeholderPath);
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+     protected function iconUrl(): Attribute
     {
-        $this->addMediaConversion('icon-sm')
-            ->performOnCollections('category_icon')
-            ->format('webp')
-            ->fit(Fit::Contain, 96, 96)
-            ->quality(85)
-            ->nonQueued();
+        return Attribute::get(fn() => $this->getFirstMediaUrl('category_icon'));
     }
 
     public function products()

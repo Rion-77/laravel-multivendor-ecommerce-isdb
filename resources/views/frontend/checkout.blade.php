@@ -214,7 +214,7 @@
                             </div>
                         </div> --}}
 
-                            <!-- Hidden totals: convenience only. Recompute on the server before saving. -->
+                            <!-- Hidden totals -->
                             <input type="hidden" name="order_items" id="subtotal_amount" value="">
                             <x-frontend.error-message name="order_items" />
 
