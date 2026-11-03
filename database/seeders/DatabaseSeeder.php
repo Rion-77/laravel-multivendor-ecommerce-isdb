@@ -22,36 +22,43 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         User::factory()->createMany([
-            [
-                'id' => 1,
-                'name' => 'admin',
-                'role_id' => 1,
-                'email' => 'admin@example.com',
-                'phone' => '(323) 731-4032',
-                'password' => Hash::make('password'),
-            ],
-            [
-                'id' => 2,
-                'name' => 'moderator',
-                'role_id' => 2,
-                'email' => 'moderator@example.com',
-                'phone' => '+1.678.896.7979',
-                'password' => Hash::make('password'),
-            ],
-            [
-                'id' => 3,
-                'name' => 'vendor',
-                'role_id' => 3,
-                'email' => 'vendor@example.com',
-                'phone' => '+1-458-827-4388',
-                'password' => Hash::make('password'),
-            ],
-        ]);
+        $demoPassword = env('DEMO_ACCOUNT_PASSWORD');
+        if (is_string($demoPassword) && $demoPassword !== '') {
+            User::factory()->createMany([
+                [
+                    'id' => 1,
+                    'name' => 'admin',
+                    'role_id' => 1,
+                    'email' => 'admin@example.com',
+                    'phone' => '(323) 731-4032',
+                    'password' => Hash::make($demoPassword),
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'moderator',
+                    'role_id' => 2,
+                    'email' => 'moderator@example.com',
+                    'phone' => '+1.678.896.7979',
+                    'password' => Hash::make($demoPassword),
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'vendor',
+                    'role_id' => 3,
+                    'email' => 'vendor@example.com',
+                    'phone' => '+1-458-827-4388',
+                    'password' => Hash::make($demoPassword),
+                ],
+            ]);
+        }
 
         User::factory(27)->create();
         Product::factory(30)->create();
-        Vendor::factory(10)->create();
+
+        // Keep the seeded vendor demo account attached to a predictable shop.
+        $demoVendorId = User::where('email', 'vendor@example.com')->value('id');
+        Vendor::factory()->create(['user_id' => $demoVendorId ?? 3]);
+        Vendor::factory(9)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

@@ -17,6 +17,8 @@ class Category extends Model implements HasMedia
     /** @use HasFactory<CategoryFactory> */
     use HasFactory, InteractsWithMedia;
 
+    protected $fillable = ['name', 'slug'];
+
     protected $with = ['media'];
     protected $hidden = ['media'];
     protected $appends = ['icon_url'];

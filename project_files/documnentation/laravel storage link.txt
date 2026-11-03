@@ -1,0 +1,47 @@
+From your screenshot, your cPanel home directory is:
+/home/shahedri
+
+
+I can see two relevant directories:
+- laravel-ecommerce-main-files
+- laravel-ecommerce.shahedrion.top
+I suspect laravel-ecommerce-main-files contains your Laravel application.
+Step 1. Navigate to the project directory
+Run:
+cd ~/laravel-ecommerce-main-files
+
+
+Step 2. Check the contents
+Run:
+ls -la
+
+
+You should see something like:
+app
+bootstrap
+config
+database
+public
+resources
+routes
+storage
+artisan
+
+
+Step 3. Verify that you're in the Laravel root
+Run:
+ls artisan
+
+
+If it displays artisan, you're in the correct directory.
+Step 4. Create the storage symlink
+Now execute:
+php artisan storage:link
+
+
+Expected result
+The [public/storage] link has been connected to
+[storage/app/public].
+
+
+Important: Before running Step 4, share the output of ls -la with me. I want to verify your directory structure first so we don't accidentally create the symlink in the wrong location.
