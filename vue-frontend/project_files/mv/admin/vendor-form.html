@@ -1,0 +1,389 @@
+<!doctype html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Add vendor | Bazaarly Multivendor Marketplace</title>
+    <meta name="description" content="Bazaarly – multivendor e-commerce admin template built on Sneat (Bootstrap 5)." />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/css/multivendor.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="dashboard.html" class="app-brand-link">
+              <span class="mv-brand-logo"><i class="bx bxs-store-alt"></i></span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Bazaarly</span>
+            </a>
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
+              ><i class="bx bx-chevron-left bx-sm align-middle"></i
+            ></a>
+          </div>
+          <div class="menu-inner-shadow"></div>
+          <ul class="menu-inner py-1">
+            <li class="menu-item">
+              <a href="dashboard.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>Dashboard</div></a
+              >
+            </li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Marketplace</span></li>
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle"
+                ><i class="menu-icon tf-icons bx bx-store-alt"></i>
+                <div>Vendors</div></a
+              >
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="vendors.html" class="menu-link"><div>All Vendors</div></a>
+                </li>
+                <li class="menu-item active">
+                  <a href="vendor-form.html" class="menu-link"><div>Add Vendor</div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle"
+                ><i class="menu-icon tf-icons bx bx-package"></i>
+                <div>Products</div></a
+              >
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="products.html" class="menu-link"><div>All Products</div></a>
+                </li>
+                <li class="menu-item">
+                  <a href="products-pending.html" class="menu-link"
+                    ><div>Moderation Queue</div>
+                    <div class="badge bg-danger rounded-pill ms-auto">3</div></a
+                  >
+                </li>
+                <li class="menu-item">
+                  <a href="product-form.html" class="menu-link"><div>Add Product</div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="categories.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-category"></i>
+                <div>Categories</div></a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="brands.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-purchase-tag-alt"></i>
+                <div>Brands</div></a
+              >
+            </li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Sales</span></li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle"
+                ><i class="menu-icon tf-icons bx bx-receipt"></i>
+                <div>Orders</div></a
+              >
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="orders.html" class="menu-link"><div>All Orders</div></a>
+                </li>
+                <li class="menu-item">
+                  <a href="order-statuses.html" class="menu-link"><div>Order Statuses</div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="commissions.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-wallet"></i>
+                <div>Commissions</div></a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="reports.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-bar-chart-alt-2"></i>
+                <div>Reports</div></a
+              >
+            </li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">People</span></li>
+            <li class="menu-item">
+              <a href="customers.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-user"></i>
+                <div>Customers</div></a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle"
+                ><i class="menu-icon tf-icons bx bx-shield-quarter"></i>
+                <div>Users &amp; Roles</div></a
+              >
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="users.html" class="menu-link"><div>Staff Users</div></a>
+                </li>
+                <li class="menu-item">
+                  <a href="roles.html" class="menu-link"><div>Roles &amp; Permissions</div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">System</span></li>
+            <li class="menu-item">
+              <a href="settings.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-cog"></i>
+                <div>Marketplace Settings</div></a
+              >
+            </li>
+            <li class="menu-item">
+              <a href="profile.html" class="menu-link"
+                ><i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div>My Profile</div></a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <div class="layout-page">
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a>
+            </div>
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search orders, products, vendors..."
+                    aria-label="Search"
+                  />
+                </div>
+              </div>
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item">
+                  <span class="badge bg-label-primary mv-role-pill me-3 d-none d-md-inline">Admin panel</span>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link px-0" href="javascript:void(0)" data-bs-toggle="tooltip" title="View storefront"
+                    ><i class="bx bx-link-external fs-4"></i
+                  ></a>
+                </li>
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <span class="avatar-initial rounded-circle bg-label-primary">AU</span>
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="profile.html"
+                        ><div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <span class="avatar-initial rounded-circle bg-label-primary">AU</span>
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block text-capitalize">Admin User</span
+                            ><small class="text-muted">Administrator</small>
+                          </div>
+                        </div></a
+                      >
+                    </li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li>
+                      <a class="dropdown-item" href="profile.html"
+                        ><i class="bx bx-user me-2"></i><span class="align-middle">My Profile</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="../vendor/dashboard.html"
+                        ><i class="bx bx-store-alt me-2"></i><span class="align-middle">Switch to vendor panel</span></a
+                      >
+                    </li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li>
+                      <a class="dropdown-item" href="../auth/login.html"
+                        ><i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="d-flex flex-wrap justify-content-between align-items-center py-3 mb-3 gap-2">
+                <div>
+                  <h4 class="fw-bold mb-0"><span class="text-muted fw-light">Vendors / </span>Add vendor</h4>
+                </div>
+                <div class="d-flex gap-2 flex-wrap"></div>
+              </div>
+              <form data-mv-demo="Vendor saved (demo – wire this form to your backend)." class="row g-4">
+                <div class="col-lg-8">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="card-title mb-0">Shop information</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="form-label">Shop name <span class="text-danger">*</span></label
+                          ><input
+                            class="form-control"
+                            id="shop_name"
+                            name="shop_name"
+                            placeholder="e.g. Rupkotha Fashion House"
+                            data-mv-slug-source="#slug"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Slug <span class="text-danger">*</span></label>
+                          <div class="input-group">
+                            <span class="input-group-text">/shop/</span
+                            ><input class="form-control" id="slug" name="slug" placeholder="auto-generated" required />
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label">Description <span class="text-danger">*</span></label
+                          ><textarea
+                            class="form-control"
+                            name="description"
+                            rows="5"
+                            placeholder="Tell customers what this shop sells..."
+                            required
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="card-title mb-0">Account & status</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="mb-3">
+                        <label class="form-label"
+                          >Owner (user with Vendor role) <span class="text-danger">*</span></label
+                        ><select class="form-select" name="user_id" id="user_id">
+                          <option value="">Select owner...</option>
+                          <option value="3">Vendor Owner 1 (owner1@example.com)</option>
+                          <option value="4">Vendor Owner 2 (owner2@example.com)</option>
+                          <option value="5">Vendor Owner 3 (owner3@example.com)</option>
+                          <option value="6">Vendor Owner 4 (owner4@example.com)</option>
+                          <option value="7">Vendor Owner 5 (owner5@example.com)</option>
+                          <option value="8">Vendor Owner 6 (owner6@example.com)</option>
+                        </select>
+                        <div class="form-text">
+                          Maps to <code>vendors.user_id</code>. Create the user first via Register or Users.
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Status</label
+                        ><select class="form-select" name="status" id="status">
+                          <option value="active" selected>Active</option>
+                          <option value="inactive">Inactive</option>
+                          <option value="suspended">Suspended</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="form-label">Commission rate <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                          <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="100"
+                            class="form-control"
+                            name="commission_rate"
+                            value="10.00"
+                            required
+                          /><span class="input-group-text">%</span>
+                        </div>
+                        <div class="form-text">Percentage the marketplace keeps from each sale.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Save vendor</button
+                    ><a class="btn btn-outline-secondary" href="vendors.html">Cancel</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  Bazaarly Multivendor Marketplace
+                </div>
+                <div>
+                  <a href="#" class="footer-link me-4">Terms</a><a href="#" class="footer-link me-4">Privacy</a
+                  ><a href="#" class="footer-link">Support</a>
+                </div>
+              </div>
+            </footer>
+            <div class="content-backdrop fade"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    <div class="modal fade" id="mvConfirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-body text-center pt-4">
+            <i class="bx bx-error-circle text-warning" style="font-size: 3.5rem"></i>
+            <h5 class="mt-2">Are you sure?</h5>
+            <p class="mv-confirm-text text-muted mb-0"></p>
+          </div>
+          <div class="modal-footer justify-content-center border-0 pb-4">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger mv-confirm-ok">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/multivendor.js"></script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Dashboard | Bazaarly Multivendor Marketplace</title>
+    <meta name="description" content="Bazaarly – multivendor e-commerce admin template built on Sneat (Bootstrap 5)." />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/css/multivendor.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="dashboard.html" class="app-brand-link">
+              <span class="mv-brand-logo"><i class="bx bxs-store-alt"></i></span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Bazaarly</span>
+            </a>
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"><i class="bx bx-chevron-left bx-sm align-middle"></i></a>
+          </div>
+          <div class="menu-inner-shadow"></div>
+          <ul class="menu-inner py-1">
+<li class="menu-item active"><a href="dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Marketplace</span></li>
+<li class="menu-item"><a href="javascript:void(0);" class="menu-link menu-toggle"><i class="menu-icon tf-icons bx bx-store-alt"></i><div>Vendors</div></a><ul class="menu-sub"><li class="menu-item"><a href="vendors.html" class="menu-link"><div>All Vendors</div></a></li><li class="menu-item"><a href="vendor-form.html" class="menu-link"><div>Add Vendor</div></a></li></ul></li>
+<li class="menu-item"><a href="javascript:void(0);" class="menu-link menu-toggle"><i class="menu-icon tf-icons bx bx-package"></i><div>Products</div></a><ul class="menu-sub"><li class="menu-item"><a href="products.html" class="menu-link"><div>All Products</div></a></li><li class="menu-item"><a href="products-pending.html" class="menu-link"><div>Moderation Queue</div><div class="badge bg-danger rounded-pill ms-auto">3</div></a></li><li class="menu-item"><a href="product-form.html" class="menu-link"><div>Add Product</div></a></li></ul></li>
+<li class="menu-item"><a href="categories.html" class="menu-link"><i class="menu-icon tf-icons bx bx-category"></i><div>Categories</div></a></li>
+<li class="menu-item"><a href="brands.html" class="menu-link"><i class="menu-icon tf-icons bx bx-purchase-tag-alt"></i><div>Brands</div></a></li>
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Sales</span></li>
+<li class="menu-item"><a href="javascript:void(0);" class="menu-link menu-toggle"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Orders</div></a><ul class="menu-sub"><li class="menu-item"><a href="orders.html" class="menu-link"><div>All Orders</div></a></li><li class="menu-item"><a href="order-statuses.html" class="menu-link"><div>Order Statuses</div></a></li></ul></li>
+<li class="menu-item"><a href="commissions.html" class="menu-link"><i class="menu-icon tf-icons bx bx-wallet"></i><div>Commissions</div></a></li>
+<li class="menu-item"><a href="reports.html" class="menu-link"><i class="menu-icon tf-icons bx bx-bar-chart-alt-2"></i><div>Reports</div></a></li>
+<li class="menu-header small text-uppercase"><span class="menu-header-text">People</span></li>
+<li class="menu-item"><a href="customers.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Customers</div></a></li>
+<li class="menu-item"><a href="javascript:void(0);" class="menu-link menu-toggle"><i class="menu-icon tf-icons bx bx-shield-quarter"></i><div>Users &amp; Roles</div></a><ul class="menu-sub"><li class="menu-item"><a href="users.html" class="menu-link"><div>Staff Users</div></a></li><li class="menu-item"><a href="roles.html" class="menu-link"><div>Roles &amp; Permissions</div></a></li></ul></li>
+<li class="menu-header small text-uppercase"><span class="menu-header-text">System</span></li>
+<li class="menu-item"><a href="settings.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cog"></i><div>Marketplace Settings</div></a></li>
+<li class="menu-item"><a href="profile.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user-circle"></i><div>My Profile</div></a></li>
+          </ul>
+        </aside>
+
+        <div class="layout-page">
+          <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a>
+            </div>
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input type="text" class="form-control border-0 shadow-none" placeholder="Search orders, products, vendors..." aria-label="Search" />
+                </div>
+              </div>
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item"><span class="badge bg-label-primary mv-role-pill me-3 d-none d-md-inline">Admin panel</span></li>
+                <li class="nav-item me-3"><a class="nav-link px-0" href="javascript:void(0)" data-bs-toggle="tooltip" title="View storefront"><i class="bx bx-link-external fs-4"></i></a></li>
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-label-primary">AU</span></div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="profile.html"><div class="d-flex">
+                      <div class="flex-shrink-0 me-3"><div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-label-primary">AU</span></div></div>
+                      <div class="flex-grow-1"><span class="fw-semibold d-block text-capitalize">Admin User</span><small class="text-muted">Administrator</small></div>
+                    </div></a></li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="profile.html"><i class="bx bx-user me-2"></i><span class="align-middle">My Profile</span></a></li>
+                    <li><a class="dropdown-item" href="../vendor/dashboard.html"><i class="bx bx-store-alt me-2"></i><span class="align-middle">Switch to vendor panel</span></a></li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="../auth/login.html"><i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="d-flex flex-wrap justify-content-between align-items-center py-3 mb-3 gap-2">
+            <div>
+              <h4 class="fw-bold mb-0"><span class="text-muted fw-light"></span>Dashboard</h4>
+            </div>
+            <div class="d-flex gap-2 flex-wrap"><a href="product-form.html" class="btn btn-primary" ><i class="bx bx-plus me-1"></i>Add product</a></div>
+          </div>
+
+  <div class="row g-4 mb-4"><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Gross merchandise sales</span><h3>$926</h3><small class="text-muted">Excludes cancelled / returned</small></div>
+      <div class="mv-kpi-icon bg-label-primary"><i class="bx bx-dollar-circle"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Platform commission</span><h3>$86.87</h3><small class="text-muted">Based on each vendor rate</small></div>
+      <div class="mv-kpi-icon bg-label-success"><i class="bx bx-wallet"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Orders</span><h3>8</h3><small class="text-muted">3 pending</small></div>
+      <div class="mv-kpi-icon bg-label-info"><i class="bx bx-receipt"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Active vendors</span><h3>4<small class="text-muted fs-6"> / 6</small></h3><small class="text-muted">2 inactive or suspended</small></div>
+      <div class="mv-kpi-icon bg-label-warning"><i class="bx bx-store-alt"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Products</span><h3>26</h3><small class="text-muted">12 active</small></div>
+      <div class="mv-kpi-icon bg-label-primary"><i class="bx bx-package"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Awaiting moderation</span><h3>3</h3><small class="text-muted"><a href="products-pending.html">Review now</a></small></div>
+      <div class="mv-kpi-icon bg-label-danger"><i class="bx bx-time-five"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Customers</span><h3>12</h3><small class="text-muted">Registered accounts</small></div>
+      <div class="mv-kpi-icon bg-label-success"><i class="bx bx-user"></i></div></div></div></div></div><div class="col-sm-6 col-xl-3"><div class="card mv-kpi h-100"><div class="card-body"><div class="d-flex justify-content-between align-items-start">
+      <div><span class="text-muted d-block mb-1">Categories / Brands</span><h3>8 / 10</h3></div>
+      <div class="mv-kpi-icon bg-label-info"><i class="bx bx-category"></i></div></div></div></div></div></div>
+  <div class="row g-4 mb-4">
+    <div class="col-lg-8"><div class="card "><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Gross sales by day</h5><div><span class="text-muted small">Oct 2026</span></div></div><div class="card-body "><div id="chartDaily"></div></div></div></div>
+    <div class="col-lg-4"><div class="card "><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Orders by status</h5></div><div class="card-body "><div id="chartOrderStatus"></div></div></div></div>
+  </div>
+  <div class="row g-4 mb-4">
+    <div class="col-lg-6"><div class="card "><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Sales by vendor</h5></div><div class="card-body "><div id="chartVendors"></div></div></div></div>
+    <div class="col-lg-6"><div class="card "><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">New product listings per month</h5></div><div class="card-body "><div id="chartListings"></div></div></div></div>
+  </div>
+  <div class="row g-4 mb-4">
+    <div class="col-xl-8"><div class="card"><div class="card-header d-flex justify-content-between"><h5 class="mb-0">Recent orders</h5><a href="orders.html">View all</a></div>
+      <div class="table-responsive"><table class="table mv-table"><thead class="table-light"><tr><th>Order</th><th>Date</th><th>Customer</th><th>Vendors</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody><tr data-status="1"><td><a class="fw-semibold" href="order-details.html">#202610251008</a></td><td>25 Oct 2026, 10:56 AM</td><td><div class="mv-name">Avery Chen <span class="badge bg-label-secondary ms-1">Guest</span></div><div class="mv-sub">avery.chen@example.com</div></td><td class="mv-wrap">Gadget Hub, Daily Mart</td><td>4</td><td class="fw-semibold">$172</td><td><span class="badge bg-label-warning">Pending</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr><tr data-status="6"><td><a class="fw-semibold" href="order-details.html">#202610241007</a></td><td>24 Oct 2026, 05:49 PM</td><td><div class="mv-name">Drew Evans <span class="badge bg-label-secondary ms-1">Guest</span></div><div class="mv-sub">drew.evans@example.com</div></td><td class="mv-wrap">Daily Mart</td><td>1</td><td class="fw-semibold">$174</td><td><span class="badge bg-label-danger">Cancelled</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr><tr data-status="4"><td><a class="fw-semibold" href="order-details.html">#202610241006</a></td><td>24 Oct 2026, 04:42 PM</td><td><div class="mv-name">Jamie Patel</div><div class="mv-sub">jamie.patel@example.com</div></td><td class="mv-wrap">Gadget Hub</td><td>1</td><td class="fw-semibold">$115</td><td><span class="badge bg-label-primary">Shipped</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr><tr data-status="3"><td><a class="fw-semibold" href="order-details.html">#202610231005</a></td><td>23 Oct 2026, 03:35 PM</td><td><div class="mv-name">Riley Brooks <span class="badge bg-label-secondary ms-1">Guest</span></div><div class="mv-sub">riley.brooks@example.com</div></td><td class="mv-wrap">Daily Mart</td><td>2</td><td class="fw-semibold">$123</td><td><span class="badge bg-label-primary">Packed</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr><tr data-status="1"><td><a class="fw-semibold" href="order-details.html">#202610221004</a></td><td>22 Oct 2026, 02:28 PM</td><td><div class="mv-name">Casey Morgan <span class="badge bg-label-secondary ms-1">Guest</span></div><div class="mv-sub">casey.morgan@example.com</div></td><td class="mv-wrap">Urban Threads, Daily Mart</td><td>5</td><td class="fw-semibold">$169</td><td><span class="badge bg-label-warning">Pending</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr><tr data-status="5"><td><a class="fw-semibold" href="order-details.html">#202610201003</a></td><td>20 Oct 2026, 01:21 PM</td><td><div class="mv-name">Taylor Kim</div><div class="mv-sub">taylor.kim@example.com</div></td><td class="mv-wrap">Daily Mart, Book Nook</td><td>4</td><td class="fw-semibold">$210</td><td><span class="badge bg-label-success">Delivered</span></td><td><div class="mv-actions d-flex gap-1"><a class="btn btn-sm btn-icon btn-outline-secondary" href="order-details.html" data-bs-toggle="tooltip" title="View"><i class="bx bx-show"></i></a><button class="btn btn-sm btn-icon btn-outline-secondary" onclick="window.print()" data-bs-toggle="tooltip" title="Print"><i class="bx bx-printer"></i></button></div></td></tr></tbody></table></div></div></div>
+    <div class="col-xl-4">
+      <div class="card mb-4"><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Pending product reviews</h5><div><a href="products-pending.html">All</a></div></div><div class="card-body "><ul class="list-unstyled mb-0"><li class="d-flex align-items-center mb-3"><span class="mv-thumb mv-thumb-sm bg-label-primary"><i class="bx bx-male"></i></span><div class="ms-3 flex-grow-1"><div class="mv-name text-truncate" style="max-width:230px">Slim Fit Jeans</div><div class="mv-sub">Daily Mart · $199</div></div><a href="product-details.html" class="btn btn-sm btn-outline-primary">Review</a></li><li class="d-flex align-items-center mb-3"><span class="mv-thumb mv-thumb-sm bg-label-primary"><i class="bx bx-male"></i></span><div class="ms-3 flex-grow-1"><div class="mv-name text-truncate" style="max-width:230px">Summer Dress</div><div class="mv-sub">Daily Mart · $24</div></div><a href="product-details.html" class="btn btn-sm btn-outline-primary">Review</a></li><li class="d-flex align-items-center mb-3"><span class="mv-thumb mv-thumb-sm bg-label-primary"><i class="bx bx-male"></i></span><div class="ms-3 flex-grow-1"><div class="mv-name text-truncate" style="max-width:230px">Hooded Sweatshirt</div><div class="mv-sub">Urban Threads · $24</div></div><a href="product-details.html" class="btn btn-sm btn-outline-primary">Review</a></li></ul></div></div>
+      <div class="card "><div class="card-header d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Top vendors</h5><div><a href="commissions.html">Commissions</a></div></div><div class="card-body "><ul class="list-unstyled mb-0"><li class="d-flex align-items-center mb-3"><div class="avatar avatar-sm"><span class="avatar-initial rounded-circle bg-label-danger">DM</span></div><div class="ms-3 flex-grow-1"><div class="mv-name">Daily Mart</div><div class="mv-sub">13 products · 5 orders</div></div><div class="fw-semibold">$460</div></li><li class="d-flex align-items-center mb-3"><div class="avatar avatar-sm"><span class="avatar-initial rounded-circle bg-label-success">GH</span></div><div class="ms-3 flex-grow-1"><div class="mv-name">Gadget Hub</div><div class="mv-sub">3 products · 3 orders</div></div><div class="fw-semibold">$330</div></li><li class="d-flex align-items-center mb-3"><div class="avatar avatar-sm"><span class="avatar-initial rounded-circle bg-label-primary">UT</span></div><div class="ms-3 flex-grow-1"><div class="mv-name">Urban Threads</div><div class="mv-sub">4 products · 1 orders</div></div><div class="fw-semibold">$86</div></li><li class="d-flex align-items-center mb-3"><div class="avatar avatar-sm"><span class="avatar-initial rounded-circle bg-label-secondary">BN</span></div><div class="ms-3 flex-grow-1"><div class="mv-name">Book Nook</div><div class="mv-sub">4 products · 1 orders</div></div><div class="fw-semibold">$36</div></li><li class="d-flex align-items-center mb-3"><div class="avatar avatar-sm"><span class="avatar-initial rounded-circle bg-label-info">FB</span></div><div class="ms-3 flex-grow-1"><div class="mv-name">Fresh Basket</div><div class="mv-sub">2 products · 1 orders</div></div><div class="fw-semibold">$14</div></li></ul></div></div>
+    </div>
+  </div>
+            </div>
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">© <script>document.write(new Date().getFullYear());</script> Bazaarly Multivendor Marketplace</div>
+                <div><a href="#" class="footer-link me-4">Terms</a><a href="#" class="footer-link me-4">Privacy</a><a href="#" class="footer-link">Support</a></div>
+              </div>
+            </footer>
+            <div class="content-backdrop fade"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    <div class="modal fade" id="mvConfirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content">
+        <div class="modal-body text-center pt-4">
+          <i class="bx bx-error-circle text-warning" style="font-size:3.5rem"></i>
+          <h5 class="mt-2">Are you sure?</h5>
+          <p class="mv-confirm-text text-muted mb-0"></p>
+        </div>
+        <div class="modal-footer justify-content-center border-0 pb-4">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger mv-confirm-ok">Confirm</button>
+        </div>
+      </div></div>
+    </div>
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../assets/js/mv-charts.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/multivendor.js"></script>
+<script>const d = {"days": ["18 Oct", "19 Oct", "20 Oct", "21 Oct", "22 Oct", "23 Oct", "24 Oct", "25 Oct"], "rev": [38, 124, 205, 0, 164, 118, 110, 167], "ost_l": ["Pending", "Confirmed", "Delivered", "Packed", "Shipped", "Cancelled"], "ost_v": [3, 1, 1, 1, 1, 1], "ost_c": ["warning", "info", "success", "primary", "primary", "danger"], "v_l": ["Daily Mart", "Gadget Hub", "Urban Threads", "Book Nook", "Fresh Basket"], "v_v": [460, 330, 86, 36, 14], "m_l": ["Oct 26"], "m_v": [26]};
+mvChart.area('#chartDaily', d.days, [{name:'Gross sales', data:d.rev}], {money:true, colors:[config.colors.primary]});
+mvChart.donut('#chartOrderStatus', d.ost_l, d.ost_v, d.ost_c.map(n=>config.colors[n]));
+mvChart.bar('#chartVendors', d.v_l, [{name:'Gross sales', data:d.v_v}], {horizontal:true, money:true, distributed:true});
+mvChart.bar('#chartListings', d.m_l, [{name:'New listings', data:d.m_v}], {colors:[config.colors.info]});</script>
+  </body>
+</html>
